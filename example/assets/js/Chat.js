@@ -47,7 +47,7 @@ class InteractiveChatbox {
     }
 }
 
-// Récupération de l'image et du champ de texte
+// Récupération de l'image et du champ de text
 const image = document.querySelector('#send-message');
 const champTexte = document.querySelector('#envoyer');
 // Ajout d'un écouteur d'événements au clic de l'image
