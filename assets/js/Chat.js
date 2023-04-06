@@ -115,14 +115,18 @@ function envoyerMessage() {
     // Code pour envoyer le message...
     console.log("Le message "+ recupererMessage + "a été envoyé !");
 
-    var userMsg = document.getElementById('msg2');
-    console.log(userMsg);
-    userMsg.textContent = recupererMessage;
+        // crée un nouvel élément div
+        var dissMsg = document.createElement("div");
+        
+        dissMsg.textContent = "dissMsg";
 
-    var retourBot2 = document.getElementById('msg3');
-    console.log(retourBot2);
-    retourBot2.textContent = recupererMessage;
-    
+        document.body.appendChild(dissMsg);
+      
+        // ajoute le nouvel élément créé et son contenu dans le DOM
+        var userMsg = document.getElementById('msg2');
+        console.log(userMsg);
+        userMsg.textContent = recupererMessage;
+      
 
     // Effacement du champ de texte
     champTexte.value = '';
