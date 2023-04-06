@@ -47,6 +47,9 @@ class InteractiveChatbox {
     }
 }
 
+
+// Ecrire un message puis le valider en cliquant sur l'image ou sur valider en cliquant sur entrée du clavier //
+
 // Récupération de l'image et du champ de text
 const image = document.querySelector('#send-message');
 const champTexte = document.querySelector('#envoyer');
@@ -77,3 +80,5 @@ function envoyerMessage() {
     champTexte.value = '';
   }
 }
+
+// Intérargir entre le visiteur et le chatbot//
