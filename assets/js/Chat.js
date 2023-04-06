@@ -48,6 +48,45 @@ class InteractiveChatbox {
 }
 
 
+
+
+/*
+// Intérargir entre le visiteur et le chatbot//
+
+// Définir une liste de messages possibles
+const botMessages = [
+    "Bonjour!",
+    "Comment allez-vous?",
+    "Que puis-je faire pour vous aider?",
+    "Avez-vous des questions?",
+    "Je suis là pour vous aider!",
+    "Comment s'est passée votre journée?",
+    "Avez-vous besoin de quelque chose?",
+    "Je suis toujours là si vous avez besoin de moi.",
+    "Comment puis-je vous aider aujourd'hui?"
+  ];
+  
+  // Créer une fonction pour générer un message aléatoire
+  function genererMessageAleatoire() {
+    // Générer un nombre aléatoire entre 0 et la longueur de la liste de messages
+    const indiceAleatoire = Math.floor(Math.random() * botMessages.length);
+    // Retourner le message correspondant à l'indice aléatoire
+    return botMessages[indiceAleatoire];
+  }
+  
+  // Créer une fonction pour envoyer un message
+  function envoyerMessage() {
+    // Obtenir un message aléatoire en appelant la fonction genererMessageAleatoire
+    const botMessages = genererMessageAleatoire();
+  
+    // Envoyer le message à l'utilisateur
+    // Remplacez cette ligne par votre propre code pour envoyer des messages via votre plateforme de chatbot préférée.
+    console.log(botMessages);
+  }
+  
+  // Appeler la fonction envoyerMessage toutes les 5 secondes en utilisant la méthode setInterval
+  setInterval(envoyerMessage, 5000); */
+
 // Ecrire un message puis le valider en cliquant sur l'image ou sur valider en cliquant sur entrée du clavier //
 
 // Récupération de l'image et du champ de text
@@ -76,9 +115,17 @@ function envoyerMessage() {
     // Code pour envoyer le message...
     console.log("Le message "+ recupererMessage + "a été envoyé !");
 
+    var userMsg = document.getElementById('msg2');
+    console.log(userMsg);
+    userMsg.textContent = recupererMessage;
+
+    var retourBot2 = document.getElementById('msg3');
+    console.log(retourBot2);
+    retourBot2.textContent = recupererMessage;
+    
+
     // Effacement du champ de texte
     champTexte.value = '';
   }
 }
 
-// Intérargir entre le visiteur et le chatbot//
