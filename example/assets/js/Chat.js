@@ -46,3 +46,34 @@ class InteractiveChatbox {
         }
     }
 }
+
+// Récupération de l'image et du champ de texte
+const image = document.querySelector('#send-message');
+const champTexte = document.querySelector('#envoyer');
+// Ajout d'un écouteur d'événements au clic de l'image
+image.addEventListener('click', envoyerMessage);
+
+// Ajout d'un écouteur d'événements à la touche Entrée dans le champ de texte
+champTexte.addEventListener('keydown', function(e) {
+  if (e.keyCode === 13) {
+    envoyerMessage();
+  }
+});
+
+// Fonction pour envoyer le message
+function envoyerMessage() {
+  // Récupération du texte dans le champ de texte
+  var recupererMessage = document.getElementById('envoyer').value;
+    console.log(recupererMessage);
+  //const message = champTexte.value;//
+
+  // Vérification que le champ de texte n'est pas vide
+  if (recupererMessage.trim() !== '') {
+    // Envoi du message
+    // Code pour envoyer le message...
+    console.log("Le message "+ recupererMessage + "a été envoyé !");
+
+    // Effacement du champ de texte
+    champTexte.value = '';
+  }
+}
