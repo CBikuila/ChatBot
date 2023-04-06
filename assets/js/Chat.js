@@ -109,7 +109,7 @@ function envoyerMessage() {
     console.log(recupererMessage);
   //const message = champTexte.value;//
 
-  // Vérification que le champ de texte n'est pas vide
+  // Vérification que le champ de texte n'est pas vide 89
   if (recupererMessage.trim() !== '') {
     // Envoi du message
     // Code pour envoyer le message...
