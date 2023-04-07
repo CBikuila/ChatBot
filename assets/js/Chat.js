@@ -54,7 +54,7 @@ class InteractiveChatbox {
 // Intérargir entre le visiteur et le chatbot//
 
 // Définir une liste de messages possibles aléatoire
-*/
+
 const botMessages = [
     "Bonjour!",
     "Comment allez-vous?",
@@ -74,7 +74,7 @@ const botMessages = [
     // Retourner le message correspondant à l'indice aléatoire
     return botMessages[indiceAleatoire];
   }
-  
+
   // Créer une fonction pour envoyer un message
   function envoyerMessage() {
     // Obtenir un message aléatoire en appelant la fonction genererMessageAleatoire
@@ -87,7 +87,7 @@ const botMessages = [
   
   // Appeler la fonction envoyerMessage toutes les 5 secondes en utilisant la méthode setInterval
   setInterval(envoyerMessage, 5000); 
-
+  */
 // Ecrire un message puis le valider en cliquant sur l'image ou sur valider en cliquant sur entrée du clavier //
 
 // Récupération de l'image et du champ de text
