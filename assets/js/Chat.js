@@ -1,3 +1,5 @@
+//Le constructeur est appelé lors de l'initialisation d'une instance de la classe. Il prend trois arguments : a, b et c. 
+//Le constructeur initialise également trois propriétés pour chaque instance créée : this.args, this.icons et this.state.
 class InteractiveChatbox {
     constructor(a, b, c) {
         this.args = {
@@ -114,20 +116,15 @@ function envoyerMessage() {
     // Envoi du message
     // Code pour envoyer le message...
     console.log("Le message "+ recupererMessage + "a été envoyé !");
-
-        // crée un nouvel élément div
-        var dissMsg = document.createElement("div");
-        
-        dissMsg.textContent = "dissMsg";
-
-        document.body.appendChild(dissMsg);
-      
         // ajoute le nouvel élément créé et son contenu dans le DOM
-        var userMsg = document.getElementById('msg2');
-        console.log(userMsg);
-        userMsg.textContent = recupererMessage;
+        var div = document.createElement("div");
+        div.textContent = document.getElementById('envoyer').value;
+        
+        var msg = document.getElementById('msg');
+        
+        console.log(msg);
+        msg.appendChild(div);
       
-
     // Effacement du champ de texte
     champTexte.value = '';
   }
