@@ -1,5 +1,3 @@
-//Le constructeur est appelé lors de l'initialisation d'une instance de la classe. Il prend trois arguments : a, b et c. 
-//Le constructeur initialise également trois propriétés pour chaque instance créée : this.args, this.icons et this.state.
 class InteractiveChatbox {
     constructor(a, b, c) {
         this.args = {
@@ -56,6 +54,7 @@ class InteractiveChatbox {
 // Intérargir entre le visiteur et le chatbot//
 
 // Définir une liste de messages possibles aléatoire
+*/
 const botMessages = [
     "Bonjour!",
     "Comment allez-vous?",
@@ -87,7 +86,7 @@ const botMessages = [
   }
   
   // Appeler la fonction envoyerMessage toutes les 5 secondes en utilisant la méthode setInterval
-  setInterval(envoyerMessage, 5000); */
+  setInterval(envoyerMessage, 5000); 
 
 // Ecrire un message puis le valider en cliquant sur l'image ou sur valider en cliquant sur entrée du clavier //
 
@@ -121,9 +120,8 @@ function envoyerMessage() {
         div.textContent = document.getElementById('envoyer').value; // Cette ligne récupère la valeur du champ de formulaire HTML avec l'identifiant "envoyer" et l'assigne à la propriété textContent de la variable div. Cela permet d'afficher le contenu du champ texte dans la nouvelle div créé.        var msg = document.getElementById('msg');// Cette ligne récupère un élément HTML avec l'identifiant "msg" et le stocke dans la variable msg.
         
         console.log(msg);
-        msg.appendChild(div);//IL ajoute la div créée à l'étape 1 en tant qu'enfant de l'élément HTML msg. Cela insère la div à l'intérieur de l'élément msg dans le document HTML.
-
-        
+        msg.appendChild(div); //IL ajoute la div créée à l'étape 1 en tant qu'enfant de l'élément HTML msg. Cela insère la div à l'intérieur de l'élément msg dans le document HTML.
+         
     // Effacement du champ de texte
     champTexte.value = '';
   }

@@ -8,7 +8,8 @@
     display: table;
     margin-right: auto;
     position: relative;
-    animation: 2s bulge infinite ease-out;
+    animation: 5s bulge infinite ease-out;
+    
 }
 
 .messages__item--typing::before,
@@ -30,7 +31,7 @@
 span.messages__dot {
     height: 8px;
     width: 8px;
-    float: left;
+    float: center;
     margin: 0 1px;
     background-color: #9E9EA1;
     display: block;
@@ -50,4 +51,64 @@ span.messages__dot {
         transform: scale(1.05);
     }
 }
+
+/* Style pour les messages du visiteur */
+.messages__item--visitor {
+    align-items: left;
+    color: #333333;
+    padding: 8px 16px;
+    border-radius: 16px;
+    max-width: 60%;
+    margin-bottom: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  /* Style pour les messages de l'opérateur */
+  .messages__item--operator {
+    display: inline-block;
+    background-color: #1779ba;
+    align-items: right;
+    padding: 8px 16px;
+    border-radius: 16px;
+    max-width: 60%;
+    margin-bottom: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  /* Style pour les messages de l'opérateur en cours de saisie */
+  .messages__item--typing {
+    display: flex;
+    align-items: left;
+    margin-bottom: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  
+  /* Style pour les points d'attente de saisie */
+  .messages__dot {
+    display: inline-block;
+    background-color: #1779ba;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+    animation: typing 1s infinite;
+  }
+  
+  @keyframes typing {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   
