@@ -47,6 +47,15 @@ class InteractiveChatbox {
     }
 }
 
+// Récupération du bouton et de la chatbox
+const button = document.querySelector('.button');
+
+// Ajout d'un écouteur d'événement sur le bouton
+button.addEventListener('click', () => {
+  // Fermeture de la chatbox en masquant l'élément
+  Chatbox_support.style.display = 'none';
+});
+
 
 // Ecrire un message puis le valider en cliquant sur l'image ou sur valider en cliquant sur entrée du clavier //
 
@@ -72,7 +81,7 @@ var reponsesAleatoires = [
   "Je ne comprends pas ce que vous voulez dire.",
   "Pouvez-vous reformuler votre demande s'il vous plaît?",
   "Je suis désolé, je ne peux pas répondre à cela.",
-  "Hésitez pas à nous contactez par téléphone.",
+  "N'hésitez pas à nous contactez par téléphone.",
   "Je suis un chatbot, mais je suis ravi de discuter avec vous!"
 ];
 
