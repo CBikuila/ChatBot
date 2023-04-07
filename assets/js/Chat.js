@@ -81,7 +81,7 @@ var reponsesAleatoires = [
   "Je ne comprends pas ce que vous voulez dire.",
   "Pouvez-vous reformuler votre demande s'il vous plaît?",
   "Je suis désolé, je ne peux pas répondre à cela.",
-  "Hésitez pas à nous contactez par téléphone.",
+  "N'hésitez pas à nous contactez par téléphone.",
   "Je suis un chatbot, mais je suis ravi de discuter avec vous!"
 ];
 
