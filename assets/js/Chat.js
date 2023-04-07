@@ -106,7 +106,7 @@ function envoyerMessage() {
     // Code pour envoyer le message...
     console.log("Le message "+ recupererMessage + "a été envoyé !");
     
-        var div = document.createElement("div"); // Cette ligne crée un élément HTML <div> vide et le stocke dans la variable div
+        var div = document.createElement("div"); //crée un élément HTML <div> vide et le stocke dans la variable div
         div.textContent = document.getElementById('envoyer').value; // Cette ligne récupère la valeur du champ de formulaire HTML avec l'identifiant "envoyer" et l'assigne à la propriété textContent de la variable div. Cela permet d'afficher le contenu du champ texte dans la nouvelle div créé.        var msg = document.getElementById('msg');// Cette ligne récupère un élément HTML avec l'identifiant "msg" et le stocke dans la variable msg.
         
         console.log(msg);
