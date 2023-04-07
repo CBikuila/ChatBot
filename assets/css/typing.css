@@ -54,9 +54,7 @@ span.messages__dot {
 
 /* Style pour les messages du visiteur */
 .messages__item--visitor {
-    display: inline-block;
     align-items: left;
-    background-color: #F2F2F2;
     color: #333333;
     padding: 8px 16px;
     border-radius: 16px;
@@ -72,7 +70,6 @@ span.messages__dot {
     display: inline-block;
     background-color: #1779ba;
     align-items: right;
-    color: #FFFFFF;
     padding: 8px 16px;
     border-radius: 16px;
     max-width: 60%;
