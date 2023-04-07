@@ -55,7 +55,7 @@ class InteractiveChatbox {
 /*
 // Intérargir entre le visiteur et le chatbot//
 
-// Définir une liste de messages possibles
+// Définir une liste de messages possibles aléatoire
 const botMessages = [
     "Bonjour!",
     "Comment allez-vous?",
@@ -116,15 +116,14 @@ function envoyerMessage() {
     // Envoi du message
     // Code pour envoyer le message...
     console.log("Le message "+ recupererMessage + "a été envoyé !");
-        // ajoute le nouvel élément créé et son contenu dans le DOM
-        var div = document.createElement("div");
-        div.textContent = document.getElementById('envoyer').value;
-        
-        var msg = document.getElementById('msg');
+    
+        var div = document.createElement("div"); // Cette ligne crée un élément HTML <div> vide et le stocke dans la variable div
+        div.textContent = document.getElementById('envoyer').value; // Cette ligne récupère la valeur du champ de formulaire HTML avec l'identifiant "envoyer" et l'assigne à la propriété textContent de la variable div. Cela permet d'afficher le contenu du champ texte dans la nouvelle div créé.        var msg = document.getElementById('msg');// Cette ligne récupère un élément HTML avec l'identifiant "msg" et le stocke dans la variable msg.
         
         console.log(msg);
-        msg.appendChild(div);
-      
+        msg.appendChild(div);//IL ajoute la div créée à l'étape 1 en tant qu'enfant de l'élément HTML msg. Cela insère la div à l'intérieur de l'élément msg dans le document HTML.
+
+        
     // Effacement du champ de texte
     champTexte.value = '';
   }
