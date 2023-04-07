@@ -65,9 +65,9 @@ champTexte.addEventListener('keydown', function(e) {
 
 
 
-/// Réponse chatbot aléatoires  /////
+// Réponse chatbot aléatoires //
 
-// Liste des réponses aléatoires
+// Liste des réponses aléatoires //
 var reponsesAleatoires = [
   "Je ne comprends pas ce que vous voulez dire.",
   "Pouvez-vous reformuler votre demande s'il vous plaît?",
@@ -76,7 +76,7 @@ var reponsesAleatoires = [
   "Je suis un chatbot, mais je suis ravi de discuter avec vous!"
 ];
 
-// Fonction pour générer une réponse aléatoire
+// Fonction pour générer une réponse aléatoire //
 function genererReponseAleatoire() {
   var index = Math.floor(Math.random() * reponsesAleatoires.length);
   return reponsesAleatoires[index];
@@ -113,9 +113,6 @@ function envoyerMessage() {
         divReponse.textContent = genererReponseAleatoire();
         divReponse.classList.add('messages__item', 'messages__item--visitor');
         msg.appendChild(divReponse);
-
-        // On affiche une réponse ciblé du chatbot//
-        
          
     // Effacement du champ de texte
     champTexte.value = '';
