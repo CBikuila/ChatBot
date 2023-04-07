@@ -57,46 +57,6 @@ button.addEventListener('click', () => {
 });
 
 
-
-
-/*
-// Intérargir entre le visiteur et le chatbot//
-
-// Définir une liste de messages possibles aléatoire
-
-const botMessages = [
-    "Bonjour!",
-    "Comment allez-vous?",
-    "Que puis-je faire pour vous aider?",
-    "Avez-vous des questions?",
-    "Je suis là pour vous aider!",
-    "Comment s'est passée votre journée?",
-    "Avez-vous besoin de quelque chose?",
-    "Je suis toujours là si vous avez besoin de moi.",
-    "Comment puis-je vous aider aujourd'hui?"
-  ];
-  
-  // Créer une fonction pour générer un message aléatoire
-  function genererMessageAleatoire() {
-    // Générer un nombre aléatoire entre 0 et la longueur de la liste de messages
-    const indiceAleatoire = Math.floor(Math.random() * botMessages.length);
-    // Retourner le message correspondant à l'indice aléatoire
-    return botMessages[indiceAleatoire];
-  }
-
-  // Créer une fonction pour envoyer un message
-  function envoyerMessage() {
-    // Obtenir un message aléatoire en appelant la fonction genererMessageAleatoire
-    const botMessages = genererMessageAleatoire();
-  
-    // Envoyer le message à l'utilisateur
-    // Remplacez cette ligne par votre propre code pour envoyer des messages via votre plateforme de chatbot préférée.
-    console.log(botMessages);
-  }
-  
-  // Appeler la fonction envoyerMessage toutes les 5 secondes en utilisant la méthode setInterval
-  setInterval(envoyerMessage, 5000); 
-  */
 // Ecrire un message puis le valider en cliquant sur l'image ou sur valider en cliquant sur entrée du clavier //
 
 // Récupération de l'image et du champ de text
@@ -112,14 +72,35 @@ champTexte.addEventListener('keydown', function(e) {
   }
 });
 
-// Fonction pour envoyer le message
+
+
+/// Réponse chatbot aléatoires  /////
+
+// Liste des réponses aléatoires
+var reponsesAleatoires = [
+  "Je ne comprends pas ce que vous voulez dire.",
+  "Pouvez-vous reformuler votre demande s'il vous plaît?",
+  "Je suis désolé, je ne peux pas répondre à cela.",
+  "Hésitez pas à nous contactez par téléphone.",
+  "Je suis un chatbot, mais je suis ravi de discuter avec vous!"
+];
+
+// Fonction pour générer une réponse aléatoire
+function genererReponseAleatoire() {
+  var index = Math.floor(Math.random() * reponsesAleatoires.length);
+  return reponsesAleatoires[index];
+}
+
+// Fin de réponse chatbot aléatoires  //
+
+
+// Fonction pour envoyer le message // 
 function envoyerMessage() {
-  // Récupération du texte dans le champ de texte
+  // Récupération du texte dans le champ de texte.
   var recupererMessage = document.getElementById('envoyer').value;
     console.log(recupererMessage);
-  //const message = champTexte.value;//
 
-  // Vérification que le champ de texte n'est pas vide 89
+  // Vérification que le champ de texte n'est pas vide.
   if (recupererMessage.trim() !== '') {
     // Envoi du message
     // Code pour envoyer le message...
@@ -129,10 +110,27 @@ function envoyerMessage() {
         div.textContent = document.getElementById('envoyer').value; // Cette ligne récupère la valeur du champ de formulaire HTML avec l'identifiant "envoyer" et l'assigne à la propriété textContent de la variable div. Cela permet d'afficher le contenu du champ texte dans la nouvelle div créé.        var msg = document.getElementById('msg');// Cette ligne récupère un élément HTML avec l'identifiant "msg" et le stocke dans la variable msg.
         
         console.log(msg);
+        
+        div.classList.add('messages__item', 'messages__item--operator'); // Ajouter une classe CSS afin d'avoir la bulle bleu 
         msg.appendChild(div); //IL ajoute la div créée à l'étape 1 en tant qu'enfant de l'élément HTML msg. Cela insère la div à l'intérieur de l'élément msg dans le document HTML.
+        // On affiche le message de l'utlisateur // 
+
+
+        // On affiche une réponse aléatoire du chatbot//
+        // Ajout d'une réponse aléatoire
+        var divReponse = document.createElement("div"); //ajoute d'une réponse aléatoire générée en tant que div avec la classe messages__item messages__item--visitor.
+        divReponse.textContent = genererReponseAleatoire();
+        divReponse.classList.add('messages__item', 'messages__item--visitor');
+        msg.appendChild(divReponse);
+
+        // On affiche une réponse ciblé du chatbot//
+        
          
     // Effacement du champ de texte
     champTexte.value = '';
   }
 }
 
+
+
+  
