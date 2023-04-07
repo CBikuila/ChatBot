@@ -48,12 +48,6 @@ class InteractiveChatbox {
 }
 
 
-
-
-/*
-// Intérargir entre le visiteur et le chatbot//
-
-// Définir une liste de messages possibles
 const botMessages = [
     "Bonjour!",
     "Comment allez-vous?",
@@ -85,7 +79,7 @@ const botMessages = [
   }
   
   // Appeler la fonction envoyerMessage toutes les 5 secondes en utilisant la méthode setInterval
-  setInterval(envoyerMessage, 5000); */
+  setInterval(envoyerMessage, 5000);
 
 // Ecrire un message puis le valider en cliquant sur l'image ou sur valider en cliquant sur entrée du clavier //
 
@@ -106,30 +100,39 @@ champTexte.addEventListener('keydown', function(e) {
 function envoyerMessage() {
   // Récupération du texte dans le champ de texte
   var recupererMessage = document.getElementById('envoyer').value;
-    console.log(recupererMessage);
-  //const message = champTexte.value;//
+  console.log(recupererMessage);
 
-  // Vérification que le champ de texte n'est pas vide 89
+  // Vérification que le champ de texte n'est pas vide
   if (recupererMessage.trim() !== '') {
     // Envoi du message
     // Code pour envoyer le message...
     console.log("Le message "+ recupererMessage + "a été envoyé !");
 
-        // crée un nouvel élément div
-        var dissMsg = document.createElement("div");
+    // Créer un nouvel élément div
+    var dissMsg = document.createElement("div");
         
-        dissMsg.textContent = "dissMsg";
+    // Définir le texte de l'élément div comme étant le message récupéré
+    dissMsg.textContent = recupererMessage;
 
-        document.body.appendChild(dissMsg);
-      
+    // Ajouter l'élément div à la page
+    document.body.appendChild(dissMsg);
+
         // ajoute le nouvel élément créé et son contenu dans le DOM
         var userMsg = document.getElementById('msg2');
         console.log(userMsg);
         userMsg.textContent = recupererMessage;
-      
-
+        stop(userMsg);
+        // ajoute le nouvel élément créé et son contenu dans le DOM
+        var userMsg2 = document.getElementById('msg3');
+        console.log(userMsg2);
+        userMsg.textContent = recupererMessage;
+        
     // Effacement du champ de texte
     champTexte.value = '';
+
+
+
+
   }
 }
 
