@@ -7,7 +7,7 @@
 }
 
 /* CONTENT IS CLOSE */
-.chatbox__support {
+.chatbox__fenetre {
     display: flex;
     flex-direction: column;
     background: #eee;
@@ -54,11 +54,11 @@
     width: fit-content;
 }
 
-.messages__item--operator {
+.messages__item--visitor {
     margin-left: auto;
 }
 
-.messages__item--visitor {
+.messages__item--operator {
     margin-right: auto;
 }
 

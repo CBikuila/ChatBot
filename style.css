@@ -19,7 +19,7 @@ body {
     background: #F1F1F1;
 }
 
-.chatbox__support {
+.chatbox__fenetre {
     background: #f9f9f9;
     height: 450px;
     width: 350px;
@@ -90,14 +90,14 @@ body {
     max-width: 70%;
 }
 
-.messages__item--visitor,
+.messages__item--operator,
 .messages__item--typing {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
 }
 
-.messages__item--operator {
+.messages__item--visitor {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
