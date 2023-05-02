@@ -43,7 +43,7 @@
                 }
 
                 if ($loggedIn === false && $email && $password) {
-                    echo "Mot de passe ou email incorrect";
+                    echo "Adresse mail et/ou mot de passe incorrect";
 
                     // L'utilisateur est connecté, faire quelque chose ici...
 
