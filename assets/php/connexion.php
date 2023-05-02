@@ -26,13 +26,14 @@
 //Code de PF connect.php dans boutique sur GDrive - 4. SUPPORTS COURS DEV - PHP
 include "./../php/adminId.php";
 
-$username = $_POST["username"];
+$email = $_POST["email"];
 $password = $_POST["password"];
 
 foreach ($users as $key => $user) {
-    $checkUsername = in_array($username,$user);
+    $checkEmail = in_array($email,$user);
     $checkPassword = in_array($password,$user);
 
+<<<<<<< HEAD
     /*
     if ($checkUsername == true && $checkPassword == true) {
         session_start();
@@ -43,6 +44,16 @@ foreach ($users as $key => $user) {
         $_SESSION["nom"] = $user["nom"];
         $_SESSION["nbArticle"] = 0;
         $_SESSION["panier"] = [];
+=======
+
+    if ($checkEmail == true && $checkPassword == true) {
+        session_start();
+        session_regenerate_id();
+        $_SESSION["isConnect"] = true;
+        $_SESSION["email"] = $adminId["email"];
+        $_SESSION["password"] = $adminId["password"];
+        header('location: ./../index.php?login=ok');
+>>>>>>> 0f0f67f50caea856578019d39ab49f5bc37d1f8f
         exit;
     };
     */
