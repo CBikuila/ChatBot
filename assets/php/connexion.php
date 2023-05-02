@@ -32,6 +32,8 @@ $password = $_POST["password"];
 foreach ($users as $key => $user) {
     $checkEmail = in_array($email,$user);
     $checkPassword = in_array($password,$user);
+
+   
 }
 
 ?>
