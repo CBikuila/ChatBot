@@ -22,7 +22,7 @@
 
 <?php
 //Code de PF connect.php dans boutique sur GDrive - 4. SUPPORTS COURS DEV - PHP
-include "./../data/users.php";
+include "./../php/users.php";
 
 $username = $_POST["username"];
 $password = $_POST["password"];
