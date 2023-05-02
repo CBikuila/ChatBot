@@ -12,14 +12,13 @@
       <i class="fas fa-user"></i>
       <h1>Déconnexion</h1>
     </div>
-    
     <form action="deconnexion.php" method="post">
         <input type="submit" value="Se déconnecter"">
 
 <?php
-//Code de PF logout.php
-    session_start();
+    if( isset($_POST['deconnexion']) == 1 ) {
     session_destroy();
+    }
 ?>
 
     </form>
