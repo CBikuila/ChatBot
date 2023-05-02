@@ -13,11 +13,11 @@
       <h1>Connexion</h1>
     </div>
     <form action="adminId.php" method="post">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="username" required>
+        <label for="email">E-mail :</label>
+        <input type="text" id="email" name="email" placeholder="Enter votre email" required>
         <br>
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" required>
+        <input type="password" id="password" name="password" placeholder="mot de passe" required>
         <br>
         <input type="submit" value="Se connecter">
     </form>
@@ -33,7 +33,7 @@ foreach ($users as $key => $user) {
     $checkUsername = in_array($username,$user);
     $checkPassword = in_array($password,$user);
 
-
+    /*
     if ($checkUsername == true && $checkPassword == true) {
         session_start();
         session_regenerate_id();
@@ -45,6 +45,7 @@ foreach ($users as $key => $user) {
         $_SESSION["panier"] = [];
         exit;
     };
+    */
 }
 
 ?>
