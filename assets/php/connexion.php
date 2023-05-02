@@ -20,21 +20,29 @@
         <input type="password" id="password" name="password" placeholder="Mot de passe" required>
         <br>
         <input type="submit" value="Se connecter">
+
+
+        <?php
+            $email = $_POST["email"];
+            $password = $_POST["password"];
+
+            $loggedIn = false;
+
+            foreach ($adminId as $key => $user) {
+                if ($user["email"] == $email && $user["password"] == $password) {
+                    $loggedIn = true;
+                    break;
+                }
+            }
+
+            if ($loggedIn === false && $email && $password) {
+                echo "Mot de passe ou email incorrect";
+                // L'utilisateur est connecté, faire quelque chose ici...
+
+            } else {
+                print $_GET ["Connecté"];
+            }
+        ?>
     </form>
-
-<?php
-//Code de PF connect.php dans boutique sur GDrive - 4. SUPPORTS COURS DEV - PHP
-include "./../php/adminId.php";
-
-$email = $_POST["email"];
-$password = $_POST["password"];
-
-foreach ($adminId as $key => $user) {
-    $checkEmail = in_array($email,$user);
-    $checkPassword = in_array($password,$user);
-}
-
-?>
-
 </body>
 </html>
