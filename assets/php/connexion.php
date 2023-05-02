@@ -36,12 +36,9 @@ foreach ($users as $key => $user) {
         session_start();
         session_regenerate_id();
         $_SESSION["isConnect"] = true;
-        $_SESSION["username"] = $user["username"];
-        $_SESSION["email"] = $user["email"];
-        $_SESSION["nom"] = $user["nom"];
-        $_SESSION["nbArticle"] = 0;
-        $_SESSION["panier"] = [];
-
+        $_SESSION["username"] = $adminId["username"];
+        $_SESSION["email"] = $adminId["email"];
+        $_SESSION["nom"] = $adminId["nom"];
         header('location: ./../index.php?login=ok');
         exit;
     };
