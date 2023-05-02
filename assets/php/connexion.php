@@ -29,11 +29,9 @@ include "./../php/adminId.php";
 $email = $_POST["email"];
 $password = $_POST["password"];
 
-foreach ($users as $key => $user) {
+foreach ($adminId as $key => $user) {
     $checkEmail = in_array($email,$user);
     $checkPassword = in_array($password,$user);
-
-   
 }
 
 ?>
