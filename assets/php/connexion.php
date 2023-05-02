@@ -32,20 +32,6 @@ $password = $_POST["password"];
 foreach ($users as $key => $user) {
     $checkEmail = in_array($email,$user);
     $checkPassword = in_array($password,$user);
-
-    /*
-    if ($checkUsername == true && $checkPassword == true) {
-        session_start();
-        session_regenerate_id();
-        $_SESSION["isConnect"] = true;
-        $_SESSION["username"] = $user["username"];
-        $_SESSION["email"] = $user["email"];
-        $_SESSION["nom"] = $user["nom"];
-        $_SESSION["nbArticle"] = 0;
-        $_SESSION["panier"] = [];
-        exit;
-    };
-    */
 }
 
 ?>
