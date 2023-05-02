@@ -40,12 +40,9 @@ foreach ($users as $key => $user) {
         $_SESSION["isConnect"] = true;
         $_SESSION["email"] = $adminId["email"];
         $_SESSION["password"] = $adminId["password"];
-        header('location: ./../index.php?login=ok');
         exit;
     };
-}
-
-header('location: ./../index.php?login=ko');
+};
 ?>
 
 </body>
