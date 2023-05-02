@@ -33,7 +33,6 @@ foreach ($users as $key => $user) {
     $checkEmail = in_array($email,$user);
     $checkPassword = in_array($password,$user);
 
-<<<<<<< HEAD
     /*
     if ($checkUsername == true && $checkPassword == true) {
         session_start();
@@ -44,27 +43,11 @@ foreach ($users as $key => $user) {
         $_SESSION["nom"] = $user["nom"];
         $_SESSION["nbArticle"] = 0;
         $_SESSION["panier"] = [];
-=======
-
-    if ($checkEmail == true && $checkPassword == true) {
-        session_start();
-        session_regenerate_id();
-        $_SESSION["isConnect"] = true;
-        $_SESSION["email"] = $adminId["email"];
-        $_SESSION["password"] = $adminId["password"];
-<<<<<<< HEAD
-        header('location: ./../index.php?login=ok');
->>>>>>> 0f0f67f50caea856578019d39ab49f5bc37d1f8f
         exit;
     };
     */
 }
 
-=======
-        exit;
-    };
-};
->>>>>>> 104ae97e970a88e20334244680f91f057a6c4c28
 ?>
 
 </body>
