@@ -12,7 +12,7 @@
       <i class="fas fa-user"></i>
       <h1>Connexion</h1>
     </div>
-    <form action="login.php" method="post">
+    <form action="adminId.php" method="post">
         <label for="username">Nom d'utilisateur :</label>
         <input type="text" id="username" name="username" required>
         <br>
@@ -24,7 +24,7 @@
 
 <?php
 //Code de PF connect.php dans boutique sur GDrive - 4. SUPPORTS COURS DEV - PHP
-include "./../php/users.php";
+include "./../php/adminId.php";
 
 $username = $_POST["username"];
 $password = $_POST["password"];
@@ -43,13 +43,10 @@ foreach ($users as $key => $user) {
         $_SESSION["nom"] = $user["nom"];
         $_SESSION["nbArticle"] = 0;
         $_SESSION["panier"] = [];
-
-        header('location: ./../index.php?login=ok');
         exit;
     };
 }
 
-header('location: ./../index.php?login=ko');
 ?>
 
 </body>
