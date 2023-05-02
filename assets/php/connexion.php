@@ -26,15 +26,15 @@
 //Code de PF connect.php dans boutique sur GDrive - 4. SUPPORTS COURS DEV - PHP
 include "./../php/users.php";
 
-$username = $_POST["username"];
+$email = $_POST["email"];
 $password = $_POST["password"];
 
 foreach ($users as $key => $user) {
-    $checkUsername = in_array($username,$user);
+    $checkEmail = in_array($email,$user);
     $checkPassword = in_array($password,$user);
 
 
-    if ($checkUsername == true && $checkPassword == true) {
+    if ($checkEmail == true && $checkPassword == true) {
         session_start();
         session_regenerate_id();
         $_SESSION["isConnect"] = true;
