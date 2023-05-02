@@ -17,7 +17,7 @@
         <input type="text" id="email" name="email" placeholder="Enter votre email" required>
         <br>
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="password" placeholder="mot de passe" required>
+        <input type="password" id="password" name="password" placeholder="Mot de passe" required>
         <br>
         <input type="submit" value="Se connecter">
     </form>
