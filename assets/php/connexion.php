@@ -13,7 +13,7 @@
       <h1>Connexion</h1>
     </div>
     <form action="login.php" method="post">
-        <label for="username">Nom d'utilisateur :</label>
+        <label for="username">Email :</label>
         <input type="text" id="username" name="username" required>
         <br>
         <label for="password">Mot de passe :</label>
