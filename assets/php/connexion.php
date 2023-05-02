@@ -19,5 +19,36 @@
         <br>
         <input type="submit" value="Se connecter">
     </form>
+
+<?php
+//Code de PF connect.php dans boutique sur GDrive - 4. SUPPORTS COURS DEV - PHP
+include "./../data/users.php";
+
+$username = $_POST["username"];
+$password = $_POST["password"];
+
+foreach ($users as $key => $user) {
+    $checkUsername = in_array($username,$user);
+    $checkPassword = in_array($password,$user);
+
+
+    if ($checkUsername == true && $checkPassword == true) {
+        session_start();
+        session_regenerate_id();
+        $_SESSION["isConnect"] = true;
+        $_SESSION["username"] = $user["username"];
+        $_SESSION["email"] = $user["email"];
+        $_SESSION["nom"] = $user["nom"];
+        $_SESSION["nbArticle"] = 0;
+        $_SESSION["panier"] = [];
+
+        header('location: ./../index.php?login=ok');
+        exit;
+    };
+}
+
+header('location: ./../index.php?login=ko');
+?>
+
 </body>
 </html>
