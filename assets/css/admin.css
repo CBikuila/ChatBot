@@ -3,7 +3,9 @@ body {
     background-color: #ffffff;
 }
 
-h1 {
+
+
+.titre-icone,h1 {
     text-align: center;
     color: #333;
 }

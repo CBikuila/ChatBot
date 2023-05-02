@@ -8,8 +8,10 @@
     <script defer src="https://kit.fontawesome.com/2812e639d2.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <i class="fa-solid fa-user"></i>
-    <h1>Connexion</h1>
+    <div class="titre-icone">
+      <i class="fas fa-user"></i>
+      <h1>Connexion</h1>
+    </div>
     <form action="login.php" method="post">
         <label for="username">Nom d'utilisateur :</label>
         <input type="text" id="username" name="username" required>
