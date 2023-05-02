@@ -12,7 +12,8 @@
       <i class="fas fa-user"></i>
       <h1>Connexion</h1>
     </div>
-    <form action="adminId.php" method="post">
+    
+    <form action="connexion.php" method="post">
         <label for="email">E-mail :</label>
         <input type="text" id="email" name="email" placeholder="Enter votre email" required>
         <br>
@@ -20,29 +21,37 @@
         <input type="password" id="password" name="password" placeholder="Mot de passe" required>
         <br>
         <input type="submit" value="Se connecter">
-
-
         <?php
+            if ($_POST) {
+            $adminId = [
+                [
+                "email" => "admin@sneakme.fr",
+                "password" => "admin",
+                ],
+            ];
+            
             $email = $_POST["email"];
             $password = $_POST["password"];
 
             $loggedIn = false;
 
-            foreach ($adminId as $key => $user) {
-                if ($user["email"] == $email && $user["password"] == $password) {
-                    $loggedIn = true;
-                    break;
+                foreach ($adminId as $user) {
+                    if ($user["email"] == $email && $user["password"] == $password) {
+                        $loggedIn = true;
+                        break;
+                    }
+                }
+
+                if ($loggedIn === false && $email && $password) {
+                    echo "Mot de passe ou email incorrect";
+
+                    // L'utilisateur est connecté, faire quelque chose ici...
+
+                } else {
+                    header('Location: ../php/dashboard.php');
                 }
             }
-
-            if ($loggedIn === false && $email && $password) {
-                echo "Mot de passe ou email incorrect";
-                // L'utilisateur est connecté, faire quelque chose ici...
-
-            } else {
-                print $_GET ["Connecté"];
-            }
-        ?>
+        ?>    
     </form>
 </body>
 </html>
