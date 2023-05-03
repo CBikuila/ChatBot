@@ -71,13 +71,6 @@
                             die("Connection failed: " . $conn->connect_error);
                         }
 
-                        // Ajouter le nouveau mot clé et réponse s'il y en a
-                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                            $mot_cles = $_POST['mots_cles'];
-                            $rep = $_POST['reponses'];
-
-                        }
-
                     ?>
                 </div>
             </div>
