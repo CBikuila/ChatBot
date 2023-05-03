@@ -23,7 +23,7 @@
         <input type="submit" value="Se connecter">
         <?php
             if ($_POST) {
-            $adminId = [
+            $dashboard = [
                 [
                 "email" => "admin@sneakme.fr",
                 "password" => "admin",
@@ -35,7 +35,7 @@
 
             $loggedIn = false;
 
-                foreach ($adminId as $user) {
+                foreach ($dashboard as $user) {
                     if ($user["email"] == $email && $user["password"] == $password) {
                         $loggedIn = true;
                         break;
