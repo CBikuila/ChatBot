@@ -4,7 +4,9 @@ require('../php/config.php');
 
 // Insérer des lignes de couleurs différentes de sneakers en SQL
 
-$insertions = ["INSERT INTO chatbot_keywords (nom, couleur) VALUES ('Air Max 90', 'Bleu')","INSERT INTO chatbot_keywords (nom, couleur) VALUES ('Jordan 1', 'Rouge')"];
+$insertions = ["INSERT INTO motscles (question, mots_cles) VALUES ('', 'Bleu')",
+               "INSERT INTO motscles (question, mots_cles) VALUES ('Jordan 1', 'Rouge')"
+              ];
 
 foreach ($insertions as $insertion){
     $result =$connexion->query($insertion);
