@@ -21,7 +21,7 @@
     </header>
     <nav class="dashboard-nav-list">
         <a href="dashboard.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord</a>
-        <a href="mots_cles.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Mots-clés</a>
+        <a href="mots_cles.php" class="dashboard-nav-item active"><i class="fas-sharp fa-light fa-key"></i></i>Mots-clés</a>
         <a href="produits.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Produits</a>
         <a href="./../deconnexion.php" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
     </nav>

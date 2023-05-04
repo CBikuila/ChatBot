@@ -23,35 +23,6 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                         </form>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
                         <?php
                             require('../php/config.php');
                             require('../php/ajoutKeyword.php');
@@ -72,7 +43,17 @@
                                 }
                             } 
                         ?>
-                        
+                        <div>
+                            <?php
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $row['keyword'] . "</td>";
+                                    echo "<td>" . $row['response'] . "</td>";
+                                    echo "<td><button class='edit' data-id='" . $row['id'] . "'>Modifier</button> <button class='delete' data-id='" . $row['id'] . "'>Supprimer</button></td>";
+                                    echo "</tr>";
+                                }
+                            ?>
+                        </div>
                     </div>                   
                 </div>
             </div>
