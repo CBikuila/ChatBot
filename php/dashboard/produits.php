@@ -37,7 +37,7 @@ require('nav.php');
                     $questions = $_POST["mots_cles"];
 
                     if ($reponses && $questions){
-                        $insertion = "INSERT INTO motscles (question, mots_cles) VALUES ('$questions', '$reponses')";
+                        $insertion = "INSERT INTO produits (marque, modele, couleur, taille) VALUES ('$questions', '$reponses')";
 
                         $result =$connexion->query($insertion);
                         if ($result == true) {
