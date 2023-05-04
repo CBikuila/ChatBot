@@ -20,8 +20,8 @@
                 <img class="logo" src="../images/logo/sneakme-logo-clair.png">             
             </header>
             <nav class="dashboard-nav-list">
-            <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
+            <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord</a>
+                <a href="./deconnexion.php" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
             </nav>
         </div>
         <div class='dashboard-app'>
