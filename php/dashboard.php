@@ -18,7 +18,7 @@
         <div class="dashboard-nav">
             <header>
                 <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
-                <a href="#" class="brand-logo"><img class="logo" src="../../images/logo/sneakme-logo-clair.png"></a>              
+                <a href="#" class="brand-logo"><img class="logo" src="../images/logo/sneakme-logo-clair.png"></a>              
             </header>
             <nav class="dashboard-nav-list">
             <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
