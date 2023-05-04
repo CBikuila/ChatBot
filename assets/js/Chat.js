@@ -72,8 +72,6 @@ champTexte.addEventListener('keydown', function(e) {
   }
 });
 
-
-
 // Réponse chatbot aléatoires //
 
 // Liste des réponses aléatoires //
