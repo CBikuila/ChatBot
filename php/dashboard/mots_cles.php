@@ -7,7 +7,7 @@
                 <div class='container'>
                     <div class='card'>
                         <div class='card-header'>
-                            <h2>Tableau de bord</h2>
+                            <h2>Les mots-clés</h2>
                         </div>
                         <div class='card-body'>
                             <p>Ajoute un mot-clé et sa phrase associée dans la base de données</p>
@@ -23,6 +23,35 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                         </form>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">First</th>
+                                <th scope="col">Last</th>
+                                <th scope="col">Handle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>Thornton</td>
+                                <td>@fat</td>
+                                </tr>
+                                <tr>
+                                <th scope="row">3</th>
+                                <td colspan="2">Larry the Bird</td>
+                                <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         <?php
                             require('../php/config.php');
                             require('../php/ajoutKeyword.php');
@@ -43,7 +72,8 @@
                                 }
                             } 
                         ?>
-                    </div>
+                        
+                    </div>                   
                 </div>
             </div>
         </div>
