@@ -20,11 +20,11 @@ $insertions = ["INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('
                "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('14', 'Avez-vous des recommandations pour choisir la bonne taille de baskets ?', 'tailles')",
                "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('15', 'Quelles méthodes de livraison proposez-vous ?', 'livraison')",
                "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('16', 'Quels sont les modèles les plus hypes du moment ?', 'hype')",
-               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('17', '', 'homme')",
-               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('17', '', 'enfant')",
-               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('17', '', 'promotions')",
-               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('17', '', 'règlement')",
-               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('17', '', 'carte bancaire')",
+               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('17', 'Quels sont les modèles de chaussures pour homme les plus vendus ?', 'homme')",
+               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('18', 'Comment savoir quelle pointure de chaussures pour enfant choisir ?', 'enfant')",
+               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('19', 'Quelles sont les promotions en cours sur les chaussures ?', 'promotions')",
+               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('20', 'Quels sont les modes de règlement disponibles pour les chaussures ?', 'règlement')",
+               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('21', 'Quels sont les délais de traitement d'un paiement par carte bancaire ?', 'carte bancaire')",
               ];
 
 foreach ($insertions as $insertion){
