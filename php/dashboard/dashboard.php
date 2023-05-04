@@ -18,11 +18,11 @@
                             <h2>Tableau de bord</h2>
                         </div>
                         <div class='card-body'>
-                            <p>Ajoute un mot clé et sa phase associée.</p>
+                            <p>Ajoute un mot-clé et sa phase associée dans la base de données</p>
                         </div>
                         <form action="dashboard.php" method="post">
                             <div class="mb-3">
-                                <label for="mots_cles" class="form-label">Mot clé :</label>
+                                <label for="mots_cles" class="form-label">Mot-clé :</label>
                                 <input type="text" class="form-control" name="mots_cles" id="mot_cles" aria-describedby="textHelp">
                             </div>
                             <div class="mb-3">
