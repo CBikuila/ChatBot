@@ -1,8 +1,8 @@
 <?php
 
 $servername = "localhost"; // remplacer par le nom de votre serveur MySQL
-$email = "admin@sneakme.fr"; // remplacer par votre nom d'utilisateur MySQL
-$password = "admin"; // remplacer par votre mot de passe MySQL
+$email = "root"; // remplacer par votre nom d'utilisateur MySQL
+$password = "root"; // remplacer par votre mot de passe MySQL
 $dbname = "sneakme_database"; // remplacer par le nom de votre base de données
 
 // Connexion à MySQL

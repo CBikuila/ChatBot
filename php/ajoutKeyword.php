@@ -24,16 +24,6 @@ $insertions = ["INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('
                "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('18', 'Comment savoir quelle pointure de chaussures pour enfant choisir ?', 'enfant')",
                "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('19', 'Quelles sont les promotions en cours sur les chaussures ?', 'promotions')",
                "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('20', 'Quels sont les modes de règlement disponibles pour les chaussures ?', 'règlement')",
-               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('21', 'Quels sont les délais de traitement d'un paiement par carte bancaire ?', 'carte bancaire')",
+               "INSERT INTO motscles (motcles_id, question, mots_cles) VALUES ('21', 'Quels sont les délais de traitement d'un paiement par carte bancaire ?', 'carte bancaire')"
               ];
-
-foreach ($insertions as $insertion){
-    $result =$connexion->query($insertion);
-    if ($result == true) {
-        echo "Les lignes de couleurs différentes de sneakers ont été insérées avec succès";
-    } else {
-        echo "Erreur lors de l'insertion des lignes: " . $connexion->error;
-    }
-}
-
 ?>
