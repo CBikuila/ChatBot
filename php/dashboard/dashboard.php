@@ -13,9 +13,6 @@
                             <p>Bienvenue dans ton compte administrateur.</p>
                         </div>
                     </div>
-                    <?php 
-                        require('mots_cles.php');
-                    ?>
                 </div>
             </div>
         </div>
