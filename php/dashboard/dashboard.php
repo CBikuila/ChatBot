@@ -1,8 +1,9 @@
 
     <div class='dashboard'>  
-        <?php require('nav.php');?>
+        <?php 
+            require('nav.php');
+        ?>
         <div class='dashboard-app'>
-            <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
             <div class='dashboard-content'>
                 <div class='container'>
                     <div class='card'>
@@ -36,6 +37,8 @@
                         require('../php/config.php');
                         require('../php/ajoutKeyword.php');
 
+                    //Ajout des mots-clés via database SQL "sneakme_database.sql"    
+
                     $reponses = $_POST["question"];
                     $questions = $_POST["mots_cles"];
 
@@ -49,9 +52,6 @@
                             echo "<p>Erreur lors de l'insertion des lignes</p>" . $connexion->error;
                         }
                     } 
-                    //Ajout des mots-clés via database SQL "sneakme_database.sql"
-                    
-                   
                     ?>
                     </div>
                 </div>
