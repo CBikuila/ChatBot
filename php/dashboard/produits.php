@@ -42,9 +42,6 @@ require('nav.php');
                     //Ajout des mots-clés via database SQL "sneakme_database.sql"    
 
                     $marquesSneakers = $_POST["marque_sneakers"];
-
-                    var_dump($marquesSneakers);
-                    
                     $modelesSneakers = $_POST["modele_sneakers"];
                     $couleursSneakers = $_POST["couleur_sneakers"];
                     $taillesSneakers = $_POST["taille_sneakers"];
@@ -54,9 +51,9 @@ require('nav.php');
 
                         $result =$connexion->query($insertion);
                         if ($result == true) {
-                            echo "<p>Les lignes de couleurs différentes de sneakers ont été insérées avec succès</p>";
+                            echo "<p>Le produit a été inséré avec succès</p>";
                         } else {
-                            echo "<p>Erreur lors de l'insertion des lignes</p>" . $connexion->error;
+                            echo "<p>Erreur lors de l'insertion du produit</p>" . $connexion->error;
                         }
                     } 
                     ?>
