@@ -17,12 +17,20 @@ require('nav.php');
                         </div>
                         <form action="dashboard.php" method="post">
                             <div class="mb-3">
-                                <label for="mots_cles" class="form-label">Produit :</label>
-                                <input type="text" class="form-control" name="mots_cles" id="mot_cles" aria-describedby="textHelp">
+                                <label for="mots_cles" class="form-label">Marque :</label>
+                                <input type="text" class="form-control" name="marque_sneakers" id="marque_sneakers" aria-describedby="textHelp">
                             </div>
                             <div class="mb-3">
-                                <label for="reponse" class="form-label">Phrase associée :</label>
-                                <input type="text" class="form-control" name="question" id="question">
+                                <label for="reponse" class="form-label">Modèle :</label>
+                                <input type="text" class="form-control" name="modele_sneakers" id="modele_sneakers">
+                            </div>
+                            <div class="mb-3">
+                                <label for="reponse" class="form-label">Couleur :</label>
+                                <input type="text" class="form-control" name="couleur_sneakers" id="couleur_sneakers">
+                            </div>
+                            <div class="mb-3">
+                                <label for="reponse" class="form-label">Taille :</label>
+                                <input type="text" class="form-control" name="taille_sneakers" id="taille_sneakers">
                             </div>
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                         </form>
@@ -33,11 +41,16 @@ require('nav.php');
 
                     //Ajout des mots-clés via database SQL "sneakme_database.sql"    
 
-                    $reponses = $_POST["question"];
-                    $questions = $_POST["mots_cles"];
+                    $marquesSneakers = $_POST["marque_sneakers"];
 
-                    if ($reponses && $questions){
-                        $insertion = "INSERT INTO produits (marque, modele, couleur, taille) VALUES ('$questions', '$reponses')";
+                    var_dump($marquesSneakers);
+
+                    $modelesSneakers = $_POST["modele_sneakers"];
+                    $couleursSneakers = $_POST["couleur_sneakers"];
+                    $taillesSneakers = $_POST["taille_sneakers"];
+
+                    if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers){
+                        $insertion = "INSERT INTO produits (marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers) VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers')";
 
                         $result =$connexion->query($insertion);
                         if ($result == true) {
