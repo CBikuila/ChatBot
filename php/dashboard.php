@@ -17,7 +17,7 @@
     <div class='dashboard'>
         <div class="dashboard-nav">
             <header>
-                <img class="logo" src="../images/logo/sneakme-logo-clair.png">             
+                <img class="logo" src="../images/logo/sneakme-logo-clair.png" href="dashboard.php">     
             </header>
             <nav class="dashboard-nav-list">
             <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord</a>
