@@ -57,6 +57,7 @@
                         </form>
                     </div>
                     <?php
+                    require('../config.php');
                     // Connection au serveur avec le mot de passe 
                         $servername = "localhost"; // remplacer par le nom de votre serveur MySQL
                         $email = "admin@sneakme.fr"; // remplacer par votre nom d'utilisateur MySQL
