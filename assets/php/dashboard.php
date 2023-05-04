@@ -44,7 +44,7 @@
                         <div class='card-body'>
                             <p>Ajoute un mot clé et sa phase associée.</p>
                         </div>
-                        <form action>
+                        <form>
                             <div class="mb-3">
                                 <label for="mots_cles" class="form-label">Mot clé :</label>
                                 <input type="text" class="form-control" id="mot_cles" aria-describedby="textHelp">
