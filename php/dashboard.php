@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script defer src="https://kit.fontawesome.com/2812e639d2.js" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
         <div class="dashboard-nav">
             <header>
                 <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
-                <a href="#" class="brand-logo"><i class="fas fa-anchor"></i><span>Sneak Me</span></a>
+                <a href="#" class="brand-logo"><img class="logo" src="../../images/logo/sneakme-logo-clair.png"></a>              
             </header>
             <nav class="dashboard-nav-list">
             <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
