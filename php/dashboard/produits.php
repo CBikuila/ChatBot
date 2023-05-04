@@ -15,7 +15,7 @@ require('nav.php');
                         <div class='card-body'>
                             <p>Ajoutez un produit dans la base de données</p>
                         </div>
-                        <form action="dashboard.php" method="post">
+                        <form action="produits.php" method="post">
                             <div class="mb-3">
                                 <label for="mots_cles" class="form-label">Marque :</label>
                                 <input type="text" class="form-control" name="marque_sneakers" id="marque_sneakers" aria-describedby="textHelp">
@@ -36,15 +36,15 @@ require('nav.php');
                         </form>
                     
                     <?php
-                        require('../php/config.php');
-                        require('../php/ajoutKeyword.php');
+                        require('../config.php');
+                       // require('../php/ajoutKeyword.php');
 
                     //Ajout des mots-clés via database SQL "sneakme_database.sql"    
 
                     $marquesSneakers = $_POST["marque_sneakers"];
 
                     var_dump($marquesSneakers);
-
+                    
                     $modelesSneakers = $_POST["modele_sneakers"];
                     $couleursSneakers = $_POST["couleur_sneakers"];
                     $taillesSneakers = $_POST["taille_sneakers"];
