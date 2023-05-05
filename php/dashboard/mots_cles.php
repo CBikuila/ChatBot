@@ -43,17 +43,6 @@
                                 }
                             } 
                         ?>
-                        <div>
-                            <?php
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>";
-                                    echo "<td>" . $row['keyword'] . "</td>";
-                                    echo "<td>" . $row['response'] . "</td>";
-                                    echo "<td><button class='edit' data-id='" . $row['id'] . "'>Modifier</button> <button class='delete' data-id='" . $row['id'] . "'>Supprimer</button></td>";
-                                    echo "</tr>";
-                                }
-                            ?>
-                        </div>
                     </div>                   
                 </div>
             </div>
