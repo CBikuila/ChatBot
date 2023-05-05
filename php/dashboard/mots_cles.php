@@ -1,6 +1,7 @@
 <?php 
     require('nav.php');
 ?>
+<!-- interface ajout de mot clé et phrases associés-->
     <div class='dashboard'>  
         <div class='dashboard-app'>
             <div class='dashboard-content'>
@@ -23,8 +24,6 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                         </form>
-                        <div class='card'>
-                        </div>
                         <?php
                             require('../config.php');
                             require('../ajoutKeyword.php');
@@ -45,6 +44,47 @@
                                 }
                             } 
                         ?>
+                    </div>
+                    <div class='card'>
+                        <div class='card-header'>
+                            <h2>Mots clés et phrases associés</h2>
+                        </div>
+                        <!-- Renvoie du mot clé et la phrase associé à partir de la base de donnée-->
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Mot clé</th>
+                                    <th scope="col">Phrase associée</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mark</td>
+                                    <td>hfdsoighfzdklijgfdlisjgfdolsjfdsjgdsjjsgjsiois</td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info"><i class="fa-regular fa-pen-to-square"></i>Modifer</button>
+                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>Supprimer</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                <td>
+                                    <button type="submit" class="btn btn-info"><i class="fa-regular fa-pen-to-square"></i>Modifer</button>
+                                    <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>Supprimer</button>
+                                </td>
+                                </tr>
+                                <tr>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>
+                                        <button type="submit" class="btn btn-info"><i class="fa-regular fa-pen-to-square"></i>Modifer</button>
+                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>Supprimer</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>                   
                 </div>
             </div>
