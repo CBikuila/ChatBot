@@ -39,6 +39,10 @@
     background: orange;
 }
 
+button.button {
+    float: right;
+}
+
 /* MESSAGES */
 .chatbox__messages {
     margin-top: auto;
