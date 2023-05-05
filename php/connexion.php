@@ -48,7 +48,7 @@
                     // L'utilisateur est connecté, faire quelque chose ici...
 
                 } else {
-                    header('Location: ../php/dashboard.php');
+                    header('Location: ../php/dashboard/dashboard.php');
                 }
             }
         ?>    
