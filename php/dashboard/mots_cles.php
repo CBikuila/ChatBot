@@ -29,11 +29,12 @@
                             require('../ajoutKeyword.php');
 
                             //Ajout des mots-clés via database SQL "sneakme_database.sql"    
+                            error_reporting(E_ERROR);
+                            if (isset($_POST["question"]) && isset($_POST["mots_cles"])){
+                                    
+                                $reponses = $_POST["question"];
+                                $questions = $_POST["mots_cles"];
 
-                            $reponses = $_POST["question"];
-                            $questions = $_POST["mots_cles"];
-
-                            if ($reponses && $questions){
                                 $insertion = "INSERT INTO motscles (question, mots_cles) VALUES ('$questions', '$reponses')";
 
                                 $result =$connexion->query($insertion);
