@@ -29,7 +29,8 @@
                             require('../ajoutKeyword.php');
 
                             //Ajout des mots-clés via database SQL "sneakme_database.sql"    
-                            error_reporting(E_ERROR);
+                            error_reporting(E_ERROR); //error_reporting(E_ERROR) permet de cacher le Warning produit à cause de $reponses = $_POST["question"] et $questions = $_POST["mots_cles"] en dessous
+                            
                             if (isset($_POST["question"]) && isset($_POST["mots_cles"])){
                                     
                                 $reponses = $_POST["question"];
