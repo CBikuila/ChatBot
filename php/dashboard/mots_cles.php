@@ -12,7 +12,7 @@
                         <div class='card-body'>
                             <p>Ajoute un mot-clé et sa phrase associée dans la base de données</p>
                         </div>
-                        <form action="dashboard.php" method="post">
+                        <form action="mots_cles.php" method="post">
                             <div class="mb-3">
                                 <label for="mots_cles" class="form-label">Mot-clé :</label>
                                 <input type="text" class="form-control" name="mots_cles" id="mot_cles" aria-describedby="textHelp">
@@ -23,9 +23,11 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                         </form>
+                        <div class='card'>
+                        </div>
                         <?php
-                            require('../php/config.php');
-                            require('../php/ajoutKeyword.php');
+                            require('../config.php');
+                            require('../ajoutKeyword.php');
 
                             //Ajout des mots-clés via database SQL "sneakme_database.sql"    
 

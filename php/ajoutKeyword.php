@@ -1,6 +1,6 @@
 <?php
 
-require('../php/config.php');
+require('config.php');
 
 // Insérer des lignes de couleurs différentes de sneakers en SQL
 
