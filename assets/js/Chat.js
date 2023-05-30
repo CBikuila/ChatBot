@@ -53,7 +53,8 @@ const button = document.querySelector('.button');
 // Ajout d'un écouteur d'événement sur le bouton
 button.addEventListener('click', () => {
   // Fermeture de la chatbox en masquant l'élément
-  Chatbox_support.style.display = 'none';
+  //Chatbox_support.style.display = 'none';
+
 });
 
 
