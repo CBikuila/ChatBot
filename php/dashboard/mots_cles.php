@@ -50,52 +50,52 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Exemple de table HTML</title>
-</head>
-<body>
+    <head>
+        <title>Exemple de table HTML</title>
+    </head>
+    <body>
 
-<table>
-  <tr>
-    <th>Mot-clé</th>
-    <th>Question</th>
-    <th>Action</th>
-  </tr>
+        <table>
+            <tr>
+                <th>Mot-clé</th>
+                <th>Question</th>
+                <th>Action</th>
+            </tr>
 
-  <?php
-    // Connexion à la base de données
-    $conn = new mysqli("localhost", "root", "root", "sneakme_database");
+            <?php
+                // Connexion à la base de données
+                $conn = new mysqli("localhost", "root", "root", "sneakme_database");
 
-    // Vérification de la connexion
-    if ($conn->connect_error) {
-      die("Erreur de connexion à la base de données : " . $conn->connect_error);
-    }
+                // Vérification de la connexion
+                if ($conn->connect_error) {
+                die("Erreur de connexion à la base de données : " . $conn->connect_error);
+                }
 
-    // Exécution de la requête SQL
-    $sql = "SELECT mots_cles, question FROM motscles";
-    $result = $conn->query($sql);
+                // Exécution de la requête SQL
+                $sql = "SELECT mots_cles, question FROM motscles";
+                $result = $conn->query($sql);
 
-    // Vérification des résultats de la requête
-    if ($result->num_rows > 0) {
-      // Affichage des lignes
-      while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["mots_cles"] . "</td>";
-        echo "<td>" . $row["question"] . "</td>";
-        echo "</tr>";
-        
-      }
-    } else {
-      echo "<tr><td colspan='3'>Aucun résultat trouvé.</td></tr>";
-    }
+                // Vérification des résultats de la requête
+                if ($result->num_rows > 0) {
+                // Affichage des lignes
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["mots_cles"] . "</td>";
+                    echo "<td>" . $row["question"] . "</td>";
+                    echo '<td><a href="suppKeyword.php?id=' . $row["id"] . '">Supprimer</a></td>';
+                    echo "</tr>";
+                }
+                } else {
+                echo "<tr><td colspan='3'>Aucun résultat trouvé.</td></tr>";
+                }
 
-    // Fermeture de la connexion à la base de données
-    $conn->close();
-  ?>
+                // Fermeture de la connexion à la base de données
+                $conn->close();
+            ?>
 
-</table>
+        </table>
 
-</body>
+    </body>
 </html>
 
 <?php 
