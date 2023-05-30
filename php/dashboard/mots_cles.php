@@ -47,9 +47,22 @@
                             } 
                         ?>
                     </div>
+
+***************************************************************
+
                     <div class='card'>
                         <div class='card-header'>
                             <h2>Mots clés et phrases associés</h2>
+                            <?php
+		                        $mysqli = new mysqli("localhost", "root", "root", "sneakme_database");
+		                        $requete = "SELECT * FROM motscles";
+		                        $resultat = $mysqli->query($requete);
+
+		                        while ($ligne = $resultat->fetch_assoc()) {
+			                    echo $ligne['question'] . ' ' . $ligne['mots_cles'] . ' ' . '<br>';
+		                        }
+		                        $mysqli->close();
+		                    ?>
                         </div>
                         <!-- Renvoie du mot clé et la phrase associé à partir de la base de donnée-->
                         <table class="table table-bordered">
@@ -62,27 +75,22 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Mark</td>
-                                    <td>hfdsoighfzdklijgfdlisjgfdolsjfdsjgdsjjsgjsiois</td>
-                                    <td>
-                                        <button type="submit" class="btn btn-info"><i class="fa-regular fa-pen-to-square"></i>Modifer</button>
-                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>Supprimer</button>
+                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['question'];}?>
+                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['mots_cles'];}?>
+                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>  Supprimer</button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                <td>
-                                    <button type="submit" class="btn btn-info"><i class="fa-regular fa-pen-to-square"></i>Modifer</button>
-                                    <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>Supprimer</button>
-                                </td>
+                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['question'];}?>
+                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['mots_cles'];}?>
+                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>  Supprimer</button>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
+                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['question'];}?>
+                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['mots_cles'];}?>
                                     <td>
-                                        <button type="submit" class="btn btn-info"><i class="fa-regular fa-pen-to-square"></i>Modifer</button>
-                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>Supprimer</button>
+                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>  Supprimer</button>
                                     </td>
                                 </tr>
                             </tbody>
