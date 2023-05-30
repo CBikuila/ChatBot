@@ -48,58 +48,59 @@
                         ?>
                     </div>
 
-***************************************************************
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemple de table HTML</title>
+</head>
+<body>
 
-                    <div class='card'>
-                        <div class='card-header'>
-                            <h2>Mots clés et phrases associés</h2>
-                            <?php
-		                        $mysqli = new mysqli("localhost", "root", "root", "sneakme_database");
-		                        $requete = "SELECT * FROM motscles";
-		                        $resultat = $mysqli->query($requete);
+<table>
+  <tr>
+    <th>Mot-clé</th>
+    <th>Question</th>
+    <th>Action</th>
+  </tr>
 
-		                        while ($ligne = $resultat->fetch_assoc()) {
-			                    echo $ligne['question'] . ' ' . $ligne['mots_cles'] . ' ' . '<br>';
-		                        }
-		                        $mysqli->close();
-		                    ?>
-                        </div>
-                        <!-- Renvoie du mot clé et la phrase associé à partir de la base de donnée-->
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Mot clé</th>
-                                    <th scope="col">Phrase associée</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['question'];}?>
-                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['mots_cles'];}?>
-                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>  Supprimer</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['question'];}?>
-                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['mots_cles'];}?>
-                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>  Supprimer</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['question'];}?>
-                                    <td> <?php while ($ligne = $resultat->fetch_assoc()) {echo $ligne['mots_cles'];}?>
-                                    <td>
-                                        <button type="reset" class="btn btn-danger"><i class="fa-sharp fa-solid fa-trash"></i>  Supprimer</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>                   
-                </div>
-            </div>
-        </div>
-    </div>
+  <?php
+    // Connexion à la base de données
+    $conn = new mysqli("localhost", "root", "root", "sneakme_database");
+
+    // Vérification de la connexion
+    if ($conn->connect_error) {
+      die("Erreur de connexion à la base de données : " . $conn->connect_error);
+    }
+
+    // Exécution de la requête SQL
+    $sql = "SELECT mots_cles, question FROM motscles";
+    $result = $conn->query($sql);
+
+    // Vérification des résultats de la requête
+    if ($result->num_rows > 0) {
+      // Affichage des lignes
+      while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["mots_cles"] . "</td>";
+        echo "<td>" . $row["question"] . "</td>";
+        echo "</tr>";
+        
+      }
+    } else {
+      echo "<tr><td colspan='3'>Aucun résultat trouvé.</td></tr>";
+    }
+
+    // Fermeture de la connexion à la base de données
+    $conn->close();
+  ?>
+
+</table>
+
+</body>
+</html>
+
 <?php 
     require('footer.php');
 ?>
+
+
+
