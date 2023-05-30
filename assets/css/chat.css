@@ -31,6 +31,11 @@
     text-align: right;
 }
 
+button.button {
+    float: right;
+}
+
+
 
 /* HEADER */
 .chatbox__header {
