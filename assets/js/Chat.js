@@ -76,10 +76,11 @@ champTexte.addEventListener('keydown', function(e) {
 
 // Liste des réponses aléatoires //
 var reponsesAleatoires = [
-  "Bonjour, que puis-je faire pour vous?.",
-  "Au revoir et à bientôt !",
-  "Si vous désirez nous contacter, vous pouvez nous appeler au xx xx xx xx xx  ",
-  "Vous désirez voir le catalogue, quelle catégorie vous intéresse ?",
+  "Je ne comprends pas ce que vous voulez dire.",
+  "Pouvez-vous reformuler votre demande s'il vous plaît?",
+  "Je suis désolé, je ne peux pas répondre à cela.",
+  "N'hésitez pas à nous contactez par téléphone.",
+  "Je suis un chatbot, mais je suis ravi de discuter avec vous!"
 ];
 
 // Fonction pour générer une réponse aléatoire //
