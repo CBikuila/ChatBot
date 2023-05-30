@@ -15,7 +15,7 @@ require('nav.php');
                         <div class='card-body'>
                             <p>Ajoutez un produit dans la base de données</p>
                         </div>
-                        <form action="produits.php" method="post">
+                        <form action="utilisateurs.php" method="post">
                             <div class="mb-3">
                                 <label for="mots_cles" class="form-label">Marque :</label>
                                 <input type="text" class="form-control" name="marque_sneakers" id="marque_sneakers" aria-describedby="textHelp">
@@ -41,19 +41,17 @@ require('nav.php');
 
                     //Ajout des mots-clés via database SQL "sneakme_database.sql"    
 
-                    $marquesSneakers = $_POST["marque_sneakers"];
-                    $modelesSneakers = $_POST["modele_sneakers"];
-                    $couleursSneakers = $_POST["couleur_sneakers"];
-                    $taillesSneakers = $_POST["taille_sneakers"];
+                    $prenomUtilisateurs = $_POST["prenom_utilisateur"];
+                    $motDePasseUtilisateurs = $_POST["mot_de_passe_utilisateur"];
 
-                    if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers){
-                        $insertion = "INSERT INTO produits (marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers) VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers')";
+                    if ($prenomUtilisateurs && $motDePasseUtilisateurs){
+                        $insertion = "INSERT INTO utilisateurs (prenom_utilisateur, mot_de_passe_utilisateur) VALUES ('$prenomUtilisateurs', '$motDePasseUtilisateurs')";
 
                         $result =$connexion->query($insertion);
                         if ($result == true) {
-                            echo "<p>Le produit a été inséré avec succès</p>";
+                            echo "<p>Le client a été inséré avec succès</p>";
                         } else {
-                            echo "<p>Erreur lors de l'insertion du produit</p>" . $connexion->error;
+                            echo "<p>Erreur lors de l'insertion du client</p>" . $connexion->error;
                         }
                     } 
                     ?>
