@@ -73,7 +73,9 @@ champTexte.addEventListener('keydown', function(e) {
   }
 });
 
-// Réponse chatbot aléatoires //
+// disscution chatbot & utulisateur //
+
+
 
 // Liste des réponses aléatoires //
 var reponsesAleatoires = [
@@ -89,7 +91,6 @@ function genererReponseAleatoire() {
   return reponsesAleatoires[index];
 }
 
-// Fin de réponse chatbot aléatoires  //
 
 
 // Fonction pour envoyer le message // 
@@ -117,7 +118,21 @@ function envoyerMessage() {
         // On affiche une réponse aléatoire du chatbot//
         // Ajout d'une réponse aléatoire
         var divReponse = document.createElement("div"); //ajoute d'une réponse aléatoire générée en tant que div avec la classe messages__item messages__item--visitor.
-        divReponse.textContent = genererReponseAleatoire();
+        /*divReponse.textContent = genererReponseAleatoire();*/
+        // connection à la base de donnés//
+        $.ajax({
+          url: '../connectbdd.php', 
+          method: 'POST',
+          data: { keyword: motCle }, // Remplace "motCle" par le mot-clé saisi par l'utilisateur
+          success: function(response) {
+            var phraseAssociee = response; // La réponse contient la phrase associée au mot-clé
+            // Fais quelque chose avec la phrase, comme
+            console.log(response);
+
+          }
+
+
+        });
         divReponse.classList.add('messages__item', 'messages__item--visitor');
         msg.appendChild(divReponse);
          
@@ -127,5 +142,6 @@ function envoyerMessage() {
 }
 
 
+// Fin de disscution chatbot & utulisateur  //
 
   
