@@ -66,3 +66,67 @@ require('nav.php');
 <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 </html>
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exemple de table HTML</title>
+    </head>
+    <body>
+
+        <table>
+            <tr>
+                <th>Marque</th>
+                <th>Modèle</th>
+                <th>Couleur</th>
+                <th>Taille</th>
+            </tr>
+
+            <?php
+                // Connexion à la base de données
+                $conn = new mysqli("localhost", "root", "root", "sneakme_database");
+
+                // Vérification de la connexion
+                if ($conn->connect_error) {
+                die("Erreur de connexion à la base de données : " . $conn->connect_error);
+                }
+
+                // Exécution de la requête SQL
+                $sql = "SELECT produits_id, marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers FROM produits";
+                $result = $conn->query($sql);
+
+                // Vérification des résultats de la requête
+                if ($result->num_rows > 0) {
+                // Affichage des lignes
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["marque_sneakers"] . "</td>";
+                    echo "<td>" . $row["modele_sneakers"] . "</td>";
+                    echo "<td>" . $row["couleur_sneakers"] . "</td>";
+                    echo "<td>" . $row["taille_sneakers"] . "</td>";
+                    echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["produits_id"] . ' ">Supprimer</a></td>';
+                    echo "</tr>";
+                }
+                } else {
+                echo "<tr><td colspan='3'>Aucun résultat trouvé.</td></tr>";
+                }
+
+                // Fermeture de la connexion à la base de données
+                $conn->close();
+            ?>
+
+        </table>
+
+    </body>
+</html>
+
+<?php 
+    require('footer.php');
+?>

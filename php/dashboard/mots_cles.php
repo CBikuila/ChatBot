@@ -31,12 +31,12 @@
                             //Ajout des mots-clés via database SQL "sneakme_database.sql"    
                             error_reporting(E_ERROR); //error_reporting(E_ERROR) permet de cacher le Warning produit à cause de $reponses = $_POST["question"] et $questions = $_POST["mots_cles"] en dessous
                             
-                            if (isset($_POST["mots_cles"]) && isset($_POST["question"])){
+                            if (isset($_POST["question"]) && isset($_POST["mots_cles"])){
                                     
-                                $reponses = $_POST["mots_cles"];
-                                $questions = $_POST["question"];
+                                $reponses = $_POST["question"];
+                                $questions = $_POST["mots_cles"];
 
-                                $insertion = "INSERT INTO motscles (mots_cles,question ) VALUES ('$reponses', '$questions')";
+                                $insertion = "INSERT INTO motscles (question, mots_cles) VALUES ('$questions', '$reponses')";
 
                                 $result =$connexion->query($insertion);
                                 if ($result == true) {
@@ -47,6 +47,9 @@
                             } 
                         ?>
                     </div>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -80,9 +83,9 @@
                 // Affichage des lignes
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $row["question"] . "</td>";
                     echo "<td>" . $row["mots_cles"] . "</td>";
-                    echo "<td>" . $row["question"] . "</td>";                
-                    echo '<td><a href="../suppKeyword.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
+                    echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . ' ">Supprimer</a></td>';
                     echo "</tr>";
                 }
                 } else {
