@@ -82,7 +82,7 @@
                     echo "<tr>";
                     echo "<td>" . $row["mots_cles"] . "</td>";
                     echo "<td>" . $row["question"] . "</td>";
-                    echo '<td><a href="suppKeyword.php?id=' . $row["id"] . '">Supprimer</a></td>';
+                    echo '<td><a href="../suppKeyword.php?id=' . $row["id"] . '">Supprimer</a></td>';
                     echo "</tr>";
                 }
                 } else {
