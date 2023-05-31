@@ -42,7 +42,7 @@
                                 if ($result == true) {
                                     echo "<p>Le mot-clé et la question associée ont bien été ajoutés</p>";
                                 } else {
-                                    echo "<p>Erreur lors de l'insertion du mot-clé et de sa question associée</p>" . $connexion->error;
+                                    echo "<p>Erreur lors de l'insertion du mot-clé et de la question associée</p>" . $connexion->error;
                                 }
                             } 
                         ?>
@@ -72,7 +72,7 @@
                 }
 
                 // Exécution de la requête SQL
-                $sql = "SELECT mots_cles, question FROM motscles";
+                $sql = "SELECT motscles_id, mots_cles, question FROM motscles";
                 $result = $conn->query($sql);
 
                 // Vérification des résultats de la requête
