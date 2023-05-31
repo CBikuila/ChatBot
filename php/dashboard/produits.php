@@ -40,7 +40,7 @@ require('nav.php');
                        // require('../php/ajoutKeyword.php');
 
                     //Ajout des mots-clés via database SQL "sneakme_database.sql"    
-
+                    
                     $marquesSneakers = $_POST["marque_sneakers"];
                     $modelesSneakers = $_POST["modele_sneakers"];
                     $couleursSneakers = $_POST["couleur_sneakers"];
@@ -115,7 +115,7 @@ require('nav.php');
                     echo "</tr>";
                 }
                 } else {
-                echo "<tr><td colspan='3'>Aucun résultat trouvé.</td></tr>";
+                echo "<tr><td colspan='3'>Aucuns produits ajoutés</td></tr>";
                 }
 
                 // Fermeture de la connexion à la base de données
