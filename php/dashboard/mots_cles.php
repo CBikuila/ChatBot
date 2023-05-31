@@ -80,8 +80,8 @@
                 // Affichage des lignes
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["mots_cles"] . "</td>";
                     echo "<td>" . $row["question"] . "</td>";
+                    echo "<td>" . $row["mots_cles"] . "</td>";
                     echo '<td><a href="../suppKeyword.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
                     echo "</tr>";
                 }
