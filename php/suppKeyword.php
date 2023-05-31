@@ -1,27 +1,18 @@
-<?
-session_start();
-if (isset($_GET['motscles_id'])&& $_GET['motscles_id'] == "all"){
-    $_SESSION['question'] = [];
-    $_SESSION['mots_cles'] = 0;
-}
+<?php 
 
-else if (isset($_GET['motscles_id']) && intval($_GET['motscles_id']) >= 0) {
+require("../mots_cles.php");
 
-    if ($_SESSION['question'][$_GET['motscles_id']]["qte"] == 1){
-        $_SESSION['panier']--;
-        array_splice($_SESSION['panier'], $_GET['id'], 1);
-    }else{
-        $_SESSION['panier'][$_GET['id']]["qte"] --;
-    }
-    $_SESSION['nbArticle']--;
-}
+if (isset($_GET['motscles'])) {
+
+//Récupération des données de la table SQL "motscles"
+$id = $_GET['motscles'];
+
+//Suppression de la ligne de la table SQL "motscles"
+$sql = "DELETE FROM `motscles` WHERE `motscles`.`motscles_id` = 20";
+$requete = mysql_query($sql);
+
+//Redirection vers la page "Mot-clés & réponses" du dashboard
 header('location: ./dashboard/mots_cles.php');
+
+}
 ?>
-
-
-
-$bdd = new PDO('mysql:host=localhost;dbname=rhtab;charset=utf8', 'root', '');
- 
-  $sql='DELETE FROM typeabsencetab WHERE id = ?';
-  $req = $bdd ->prepare($sql);
-  $r = $req->execute([$id]);

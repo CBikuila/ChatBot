@@ -64,25 +64,25 @@
 
             <?php
                 // Connexion à la base de données
-                $conn = new mysqli("localhost", "root", "root", "sneakme_database");
+                $connexion = new mysqli("localhost", "root", "root", "sneakme_database");
 
                 // Vérification de la connexion
-                if ($conn->connect_error) {
+                if ($connexion->connect_error) {
                 die("Erreur de connexion à la base de données : " . $conn->connect_error);
                 }
 
                 // Exécution de la requête SQL
                 $sql = "SELECT mots_cles, question FROM motscles";
-                $result = $conn->query($sql);
+                $resultat = $connexion->query($sql);
 
                 // Vérification des résultats de la requête
                 if ($result->num_rows > 0) {
                 // Affichage des lignes
-                while ($row = $result->fetch_assoc()) {
+                while ($ligne = $resultat->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["mots_cles"] . "</td>";
-                    echo "<td>" . $row["question"] . "</td>";
-                    echo '<td><a href="../suppKeyword.php?id=' . $row["id"] . '">Supprimer</a></td>';
+                    echo "<td>" . $ligne["mots_cles"] . "</td>";
+                    echo "<td>" . $ligne["question"] . "</td>";
+                    echo '<td><a href="../suppKeyword.php' . $ligne["motscles_id"] . '">Supprimer</a></td>';
                     echo "</tr>";
                 }
                 } else {
@@ -90,7 +90,7 @@
                 }
 
                 // Fermeture de la connexion à la base de données
-                $conn->close();
+                $connexion->close();
             ?>
 
         </table>
