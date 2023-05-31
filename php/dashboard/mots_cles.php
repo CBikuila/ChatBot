@@ -49,12 +49,12 @@
                     </div>
 
 
-
+<?php //*************TABLEAU EN BAS DE LA PAGE AFFICHANT LES DONNEES SQL POUR LES MOTS-CLES SUR LE DASHBOARD************* ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Exemple de table HTML</title>
+        <title>Tableau données mots-clés</title>
     </head>
     <body>
 

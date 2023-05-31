@@ -57,3 +57,59 @@ error_reporting(E_ERROR | E_PARSE);
 <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
 </html>
+
+<?php //*************TABLEAU EN BAS DE LA PAGE AFFICHANT LES DONNEES SQL POUR LES CLIENTS SUR LE DASHBOARD************* ?>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tableau données utilisateurs</title>
+    </head>
+    <body>
+
+        <table>
+            <tr>
+                <th>Prénom</th>
+                <th>Mot de passe</th>
+            </tr>
+
+            <?php
+                // Connexion à la base de données
+                $conn = new mysqli("localhost", "root", "root", "sneakme_database");
+
+                // Vérification de la connexion
+                if ($conn->connect_error) {
+                die("Erreur de connexion à la base de données : " . $conn->connect_error);
+                }
+
+                // Exécution de la requête SQL
+                $sql = "SELECT utilisateurs_id, prenom_utilisateur, mot_de_passe_utilisateur FROM utilisateurs";
+                $result = $conn->query($sql);
+
+                // Vérification des résultats de la requête
+                if ($result->num_rows > 0) {
+                // Affichage des lignes
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["prenom_utilisateur"] . "</td>";
+                    echo "<td>" . $row["mot_de_passe_utilisateur"] . "</td>";
+                    echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["utilisateurs_id"] . ' ">Supprimer</a></td>';
+                    echo "</tr>";
+                }
+                } else {
+                echo "<tr><td colspan='3'>Aucuns utilisateurs ajoutés</td></tr>";
+                }
+
+                // Fermeture de la connexion à la base de données
+                $conn->close();
+            ?>
+
+        </table>
+
+    </body>
+</html>
+
+<?php 
+    require('footer.php');
+?>
+
