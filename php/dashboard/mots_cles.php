@@ -85,7 +85,7 @@
                     echo "<tr>";
                     echo "<td>" . $row["question"] . "</td>";
                     echo "<td>" . $row["mots_cles"] . "</td>";
-                    echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . ' ">Supprimer</a></td>';
+                    echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
                     echo "</tr>";
                 }
                 } else {

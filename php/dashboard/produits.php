@@ -1,5 +1,6 @@
 <?php
 require('nav.php');
+error_reporting(E_ERROR | E_PARSE);
 ?>
 
 <div class='dashboard'>  
