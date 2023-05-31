@@ -40,7 +40,7 @@
 
                                 $result =$connexion->query($insertion);
                                 if ($result == true) {
-                                    echo "<p>Le mot-clé et sa question associée ont bien été ajoutés</p>";
+                                    echo "<p>Le mot-clé et la question associée ont bien été ajoutés</p>";
                                 } else {
                                     echo "<p>Erreur lors de l'insertion du mot-clé et de sa question associée</p>" . $connexion->error;
                                 }
