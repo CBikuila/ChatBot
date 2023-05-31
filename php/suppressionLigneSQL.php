@@ -1,20 +1,36 @@
-<?php 
-
+<?php
 require("config.php");
 
-//Récupération des id des mots-clés de la table SQL "motscles"
+// Vérifier si l'ID est passé en paramètre
 if (isset($_GET['id'])) {
-
-//Suppression de la ligne de la table SQL "motscles"
-$requete = "DELETE FROM `motscles` WHERE `motscles`.`motscles_id` = ".$_GET['id'];
-$requete = "DELETE FROM `produits` WHERE `produits`.`produits_id` = ".$_GET['id'];
-$requete = "DELETE FROM `utilisateurs` WHERE `utilisateurs`.`utilisateurs_id` = ".$_GET['id'];
-$resultat = $connexion->query($requete);
-
-//Redirection vers la page "Mot-clés & réponses" du dashboard
-header('location: ./dashboard/mots_cles.php');
-
+    $id = $_GET['id'];
+    
+    // Supprimer la ligne de la table "motscles"
+    $requeteKeywords = "DELETE FROM `motscles` WHERE `motscles_id` = $id";
+    $resultatKeywords = $connexion->query($requeteKeywords);
+    
+    // Supprimer la ligne de la table "produits"
+    $requeteProduits = "DELETE FROM `produits` WHERE `produits_id` = $id";
+    $resultatProduits = $connexion->query($requeteProduits);
+    
+    // Supprimer la ligne de la table "utilisateurs"
+    $requeteUtilisateurs = "DELETE FROM `utilisateurs` WHERE `utilisateurs_id` = $id";
+    $resultatUtilisateurs = $connexion->query($requeteUtilisateurs);
+    
+    // Vérifier si au moins une ligne a été supprimée
+    if ($resultatKeywords || $resultatProduits || $resultatUtilisateurs) {
+        // Redirection vers la page appropriée
+        if ($resultatProduits) {
+            header('Location: ./dashboard/produits.php');
+        } elseif ($resultatKeywords) {
+            header('Location: ./dashboard/mots_cles.php');
+        } elseif ($resultatUtilisateurs) {
+            header('Location: ./dashboard/utilisateurs.php');
+        }
+    } else {
+        echo "<p>Impossible de supprimer la ligne</p>";
+    }
 } else {
-        echo "<p>Impossible de supprimer la ligne</p>" . $connexion->error;
-       }
+    echo "<p>Paramètre ID manquant</p>";
+}
 ?>

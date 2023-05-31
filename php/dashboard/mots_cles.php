@@ -89,7 +89,7 @@
                     echo "</tr>";
                 }
                 } else {
-                echo "<tr><td colspan='3'>Aucun résultat trouvé.</td></tr>";
+                echo "<tr><td colspan='3'>Aucuns mots-clés ajoutés.</td></tr>";
                 }
 
                 // Fermeture de la connexion à la base de données
