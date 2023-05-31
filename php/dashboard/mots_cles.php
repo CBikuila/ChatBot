@@ -40,9 +40,9 @@
 
                                 $result =$connexion->query($insertion);
                                 if ($result == true) {
-                                    echo "<p>Les lignes de couleurs différentes de sneakers ont été insérées avec succès</p>";
+                                    echo "<p>Le mot-clé et sa question associée ont bien été ajoutés</p>";
                                 } else {
-                                    echo "<p>Erreur lors de l'insertion des lignes</p>" . $connexion->error;
+                                    echo "<p>Erreur lors de l'insertion du mot-clé et de sa question associée</p>" . $connexion->error;
                                 }
                             } 
                         ?>
