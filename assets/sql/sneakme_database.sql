@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mer. 31 mai 2023 à 07:55
+-- Généré le : jeu. 01 juin 2023 à 15:08
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -24,53 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `chatbot_keywords`
+-- Structure de la table `admin_connexion`
 --
 
-CREATE TABLE `chatbot_keywords` (
-  `chatbot_keywords_id` int(11) NOT NULL,
-  `nom` text,
-  `taille` varchar(100) DEFAULT NULL,
-  `disponibilite` varchar(100) DEFAULT NULL,
-  `couleur` varchar(100) DEFAULT NULL,
-  `matiere` varchar(100) DEFAULT NULL,
-  `prix` varchar(100) DEFAULT NULL
+CREATE TABLE `admin_connexion` (
+  `admin_id` int(11) NOT NULL,
+  `admin_email` varchar(150) NOT NULL,
+  `admin_password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `chatbot_keywords`
+-- Déchargement des données de la table `admin_connexion`
 --
 
-INSERT INTO `chatbot_keywords` (`chatbot_keywords_id`, `nom`, `taille`, `disponibilite`, `couleur`, `matiere`, `prix`) VALUES
-(1, '', '', '', '', '', ''),
-(2, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(3, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(4, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(5, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(6, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(7, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(8, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(9, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(10, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(11, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(12, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(13, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(14, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(15, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(16, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(17, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(18, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(19, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(20, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(21, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(22, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(23, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(24, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(25, 'Yeezy Boost 350', NULL, NULL, 'Noir', NULL, NULL),
-(26, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(27, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL),
-(28, 'Air Max 90', NULL, NULL, 'Bleu', NULL, NULL),
-(29, 'Jordan 1', NULL, NULL, 'Rouge', NULL, NULL);
+INSERT INTO `admin_connexion` (`admin_id`, `admin_email`, `admin_password`) VALUES
+(1, 'admin@sneakme.fr', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categories_produits`
+--
+
+CREATE TABLE `categories_produits` (
+  `categories_produits_id` int(11) NOT NULL,
+  `categories_produits_nom` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `categories_produits`
+--
+
+INSERT INTO `categories_produits` (`categories_produits_id`, `categories_produits_nom`) VALUES
+(1, 'Sneakers de course'),
+(2, 'Sneakers de basketball'),
+(3, 'Sneakers de style de vie'),
+(4, 'Sneakers de skate'),
+(5, 'Sneakers de tennis'),
+(6, 'Sneakers de randonnée'),
+(7, 'Sneakers minimalistes'),
+(8, 'Sneakers rétro');
 
 -- --------------------------------------------------------
 
@@ -80,20 +73,23 @@ INSERT INTO `chatbot_keywords` (`chatbot_keywords_id`, `nom`, `taille`, `disponi
 
 CREATE TABLE `motscles` (
   `motscles_id` int(11) NOT NULL,
-  `question` varchar(150) NOT NULL,
-  `mots_cles` varchar(50) NOT NULL
+  `mots_cles` varchar(50) NOT NULL,
+  `question` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `motscles`
 --
 
-INSERT INTO `motscles` (`motscles_id`, `question`, `mots_cles`) VALUES
-(18, 'Mot-clé 1', 'Phrase associée 1'),
-(19, 'Mot-clé 2', 'Phrase associée 2'),
-(20, 'Mot-clé 3', 'Phrase associée 3'),
-(22, 'Mot-clé 3', 'Phrase associée 3'),
-(23, 'Mot-clé 3', 'Phrase associée 3');
+INSERT INTO `motscles` (`motscles_id`, `mots_cles`, `question`) VALUES
+(72, 'Coucou', 'Bonjour, que puis-je faire pour vous ?'),
+(73, 'Hello ', 'Bonjour, que puis-je faire pour vous ?'),
+(74, 'Bonjour', 'Bonjour, que puis-je faire pour vous ?'),
+(75, 'Au revoir ', 'Au revoir et à bientôt !'),
+(76, '++', 'Au revoir et à bientôt !'),
+(77, 'Bye', 'Au revoir et à bientôt !'),
+(78, 'Téléphone', 'Vous désirez nous contacter, vous pouvez nous appeler au xx xx xx xx xx xx'),
+(79, 'Contacter', 'Vous désirez nous contacter, vous pouvez nous appeler au xx xx xx xx xx xx');
 
 -- --------------------------------------------------------
 
@@ -106,37 +102,58 @@ CREATE TABLE `produits` (
   `marque_sneakers` varchar(50) DEFAULT NULL,
   `modele_sneakers` varchar(100) DEFAULT NULL,
   `couleur_sneakers` varchar(30) DEFAULT NULL,
-  `taille_sneakers` int(2) DEFAULT NULL
+  `taille_sneakers` int(2) DEFAULT NULL,
+  `prix_sneakers` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateurs`
+-- Structure de la table `statuts_commandes`
 --
 
-CREATE TABLE `utilisateurs` (
-  `user_id` int(11) NOT NULL,
-  `prenom_utilisateur` varchar(50) NOT NULL,
-  `mot_de_passe_utilisateur` text NOT NULL
+CREATE TABLE `statuts_commandes` (
+  `commandes_id` int(11) NOT NULL,
+  `statuts_commandes_etapes` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `utilisateurs`
+-- Déchargement des données de la table `statuts_commandes`
 --
 
-INSERT INTO `utilisateurs` (`user_id`, `prenom_utilisateur`, `mot_de_passe_utilisateur`) VALUES
-(1, 'Prénom', 'Mot de passe');
+INSERT INTO `statuts_commandes` (`commandes_id`, `statuts_commandes_etapes`) VALUES
+(1, 'En cours'),
+(2, 'Validée'),
+(3, 'Annulée'),
+(4, 'Terminée');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateurs_connexion`
+--
+
+CREATE TABLE `utilisateurs_connexion` (
+  `utilisateurs_id` int(11) NOT NULL,
+  `prenom_utilisateur` text NOT NULL,
+  `mot_de_passe_utilisateur` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Index pour les tables déchargées
 --
 
 --
--- Index pour la table `chatbot_keywords`
+-- Index pour la table `admin_connexion`
 --
-ALTER TABLE `chatbot_keywords`
-  ADD PRIMARY KEY (`chatbot_keywords_id`);
+ALTER TABLE `admin_connexion`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Index pour la table `categories_produits`
+--
+ALTER TABLE `categories_produits`
+  ADD PRIMARY KEY (`categories_produits_id`);
 
 --
 -- Index pour la table `motscles`
@@ -151,38 +168,56 @@ ALTER TABLE `produits`
   ADD PRIMARY KEY (`produits_id`);
 
 --
--- Index pour la table `utilisateurs`
+-- Index pour la table `statuts_commandes`
 --
-ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`user_id`);
+ALTER TABLE `statuts_commandes`
+  ADD PRIMARY KEY (`commandes_id`);
+
+--
+-- Index pour la table `utilisateurs_connexion`
+--
+ALTER TABLE `utilisateurs_connexion`
+  ADD PRIMARY KEY (`utilisateurs_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `chatbot_keywords`
+-- AUTO_INCREMENT pour la table `admin_connexion`
 --
-ALTER TABLE `chatbot_keywords`
-  MODIFY `chatbot_keywords_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+ALTER TABLE `admin_connexion`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `categories_produits`
+--
+ALTER TABLE `categories_produits`
+  MODIFY `categories_produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `motscles`
 --
 ALTER TABLE `motscles`
-  MODIFY `motscles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `motscles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT pour la table `utilisateurs`
+-- AUTO_INCREMENT pour la table `statuts_commandes`
 --
-ALTER TABLE `utilisateurs`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `statuts_commandes`
+  MODIFY `commandes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateurs_connexion`
+--
+ALTER TABLE `utilisateurs_connexion`
+  MODIFY `utilisateurs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
