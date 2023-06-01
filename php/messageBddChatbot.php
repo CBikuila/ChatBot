@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR);
 $servername = "localhost"; // remplacer par le nom de votre serveur MySQL
 $email = "root"; // remplacer par votre nom d'utilisateur MySQL
 $password = "root"; // remplacer par votre mot de passe MySQL
@@ -13,11 +13,13 @@ if ($connexion->connect_error) {
     die("Connection failed: " . $connexion->connect_error);
 }
 
+// Nettoyage du post
+$_POST = json_decode(array_keys($_POST)[0], 1);
 // Récupérer le mot-clé saisi par l'utilisateur
 $motCle = $_POST['motscles'];
 
 // Requête pour récupérer la question associée au mot-clé
-$requete = "SELECT motscles FROM question";
+$requete = "SELECT question FROM motscles WHERE mots_cles = \"$motCle\""; 
 $resultat = $connexion->query($requete);
 
 if ($resultat->num_rows > 0) {
@@ -34,5 +36,5 @@ if ($resultat->num_rows > 0) {
     echo json_encode($reponse);
 }
 
-
-?> 
+$connexion->close();
+?>

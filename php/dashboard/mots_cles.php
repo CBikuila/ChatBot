@@ -33,8 +33,8 @@
                             
                             if (isset($_POST["question"]) && isset($_POST["mots_cles"])){
                                     
-                                $reponses = $_POST["question"];
-                                $questions = $_POST["mots_cles"];
+                                $reponses = $_POST["mots_cles"];
+                                $questions = $_POST["question"];
 
                                 $insertion = "INSERT INTO motscles (question, mots_cles) VALUES ('$questions', '$reponses')";
 
@@ -83,8 +83,8 @@
                 // Affichage des lignes
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["question"] . "</td>";
                     echo "<td>" . $row["mots_cles"] . "</td>";
+                    echo "<td>" . $row["question"] . "</td>";
                     echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
                     echo "</tr>";
                 }
