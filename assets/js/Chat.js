@@ -76,24 +76,6 @@ champTexte.addEventListener('keydown', function(e) {
 // disscution chatbot & utulisateur //
 
 
-
-// Liste des réponses aléatoires //
-/*
-var reponsesAleatoires = [
-  "Bonjour, que puis-je faire pour vous ?",
-  "Au revoir et à bientôt ! ",
-  "Si vous désirez nous contacter, vous pouvez nous appeler au xx xx xx xx xx",
-  "Vous désirez voir le catalogue, quelle catégorie vous intéresse ? ",
-];
-
-// Fonction pour générer une réponse aléatoire //
-function genererReponseAleatoire() {
-  var index = Math.floor(Math.random() * reponsesAleatoires.length);
-  return reponsesAleatoires[index];
-} */
-
-
-
 // Fonction pour envoyer le message + disscussion entre le chatbot et l'utilisateur 
 function envoyerMessage() {
   // Récupération du texte dans le champ de texte.
@@ -123,7 +105,7 @@ function envoyerMessage() {
     var divReponse = document.createElement("div");
 
     // Vérification du mot-clé "admin"
-    if (recupererMessage.toLowerCase() === 'admin') {
+    if (recupererMessage.toLowerCase() === 'connexion', 'connexion') {
       // Réponse spécifique pour le mot-clé "admin"
       divReponse.classList.add('messages__item', 'messages__item--visitor');
       divReponse.innerHTML = `
