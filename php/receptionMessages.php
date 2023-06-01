@@ -11,13 +11,13 @@ if ($connexion->connect_error) {
 }
 
 // Récupérer le message du chatbot
-$message = $_POST['message'];
+$receptionMessages = $_POST['reception_message_liste'];
 
 // Échapper les caractères spéciaux pour éviter les injections SQL
-$message = $conn->real_escape_string($message);
+$receptionMessages = $conn->real_escape_string($receptionMessages);
 
 // Insérer le message dans la table "messages"
-$sql = "INSERT INTO messages (content) VALUES ('$message')";
+$sql = "INSERT INTO messages (content) VALUES ('$receptionMessages')";
 
 if ($conn->query($sql) === TRUE) {
   echo "Message stocké avec succès.";
