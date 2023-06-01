@@ -105,7 +105,7 @@ function envoyerMessage() {
     var divReponse = document.createElement("div");
 
     // Vérification du mot-clé "admin"
-    if (recupererMessage.toLowerCase() === 'connexion', 'connexion') {
+    if (recupererMessage.toLowerCase() === 'connexion') {
       // Réponse spécifique pour le mot-clé "admin"
       divReponse.classList.add('messages__item', 'messages__item--visitor');
       divReponse.innerHTML = `
@@ -116,7 +116,21 @@ function envoyerMessage() {
           <label for="password">Mot de passe :</label>
           <input type="password" placeholder="Mot de passe" />
           <br>
-          <button type="submit" class="bouton" >Connexion</button>
+          <button type="submit" class="bouton" > Se Connecter</button>
+        </form>
+      `;
+    }  else if (recupererMessage.toLowerCase() === 'inscription') {
+      // Réponse spécifique pour le mot-clé "inscription"
+      divReponse.classList.add('messages__item', 'messages__item--visitor');
+      divReponse.innerHTML = `
+        <form class="chatbot-form">
+          <label for="email">E-mail :</label>
+          <input type="text" placeholder="Entrez votre adresse email" />
+          <br>
+          <label for="password">Mot de passe :</label>
+          <input type="password" placeholder="Mot de passe" />
+          <br>
+          <button type="submit" class="bouton">S'inscrire</button>
         </form>
       `;
     } else {
