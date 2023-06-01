@@ -94,7 +94,7 @@ function genererReponseAleatoire() {
 
 
 
-// Fonction pour envoyer le message 
+// Fonction pour envoyer le message + disscussion entre le chatbot et l'utilisateur 
 function envoyerMessage() {
   // Récupération du texte dans le champ de texte.
   var recupererMessage = document.getElementById('envoyer').value;
@@ -117,46 +117,52 @@ function envoyerMessage() {
     // Ajout de la div comme enfant de l'élément HTML avec l'identifiant "msg"
     msg.appendChild(div);
 
+
+    //Connexion Administrateur//
     // Création d'un élément HTML <div> pour afficher la réponse du chatbot
     var divReponse = document.createElement("div");
 
-    // Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur
-    $.ajax({
-      url: './php/messageBddChatbot.php',
-      type: 'POST',
-      dataType: 'json',
-      data: JSON.stringify({ "motscles": recupererMessage }),
-      processData: false,
-      success: function(response) {
-        if (response.question !== '') {
-          // Si une réponse est trouvée dans la base de données
-          var phraseAssociee = response.question;
-          divReponse.classList.add('messages__item', 'messages__item--visitor');
-          console.log(response.question);
-          divReponse.textContent = phraseAssociee;
-        } else {
-          // Si aucun résultat n'est trouvé dans la base de données, afficher une réponse aléatoire
-    
-          // Tableau contenant des réponses aléatoires
-          var reponsesAleatoires = 
-          ["Désolé, je ne comprends pas.", 
-          "Je ne peux pas répondre à cette question.", 
-          "Pouvez-vous reformuler votre question ?"];
-    
-          // Génération d'un index aléatoire pour choisir une réponse du tableau
-          var indexAleatoire = Math.floor(Math.random() * reponsesAleatoires.length);
-    
-          // Récupération de la réponse aléatoire
-          var reponseAleatoire = reponsesAleatoires[indexAleatoire];
-    
-          // Ajout des classes CSS à la div de réponse
-          divReponse.classList.add('messages__item', 'messages__item--visitor');
-    
-          // Affichage de la réponse aléatoire dans la div de réponse
-          divReponse.textContent = reponseAleatoire;
+    // Vérification du mot-clé "admin"
+    if (recupererMessage.toLowerCase() === 'admin') {
+      // Réponse spécifique pour le mot-clé "admin"
+      divReponse.classList.add('messages__item', 'messages__item--visitor');
+      divReponse.innerHTML = `
+        <form class="chatbot-form">
+          <label for="email">E-mail :</label>
+          <input type="text" placeholder="Entrez votre adresse email" />
+          <br>
+          <label for="password">Mot de passe :</label>
+          <input type="password" placeholder="Mot de passe" />
+          <br>
+          <button type="submit" class="bouton" >Connexion</button>
+        </form>
+      `;
+    } else {
+    // fin de connexion administrateur//
+      // Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur
+      $.ajax({
+        url: './php/messageBddChatbot.php',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({ "motscles": recupererMessage }),
+        processData: false,
+        success: function(response) {
+          if (response.question !== '') {
+            // Si une réponse est trouvée dans la base de données
+            var phraseAssociee = response.question;
+            divReponse.classList.add('messages__item', 'messages__item--visitor');
+            console.log(response.question);
+            divReponse.textContent = phraseAssociee;
+          } else {
+            // Si aucun résultat n'est trouvé dans la base de données, afficher une réponse aléatoire
+            var reponsesAleatoires = ["Désolé, je ne comprends pas.", "Je ne peux pas répondre à cette question.", "Pouvez-vous reformuler votre question ?"];
+            var reponseAleatoire = reponsesAleatoires[Math.floor(Math.random() * reponsesAleatoires.length)];
+            divReponse.classList.add('messages__item', 'messages__item--visitor');
+            divReponse.textContent = reponseAleatoire;
+          }
         }
-      }
-    });
+      });
+    }
 
     // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
     msg.appendChild(divReponse);
@@ -168,11 +174,5 @@ function envoyerMessage() {
 
 // Fin de discussion chatbot & utilisateur
 
-
-// Fin de discussion chatbot & utilisateur
-
-
-
-// Fin de disscution chatbot & utulisateur  //
 
   
