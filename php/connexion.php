@@ -21,6 +21,10 @@
             <input type="password" id="password" name="password" placeholder="Mot de passe" required>
             <br>
             <input type="submit" value="Se connecter">
+
+
+<?php//*****Connexion à la table SQL "admin" avec les adresses emails et les mots de passes admin*****?>
+
             <?php
                 if ($_POST) {
                 $dashboard = [
