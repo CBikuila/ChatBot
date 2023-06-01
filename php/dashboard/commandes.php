@@ -48,24 +48,25 @@
                 echo "<td>" . $row["couleur_sneakers"] . "</td>";
                 echo "<td>" . $row["taille_sneakers"] . "</td>";
                 echo "<td>" . $row["prix_sneakers"] . "</td>";
-                echo "<td>";
-                echo "<select>";
+                    echo "<td>";
+                    echo "<select>";
 
-                // Requête SQL pour récupérer les statuts de commande
-                $statuts_sql = "SELECT statuts_commandes_etapes FROM statuts_commandes";
-                $statuts_result = $conn->query($statuts_sql);
+                    // Requête SQL pour récupérer les statuts de commande
+                    $statuts_sql = "SELECT statuts_commandes_etapes FROM statuts_commandes";
+                    $statuts_result = $conn->query($statuts_sql);
 
-                // Vérification de la réussite de la requête
-                if ($statuts_result->num_rows > 0) {
-                    while ($statut_row = $statuts_result->fetch_assoc()) {
-                        echo "<option>" . $statut_row["statuts_commandes_etapes"] . "</option>";
+                    // Vérification de la réussite de la requête
+                    if ($statuts_result->num_rows > 0) {
+                        while ($statut_row = $statuts_result->fetch_assoc()) {
+                            echo "<option>" . $statut_row["statuts_commandes_etapes"] . "</option>";
+                        }
+                    } else {
+                        echo "<option>Aucun statut de commande trouvé</option>";
                     }
-                } else {
-                    echo "<option>Aucun statut de commande trouvé</option>";
-                }
 
-                echo "</select>";
-                echo "</td>";
+                    echo "</select>";
+                    echo "</td>";
+                echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["produits_id"] . ' ">Supprimer</a></td>';    
                 echo "</tr>";
             }
         } else {

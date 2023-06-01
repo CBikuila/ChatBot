@@ -42,10 +42,8 @@ error_reporting(E_ERROR | E_PARSE);
                 
                 <?php
                     require('../config.php');
-                    // require('../php/ajoutKeyword.php');
 
-                //Ajout des mots-clés via database SQL "sneakme_database.sql"    
-                
+                //Ajout des mots-clés via database SQL "sneakme_database.sql"         
                 $marquesSneakers = $_POST["marque_sneakers"];
                 $modelesSneakers = $_POST["modele_sneakers"];
                 $couleursSneakers = $_POST["couleur_sneakers"];
@@ -76,6 +74,7 @@ error_reporting(E_ERROR | E_PARSE);
             <th>Couleur</th>
             <th>Taille</th>
             <th>Prix</th>
+            <th>Catégorie produit</th>
         </tr>
 
         <?php
@@ -87,8 +86,10 @@ error_reporting(E_ERROR | E_PARSE);
             die("Erreur de connexion à la base de données : " . $conn->connect_error);
             }
 
-            // Exécution de la requête SQL
-            $sql = "SELECT produits_id, marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, prix_sneakers FROM produits";
+            // Exécution de la requête SQL pour récupérer les produits et les catégories des produits
+            $sql = "SELECT p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, s.categories_produits_nom
+            FROM produits p
+            LEFT JOIN categories_produits s ON p.produits_id = s.categories_produits_id";
             $result = $conn->query($sql);
 
             // Vérification des résultats de la requête
@@ -101,7 +102,27 @@ error_reporting(E_ERROR | E_PARSE);
                 echo "<td>" . $row["couleur_sneakers"] . "</td>";
                 echo "<td>" . $row["taille_sneakers"] . "</td>";
                 echo "<td>" . $row["prix_sneakers"] . "</td>";
-                echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["produits_id"] . ' ">Supprimer</a></td>';
+                    echo "<td>";
+                    echo "<select name='categories_produits[]'>"; // Ajout d'un attribut name pour récupérer la table SQL "categories_produits"
+
+                    // Requête SQL pour récupérer les catégories de produits
+                    $categories_produits_sql = "SELECT categories_produits_nom FROM categories_produits";
+                    $categories_produits_result = $conn->query($categories_produits_sql);
+
+                     // Vérification de la réussite de la requête
+                    if ($categories_produits_result->num_rows > 0) {
+                        while ($categorie_row = $categories_produits_result->fetch_assoc()) {
+                            // Vérifiez si la catégorie est celle actuellement attribuée au produit
+                            $selected = ($categorie_row["categories_produits_nom"] == $row["categories_produits_nom"]) ? "selected" : "";
+                            echo "<option $selected>" . $categorie_row["categories_produits_nom"] . "</option>";
+                        }
+                    } else {
+                        echo "<option>Aucune catégorie produit trouvée</option>";
+                    }
+
+                    echo "</select>";
+                    echo "</td>";
+                echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["produits_id"] . ' ">Supprimer</a></td>';    
                 echo "</tr>";
             }
             } else {
