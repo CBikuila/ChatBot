@@ -103,37 +103,33 @@ function envoyerMessage() {
   if (recupererMessage.trim() !== '') {
     // Envoi du message
     // Code pour envoyer le message...
-    console.log("Le message "+ recupererMessage + "a été envoyé !");
+    console.log("Le message "+ recupererMessage + " a été envoyé !");
     
         var div = document.createElement("div"); //crée un élément HTML <div> vide et le stocke dans la variable div
         div.textContent = document.getElementById('envoyer').value; // Cette ligne récupère la valeur du champ de formulaire HTML avec l'identifiant "envoyer" et l'assigne à la propriété textContent de la variable div. Cela permet d'afficher le contenu du champ texte dans la nouvelle div créé.        var msg = document.getElementById('msg');// Cette ligne récupère un élément HTML avec l'identifiant "msg" et le stocke dans la variable msg.
-        
-        console.log(msg);
+    
         
         div.classList.add('messages__item', 'messages__item--operator'); // Ajouter une classe CSS afin d'avoir la bulle bleu 
         msg.appendChild(div); //IL ajoute la div créée à l'étape 1 en tant qu'enfant de l'élément HTML msg. Cela insère la div à l'intérieur de l'élément msg dans le document HTML.
-        // On affiche le message de l'utlisateur // 
 
 
-        // On affiche une réponse aléatoire du chatbot//
-        // Ajout d'une réponse aléatoire
-        var divReponse = document.createElement("div"); //ajoute d'une réponse aléatoire générée en tant que div avec la classe messages__item messages__item--visitor.
-        /*divReponse.textContent = genererReponseAleatoire();*/
+        var divReponse = document.createElement("div"); 
+
         // connection à la base de donnés//
         $.ajax({
-          url: '../connectbdd.php', 
-          method: 'POST',
-          data: { keyword: motCle }, // Remplace "motCle" par le mot-clé saisi par l'utilisateur
+          url: './php/messageBddChatbot.php', 
+          type: 'POST',
+          dataType: 'json',
+          data:JSON.stringify( { "motscles": recupererMessage }), // 
+          processData: false,
           success: function(response) {
-            var phraseAssociee = response; // La réponse contient la phrase associée au mot-clé
-            // Fais quelque chose avec la phrase, comme
-            console.log(response);
+            var phraseAssociee = response.question; // La réponse contient la phrase associée au mot-clé
+            divReponse.classList.add('messages__item', 'messages__item--visitor');
+            console.log(response.question);
 
+            divReponse.textContent = phraseAssociee;
           }
-
-
-        });
-        divReponse.classList.add('messages__item', 'messages__item--visitor');
+        });       
         msg.appendChild(divReponse);
          
     // Effacement du champ de texte
