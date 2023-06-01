@@ -17,10 +17,10 @@
         </div>
         <form action="connexion.php" method="post">
             <label for="email">E-mail :</label>
-            <input type="text" id="email" name="admin_email" placeholder="Enter votre email" required>
+            <input type="text" id="email" name="admin_email" placeholder="Entrez votre adresse mail de connexion" required>
             <br>
             <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="admin_password" placeholder="Mot de passe" required>
+            <input type="password" id="password" name="admin_password" placeholder="Entrez votre de passe" required>
             <br>
             <input type="submit" value="Se connecter">
 
@@ -48,7 +48,7 @@
                     header('Location: ../php/dashboard/dashboard.php');
                     exit();
                 } else {
-                    echo "Identifiants de connexion incorrects.";
+                    echo "<br>Identifiants de connexion incorrects.";
                 }
             }
 
