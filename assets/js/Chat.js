@@ -110,6 +110,7 @@ function envoyerMessage() {
       divReponse.classList.add('messages__item', 'messages__item--visitor');
       divReponse.innerHTML = `
         <form class="chatbot-form">
+          <h2 class="title">Connexion</h2>
           <label for="email">E-mail :</label>
           <input type="text" placeholder="Entrez votre adresse email" />
           <br>
@@ -124,6 +125,7 @@ function envoyerMessage() {
       divReponse.classList.add('messages__item', 'messages__item--visitor');
       divReponse.innerHTML = `
         <form class="chatbot-form">
+          <h2 class="title">Inscription</h2>
           <label for="email">E-mail :</label>
           <input type="text" placeholder="Entrez votre adresse email" />
           <br>
