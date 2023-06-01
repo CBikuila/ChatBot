@@ -1,6 +1,6 @@
 <?php
-    require('config.php');
-    require('dashboard/nav.php');
+    require('../config.php');
+    include('nav.php');
     $conn = new mysqli("localhost", "root", "root", "sneakme_database");
 
 // Vérification de la connexion
