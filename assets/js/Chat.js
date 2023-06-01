@@ -78,6 +78,7 @@ champTexte.addEventListener('keydown', function(e) {
 
 
 // Liste des réponses aléatoires //
+/*
 var reponsesAleatoires = [
   "Bonjour, que puis-je faire pour vous ?",
   "Au revoir et à bientôt ! ",
@@ -89,53 +90,64 @@ var reponsesAleatoires = [
 function genererReponseAleatoire() {
   var index = Math.floor(Math.random() * reponsesAleatoires.length);
   return reponsesAleatoires[index];
-}
+} */
 
 
 
 // Fonction pour envoyer le message // 
+// Fonction pour envoyer le message 
 function envoyerMessage() {
   // Récupération du texte dans le champ de texte.
   var recupererMessage = document.getElementById('envoyer').value;
-    console.log(recupererMessage);
+  console.log(recupererMessage);
 
   // Vérification que le champ de texte n'est pas vide.
   if (recupererMessage.trim() !== '') {
     // Envoi du message
     // Code pour envoyer le message...
-    console.log("Le message "+ recupererMessage + " a été envoyé !");
-    
-        var div = document.createElement("div"); //crée un élément HTML <div> vide et le stocke dans la variable div
-        div.textContent = document.getElementById('envoyer').value; // Cette ligne récupère la valeur du champ de formulaire HTML avec l'identifiant "envoyer" et l'assigne à la propriété textContent de la variable div. Cela permet d'afficher le contenu du champ texte dans la nouvelle div créé.        var msg = document.getElementById('msg');// Cette ligne récupère un élément HTML avec l'identifiant "msg" et le stocke dans la variable msg.
-    
-        
-        div.classList.add('messages__item', 'messages__item--operator'); // Ajouter une classe CSS afin d'avoir la bulle bleu 
-        msg.appendChild(div); //IL ajoute la div créée à l'étape 1 en tant qu'enfant de l'élément HTML msg. Cela insère la div à l'intérieur de l'élément msg dans le document HTML.
+    console.log("Le message " + recupererMessage + " a été envoyé !");
 
+    // Création d'un élément HTML <div> pour afficher le message de l'utilisateur
+    var div = document.createElement("div");
+    div.textContent = document.getElementById('envoyer').value;
+    var msg = document.getElementById('msg');
 
-        var divReponse = document.createElement("div"); 
+    // Ajout des classes CSS pour afficher le message de l'utilisateur sous forme de bulle bleue
+    div.classList.add('messages__item', 'messages__item--operator');
 
-        // connection à la base de donnés//
-        $.ajax({
-          url: './php/messageBddChatbot.php', 
-          type: 'POST',
-          dataType: 'json',
-          data:JSON.stringify( { "motscles": recupererMessage }), // 
-          processData: false,
-          success: function(response) {
-            var phraseAssociee = response.question; // La réponse contient la phrase associée au mot-clé
-            divReponse.classList.add('messages__item', 'messages__item--visitor');
-            console.log(response.question);
+    // Ajout de la div comme enfant de l'élément HTML avec l'identifiant "msg"
+    msg.appendChild(div);
 
-            divReponse.textContent = phraseAssociee;
-          }
-        });       
-        msg.appendChild(divReponse);
-         
+    // Création d'un élément HTML <div> pour afficher la réponse du chatbot
+    var divReponse = document.createElement("div");
+
+    // Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur
+    $.ajax({
+      url: './php/messageBddChatbot.php',
+      type: 'POST',
+      dataType: 'json',
+      data: JSON.stringify({ "motscles": recupererMessage }),
+      processData: false,
+      success: function(response) {
+        var phraseAssociee = response.question;
+        divReponse.classList.add('messages__item', 'messages__item--visitor');
+        console.log(response.question);
+
+        // Affichage de la réponse du chatbot dans la div
+        divReponse.textContent = phraseAssociee;
+      }
+    });
+
+    // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
+    msg.appendChild(divReponse);
+
     // Effacement du champ de texte
     champTexte.value = '';
   }
 }
+
+// Fin de discussion chatbot & utilisateur
+
 
 
 // Fin de disscution chatbot & utulisateur  //
