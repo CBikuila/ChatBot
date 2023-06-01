@@ -85,9 +85,10 @@ body {
 
 .messages__item {
     margin-top: 10px;
-    background: #E0E0E0; 
+    background: #6F97DD; 
     padding: 8px 12px;
     max-width: 70%;
+    color: #fff;
 }
 
 .messages__item--visitor,
@@ -113,6 +114,34 @@ body {
     border-top-color: transparent;
 
 }
+
+/*Chatbot form */
+.chatbot-form input[type="text"] {
+    display: block;
+    width: 90%;
+    padding: 7px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.chatbot-form input[type="password"] {
+    display: block;
+    width: 90%;
+    padding: 7px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.chatbot-form button.bouton {
+    background-color: #fff;
+    border: none;
+    color: #000;
+    padding: 9px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
 
 /* FOOTER */
 .chatbox__footer {
