@@ -94,7 +94,6 @@ function genererReponseAleatoire() {
 
 
 
-// Fonction pour envoyer le message // 
 // Fonction pour envoyer le message 
 function envoyerMessage() {
   // Récupération du texte dans le champ de texte.
@@ -129,12 +128,33 @@ function envoyerMessage() {
       data: JSON.stringify({ "motscles": recupererMessage }),
       processData: false,
       success: function(response) {
-        var phraseAssociee = response.question;
-        divReponse.classList.add('messages__item', 'messages__item--visitor');
-        console.log(response.question);
-
-        // Affichage de la réponse du chatbot dans la div
-        divReponse.textContent = phraseAssociee;
+        if (response.question !== '') {
+          // Si une réponse est trouvée dans la base de données
+          var phraseAssociee = response.question;
+          divReponse.classList.add('messages__item', 'messages__item--visitor');
+          console.log(response.question);
+          divReponse.textContent = phraseAssociee;
+        } else {
+          // Si aucun résultat n'est trouvé dans la base de données, afficher une réponse aléatoire
+    
+          // Tableau contenant des réponses aléatoires
+          var reponsesAleatoires = 
+          ["Désolé, je ne comprends pas.", 
+          "Je ne peux pas répondre à cette question.", 
+          "Pouvez-vous reformuler votre question ?"];
+    
+          // Génération d'un index aléatoire pour choisir une réponse du tableau
+          var indexAleatoire = Math.floor(Math.random() * reponsesAleatoires.length);
+    
+          // Récupération de la réponse aléatoire
+          var reponseAleatoire = reponsesAleatoires[indexAleatoire];
+    
+          // Ajout des classes CSS à la div de réponse
+          divReponse.classList.add('messages__item', 'messages__item--visitor');
+    
+          // Affichage de la réponse aléatoire dans la div de réponse
+          divReponse.textContent = reponseAleatoire;
+        }
       }
     });
 
@@ -145,6 +165,9 @@ function envoyerMessage() {
     champTexte.value = '';
   }
 }
+
+// Fin de discussion chatbot & utilisateur
+
 
 // Fin de discussion chatbot & utilisateur
 
