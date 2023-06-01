@@ -1,19 +1,6 @@
 <?php
 require('nav.php');
 ?>
-<div class='dashboard'>
-    <div class='dashboard-app'>
-        <div class='dashboard-content'>
-            <div class='container'>
-                <div class='card'>
-                    <div class='card-header'>
-                        <h1>Tableau de bord Chatbot</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Interface pour le traitement des messages et des actions-->
     <div class='dashboard'>  
@@ -22,7 +9,7 @@ require('nav.php');
                 <div class='container'>
                     <div class='card'>
                         <div class='card-header'>
-                            <h2>Les mots-clés</h2>
+                            <h2>Réception des messages</h2>
                         </div>
                         <div class='card-body'>
                             <p>Ajoute un mot-clé et sa phrase associée dans la base de données</p>
