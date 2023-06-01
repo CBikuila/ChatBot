@@ -38,7 +38,7 @@ error_reporting(E_ERROR | E_PARSE);
                     $motDePasseUtilisateurs = $_POST["mot_de_passe_utilisateur"];
 
                     if ($prenomUtilisateurs && $motDePasseUtilisateurs){
-                        $insertion = "INSERT INTO utilisateurs (prenom_utilisateur, mot_de_passe_utilisateur) VALUES ('$prenomUtilisateurs', '$motDePasseUtilisateurs')";
+                        $insertion = "INSERT INTO utilisateurs_connexion (prenom_utilisateur, mot_de_passe_utilisateur) VALUES ('$prenomUtilisateurs', '$motDePasseUtilisateurs')";
 
                         $result =$connexion->query($insertion);
                         if ($result == true) {
