@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
@@ -7,56 +8,53 @@
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
     <script defer src="https://kit.fontawesome.com/2812e639d2.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div class="interface-connexion">
         <div class="titre-icone">
-        <i class="fas fa-user"></i>
-        <h1>Connexion</h1>
+            <i class="fas fa-user"></i>
+            <h1>Connexion</h1>
         </div>
         <form action="connexion.php" method="post">
             <label for="email">E-mail :</label>
-            <input type="text" id="email" name="email" placeholder="Enter votre email" required>
+            <input type="text" id="email" name="admin_email" placeholder="Enter votre email" required>
             <br>
             <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+            <input type="password" id="password" name="admin_password" placeholder="Mot de passe" required>
             <br>
             <input type="submit" value="Se connecter">
 
 
-<?php//*****Connexion à la table SQL "admin" avec les adresses emails et les mots de passes admin*****?>
+            <?php //*****Connexion à la table SQL "admin" avec les adresses emails et les mots de passes admin*****
 
-            <?php
-                if ($_POST) {
-                $dashboard = [
-                    [
-                    "email" => "admin@sneakme.fr",
-                    "password" => "admin",
-                    ],
-                ];
-                
-                $email = $_POST["email"];
-                $password = $_POST["password"];
+            // Connexion à MySQL
+            $connexion = new mysqli("localhost", "root", "root", "sneakme_database");
 
-                $loggedIn = false;
+            // Vérifier la connexion
+            if ($connexion->connect_error) {
+                die("Erreur de connexion à la base de données : " . $connexion->connect_error);
+            }
 
-                    foreach ($dashboard as $user) {
-                        if ($user["email"] == $email && $user["password"] == $password) {
-                            $loggedIn = true;
-                            break;
-                        }
-                    }
+            //Accès aux colonnes SQL "admin_email" et "admin_password" pour récupérer les identifiants de connexion au dashboard
+            if (!empty($_POST["admin_email"]) && !empty($_POST["admin_password"])) {
+                $email = $_POST["admin_email"];
+                $password = $_POST["admin_password"];
 
-                    if ($loggedIn === false && $email && $password) {
-                        echo "Adresse mail et/ou mot de passe incorrect";
+                $sql = "SELECT admin_email, admin_password FROM admin_connexion WHERE admin_email = '$email' AND admin_password = '$password'";
 
-                        // L'utilisateur est connecté, faire quelque chose ici...
+                $result = $connexion->query($sql);
 
-                    } else {
-                        header('Location: ../php/dashboard/dashboard.php');
-                    }
+                if ($result->num_rows > 0) { //Vérifie si le nombre de lignes SQL retournées est supérieur à 0, signifiant alors qu'un enregistrement correspondant à été trouvé.
+                    header('Location: ../php/dashboard/dashboard.php');
+                    exit();
+                } else {
+                    echo "Identifiants de connexion incorrects.";
                 }
-            ?>    
+            }
+
+            ?>
         </form>
     </div>
 </body>
+
 </html>
