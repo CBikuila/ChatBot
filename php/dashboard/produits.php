@@ -39,6 +39,17 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                         <button type="submit" class="btn btn-primary">Ajouter</button>
                     </form>
+
+                    <div class='card-header'>
+                        <h2>Catégories produit</h2>
+                    </div>
+                    <form action="produits.php" method="post">
+                        <div class="mb-3">
+                            <label for="mots_cles" class="form-label">Ajoutez une catégorie produit dans la base de données :</label>
+                            <input type="text" class="form-control" name="categories_produits_nom" id="categories_produits_nom" aria-describedby="textHelp">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </form>
                 
                 <?php
                     require('../config.php');
@@ -49,8 +60,9 @@ error_reporting(E_ERROR | E_PARSE);
                 $couleursSneakers = $_POST["couleur_sneakers"];
                 $taillesSneakers = $_POST["taille_sneakers"];
                 $prixSneakers = $_POST["prix_sneakers"] . " &euro;";
+                $categorieProduit =$_POST["categories_produits_nom"];
 
-                if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers){
+                if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers && $categorieProduit){
                     $insertion = "INSERT INTO produits (marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, prix_sneakers) VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$prixSneakers')";
 
                     $result =$connexion->query($insertion);
