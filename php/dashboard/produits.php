@@ -37,7 +37,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label for="reponse" class="form-label">Prix :</label>
                             <input type="text" class="form-control" name="prix_sneakers" id="prix_sneakers">
                         </div>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        <button type="submit" class="btn btn-primary" name="ajouter_produit">Ajouter</button>
                     </form>
 
                     <div class='card-header'>
@@ -48,13 +48,13 @@ error_reporting(E_ERROR | E_PARSE);
                             <label for="mots_cles" class="form-label">Ajoutez une catégorie produit dans la base de données :</label>
                             <input type="text" class="form-control" name="categories_produits_nom" id="categories_produits_nom" aria-describedby="textHelp">
                         </div>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                        <button type="submit" class="btn btn-primary" name="ajouter_categorie">Ajouter</button>
                     </form>
                 
                 <?php
                     require('../config.php');
 
-                //Ajout des mots-clés via database SQL "sneakme_database.sql"         
+                //Ajout des produits via database SQL "sneakme_database.sql"         
                 $marquesSneakers = $_POST["marque_sneakers"];
                 $modelesSneakers = $_POST["modele_sneakers"];
                 $couleursSneakers = $_POST["couleur_sneakers"];
@@ -71,7 +71,27 @@ error_reporting(E_ERROR | E_PARSE);
                     } else {
                         echo "<p>Erreur lors de l'insertion du produit</p>" . $connexion->error;
                     }
-                } 
+                }
+                
+                //Ajout des catégories via database SQL "sneakme_database.sql" 
+                if (isset($_POST["ajouter_categorie"])) {
+                    $nouvelleCategorieProduit = $_POST["categories_produits_nom"];
+                
+                    // Vérifiez si la catégorie n'est pas vide avant de l'insérer dans la base de données
+                    if (!empty($nouvelleCategorieProduit)) {
+                        $insertionCategorieProduit = "INSERT INTO categories_produits (categories_produits_nom) VALUES ('$nouvelleCategorieProduit')";
+                        $resultCategorieProduit = $connexion->query($insertionCategorieProduit);
+                        
+                        if ($resultCategorieProduit === TRUE) {
+                            echo "<p>La catégorie a été ajoutée avec succès.</p>";
+                        } else {
+                            echo "<p>Erreur lors de l'ajout de la catégorie : " . $connexion->error . "</p>";
+                        }
+                    } else {
+                        echo "<p>Veuillez entrer un nom de catégorie valide.</p>";
+                    }
+                }
+                
                 ?>
                 </div>
             </div>
