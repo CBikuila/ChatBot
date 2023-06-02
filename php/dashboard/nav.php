@@ -1,10 +1,11 @@
+<?php  
+    error_reporting(E_ALL);
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../../assets/css/dashboard.css">
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
@@ -14,21 +15,19 @@
 </head>
 
 <body>
-<div class="dashboard-nav">
-    <header>
-        <img><i alt="Tableau de bord chatbot" class="fa-regular fa-comments fa-2xl" style="color: #ffffff;"></i></img>   
-    </header>
-    <nav class="dashboard-nav-list">
-        <a href="dashboard.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord Chatbot</a>
-        <a href="mots_cles.php" class="dashboard-nav-item active"><i class="fa-regular fa-file-word"></i>Mots-clés & réponses</a>
-        <a href="produits.php" class="dashboard-nav-item active"><i class="fa-solid fa-boxes-stacked"></i>Produits & catégories</a>
-        <a href="commandes.php" class="dashboard-nav-item active"><i class="fa-solid fa-cart-shopping"></i>Commandes</a>
-        <a href="utilisateurs.php" class="dashboard-nav-item active"><i class="fa-solid fa-user"></i>Clients</a>
-        <a href="./../deconnexion.php" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
-    </nav>
-</div>
+    <div class="dashboard-nav">
+        <header>
+            <img><i alt="Tableau de bord chatbot" class="fa-regular fa-comments fa-2xl" style="color: #ffffff;"></i></img>   
+        </header>
+        <nav class="dashboard-nav-list">
+            <a href="dashboard.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord Chatbot</a>
+            <a href="mots_cles.php" class="dashboard-nav-item active"><i class="fa-regular fa-file-word"></i>Mots-clés & réponses</a>
+            <a href="produits.php" class="dashboard-nav-item active"><i class="fa-solid fa-boxes-stacked"></i>Produits & catégories</a>
+            <a href="commandes.php" class="dashboard-nav-item active"><i class="fa-solid fa-cart-shopping"></i>Commandes</a>
+            <a href="utilisateurs.php" class="dashboard-nav-item active"><i class="fa-solid fa-user"></i>Clients</a>
+            <a href="./../deconnexion.php" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
+        </nav>
+    </div>
+</body>
 
-<?php ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);?>
-
-
-
+</html>

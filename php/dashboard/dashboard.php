@@ -1,6 +1,9 @@
 <?php
 include('nav.php');
+include('footer.php');
+error_reporting(E_ERROR);
 ?>
+
 <div class='dashboard'>
     <div class='dashboard-app'>
         <div class='dashboard-content'>
@@ -17,7 +20,3 @@ include('nav.php');
         </div>
     </div>
 </div>
-
-<?php
-require('footer.php');
-?>
