@@ -17,7 +17,7 @@
 <div class="dashboard-nav">
     <header>
         <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
-        <img class="logo" src="../../images/logo/sneakme-logo-clair.png">             
+        <img class="logo" alt="Logo SneakMe" src="">             
     </header>
     <nav class="dashboard-nav-list">
         <a href="dashboard.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord</a>
@@ -29,7 +29,7 @@
     </nav>
 </div>
 
-<?php ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL); //A DEGAGER APRES AVOIR TERMINE?>
+<?php ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);?>
 
 
 
