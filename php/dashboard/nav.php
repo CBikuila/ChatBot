@@ -16,8 +16,8 @@
 <body>
 <div class="dashboard-nav">
     <header>
-        <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
-        <img class="logo" alt="Logo SneakMe" src="/chatbot/assets/images/logo/sneakme-logo-clair.png">             
+        <i alt="Tableau de bord chatbot" class="fa-regular fa-comments fa-2xl" style="color: #ffffff;"></i>
+        <h1>Chatbot</h1>       
     </header>
     <nav class="dashboard-nav-list">
         <a href="dashboard.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord</a>
