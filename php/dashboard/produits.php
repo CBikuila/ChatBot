@@ -62,7 +62,7 @@ error_reporting(E_ERROR | E_PARSE);
                 $prixSneakers = $_POST["prix_sneakers"] . " &euro;";
                 $categorieProduit =$_POST["categories_produits_nom"];
 
-                if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers && $categorieProduit){
+                if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers){
                     $insertion = "INSERT INTO produits (marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, prix_sneakers) VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$prixSneakers')";
 
                     $result =$connexion->query($insertion);
