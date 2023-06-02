@@ -28,6 +28,11 @@ error_reporting(E_ERROR);
                         </div>               
                             <button type="submit" class="btn btn-primary">Ajouter</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
             
 <?php
 //Ajout du prénom et de mot de passe pour les utilisateurs (clients) à la base de données SQL "sneakme_database"    
@@ -35,21 +40,17 @@ $prenomUtilisateurs = $_POST["prenom_utilisateur"];
 $motDePasseUtilisateurs = $_POST["mot_de_passe_utilisateur"];
 
 if ($prenomUtilisateurs && $motDePasseUtilisateurs){
-    $insertion = "INSERT INTO utilisateurs_connexion (prenom_utilisateur, mot_de_passe_utilisateur) VALUES ('$prenomUtilisateurs', '$motDePasseUtilisateurs')";
+    $insertion = "INSERT INTO utilisateurs_connexion (prenom_utilisateur, mot_de_passe_utilisateur) 
+                  VALUES ('$prenomUtilisateurs', '$motDePasseUtilisateurs')";
 
     $result =$conn->query($insertion);
     if ($result == true) {
         echo "<p>Le client a été inséré avec succès</p>";
     } else {
-        echo "<p>Erreur lors de l'insertion du client</p>" . $conn->error;
+        echo "<p>Erreur lors de l'insertion du client</p>";
     }
 } 
 ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour utilisateurs (clients) -->
 <table>
@@ -60,7 +61,7 @@ if ($prenomUtilisateurs && $motDePasseUtilisateurs){
 <?php
 // Exécution de la requête SQL
 $sql = "SELECT utilisateurs_id, prenom_utilisateur, mot_de_passe_utilisateur 
-        FROM utilisateurs";
+        FROM utilisateurs_connexion";
 $result = $conn->query($sql);
 
 // Vérification des résultats de la requête

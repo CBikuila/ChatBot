@@ -28,7 +28,12 @@ error_reporting(E_ERROR);
                         </div>
                         <button type="submit" class="btn btn-primary">Ajouter</button>
                     </form>
-                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 //Ajout des mots-clés à la base de données SQL "sneakme_database"
 $question  = $_POST["question"];
@@ -46,11 +51,6 @@ if ($question && $motscles){
     }
 }
 ?>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour les mots-clés -->
 <table>

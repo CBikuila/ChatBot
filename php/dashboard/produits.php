@@ -137,8 +137,12 @@ if ($result->num_rows > 0) {
         echo "</td>";
         echo "</tr>";
     }
+
 } else {
     echo "<tr><td colspan='6'>Aucun produit trouvé</td></tr>";
 }
+
+// Fermeture de la connexion à la base de données
+$conn->close();
 ?>
 </table>
