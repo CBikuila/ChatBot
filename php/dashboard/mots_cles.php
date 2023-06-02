@@ -1,44 +1,33 @@
 <?php
 include('nav.php');
 include('footer.php');
-require('../config.php');
+include('../config.php');
 error_reporting(E_ERROR);
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>Mots-clés</title>
-</head>
-
-<body>
-    <!-- interface ajout de mot clé et phrases associés-->
-    <div class='dashboard'>
-        <div class='dashboard-app'>
-            <div class='dashboard-content'>
-                <div class='container'>
-                    <div class='card'>
-                        <div class='card-header'>
-                            <h2>Les mots-clés</h2>
+<!-- Interface d'ajout de mots-clés et de leurs phrases associées dans la table SQL "motscles" -->
+<div class='dashboard'>
+    <div class='dashboard-app'>
+        <div class='dashboard-content'>
+            <div class='container'>
+                <div class='card'>
+                    <div class='card-header'>
+                        <h1>Les mots-clés</h1>
+                    </div>
+                        <div class='card-body'>
+                            <p>Ajoute un mot-clé et sa phrase associée dans la base de données</p>
                         </div>
-                            <div class='card-body'>
-                                <p>Ajoute un mot-clé et sa phrase associée dans la base de données</p>
-                            </div>
-                        <form action="mots_cles.php" method="post">
-                            <div class="mb-3">
-                                <label for="mots_cles" class="form-label">Mot-clé :</label>
-                                <input type="text" class="form-control" name="mots_cles" id="mot_cles" aria-describedby="textHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="reponse" class="form-label">Phrase associée :</label>
-                                <input type="text" class="form-control" name="question" id="question">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Ajouter</button>
-                        </form>
-</body>
-
-</html>
+                    <form action="mots_cles.php" method="post">
+                        <div class="mb-3">
+                            <label for="mots_cles" class="form-label">Mot-clé :</label>
+                            <input type="text" class="form-control" name="mots_cles" id="mot_cles" aria-describedby="textHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reponse" class="form-label">Phrase associée :</label>
+                            <input type="text" class="form-control" name="question" id="question">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                    </form>
 <?php
 
 //Ajout des mots-clés via database SQL "sneakme_database.sql"    
@@ -59,42 +48,15 @@ if (isset($_POST["question"]) && isset($_POST["mots_cles"])) {
     }
 }
 ?>
-</div>
 
-
-<?php //*************TABLEAU EN BAS DE LA PAGE AFFICHANT LES DONNEES SQL POUR LES MOTS-CLES SUR LE DASHBOARD************* 
-?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Tableau données mots-clés</title>
-</head>
-
-<body>
-
-    <table>
-        <tr>
-            <th>Mot-clé</th>
-            <th>Question</th>
-            <th>Action</th>
-        </tr>        
-    </table>
-
-</body>
-
-</html>
-
+<!-- Interface en bas de la page affichant les données SQL saisies pour les mots-clés -->
+<table>
+    <tr>
+        <th>Mot-clé</th>
+        <th>Question</th>
+        <th>Action</th>
+    </tr>
 <?php
-// Connexion à la base de données
-$conn = new mysqli("localhost", "root", "root", "sneakme_database");
-
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("Erreur de connexion à la base de données : " . $conn->connect_error);
-}
-
 // Exécution de la requête SQL
 $sql = "SELECT motscles_id, mots_cles, question FROM motscles";
 $result = $conn->query($sql);
@@ -110,9 +72,10 @@ if ($result->num_rows > 0) {
         echo "</tr>";
     }
 } else {
-    echo "<tr><td>Aucuns mots-clés ajoutés.</td></tr>";
+    echo "<tr><td>Aucuns mots-clés ajoutés</td></tr>";
 }
 
 // Fermeture de la connexion à la base de données
 $conn->close();
 ?>
+</table>
