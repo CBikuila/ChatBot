@@ -105,7 +105,7 @@ img.logo {
     display: -ms-flexbox;
     display: flex;
     min-height: 100vh;
-    background-image: url("./images/background/dashboard.jpg");
+    background-image: url("assets/images/background/dashboard.jpg");
 }
 
 .dashboard-app {
