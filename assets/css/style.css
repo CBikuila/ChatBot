@@ -139,6 +139,11 @@ body {
     margin-bottom: 5px;
 }
 
+.dashboard a {
+    text-decoration: none;
+    color: #fff;
+}
+
 
 /* FOOTER */
 .chatbox__footer {

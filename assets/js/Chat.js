@@ -132,8 +132,17 @@ function envoyerMessage() {
           <label for="password">Mot de passe :</label>
           <input type="password" placeholder="Mot de passe" />
           <br>
+          <label for="password">Confirmation du mot de passe :</label>
+          <input type="password" placeholder="Mot de passe" />
+          <br>
           <button type="submit" class="bouton">S'inscrire</button>
         </form>
+      `;
+    }  else if (recupererMessage.toLowerCase() === 'admin') {
+      // Réponse spécifique pour le mot-clé "admin"
+      divReponse.classList.add('messages__item', 'messages__item--visitor');
+      divReponse.innerHTML = `
+        <div class="dashboard"><a href="/chatbot/php/connexion.php">Connexion au dashboard.</a></div>
       `;
     } else {
     // fin de connexion administrateur//
