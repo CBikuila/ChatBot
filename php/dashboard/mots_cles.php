@@ -30,21 +30,19 @@ error_reporting(E_ERROR);
                     </form>
 <?php
 
-//Ajout des mots-clés via database SQL "sneakme_database.sql"    
-//error_reporting(E_ERROR) permet de cacher le Warning produit à cause de $reponses = $_POST["question"] et $questions = $_POST["mots_cles"] en dessous
+//Ajout des mots-clés à la base de données SQL "sneakme_database"
+$question  = $_POST["question"];
+$motscles  = $_POST["mots_cles"];
 
-if (isset($_POST["question"]) && isset($_POST["mots_cles"])) {
+if ($question && $motscles){
+    $insertion = "INSERT INTO motscles (question, mots_cles) 
+                  VALUES ('$question', '$motscles')";
 
-    $reponses = $_POST["mots_cles"];
-    $questions = $_POST["question"];
-
-    $insertion = "INSERT INTO motscles (question, mots_cles) VALUES ('$questions', '$reponses')";
-
-    $result = $connexion->query($insertion);
+    $result = $conn->query($insertion);
     if ($result == true) {
-        echo "<p>Le mot-clé et la question associée ont bien été ajoutés</p>";
+        echo "<p>Le mot-clé et la question associée ont bien été ajouté</p>";
     } else {
-        echo "<p>Erreur lors de l'insertion du mot-clé et de la question associée</p>" . $connexion->error;
+        echo "<p>Erreur lors de l'insertion du mot-clé et de la question associée</p>";
     }
 }
 ?>
@@ -57,13 +55,13 @@ if (isset($_POST["question"]) && isset($_POST["mots_cles"])) {
         <th>Action</th>
     </tr>
 <?php
-// Exécution de la requête SQL
-$sql = "SELECT motscles_id, mots_cles, question FROM motscles";
+// Exécution de la requête SQL pour récupérer les mots-clés et leurs questions associées
+$sql = "SELECT motscles_id, mots_cles, question 
+        FROM motscles";
 $result = $conn->query($sql);
 
 // Vérification des résultats de la requête
 if ($result->num_rows > 0) {
-    // Affichage des lignes
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["mots_cles"] . "</td>";
@@ -71,6 +69,7 @@ if ($result->num_rows > 0) {
         echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
         echo "</tr>";
     }
+
 } else {
     echo "<tr><td>Aucuns mots-clés ajoutés</td></tr>";
 }
