@@ -4,14 +4,6 @@
     padding: 0;
 }
 
-*, html {
-    --primaryBoxShadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-    --secondaryBoxShadow: 0px -10px 15px rgba(0, 0, 0, 0.1);
-    --primary: #0147C9;
-}
-
-/* 300;0,400;0,600;1,300 */
-
 body {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -38,7 +30,7 @@ body {
     padding: 15px 20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    box-shadow: var(--primaryBoxShadow);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .button {
@@ -102,7 +94,7 @@ body {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background: var(--primary);
+    background: #0147C9;
     color: white;
 }
 

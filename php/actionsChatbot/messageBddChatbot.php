@@ -1,5 +1,5 @@
 <?php
-require("config.php");
+require("../config.php");
 error_reporting(E_ERROR);
 
 // Connexion à MySQL
