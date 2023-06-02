@@ -28,8 +28,8 @@ error_reporting(E_ERROR);
                         </div>
                         <button type="submit" class="btn btn-primary">Ajouter</button>
                     </form>
+                    
 <?php
-
 //Ajout des mots-clés à la base de données SQL "sneakme_database"
 $question  = $_POST["question"];
 $motscles  = $_POST["mots_cles"];
@@ -46,6 +46,11 @@ if ($question && $motscles){
     }
 }
 ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour les mots-clés -->
 <table>
@@ -71,7 +76,7 @@ if ($result->num_rows > 0) {
     }
 
 } else {
-    echo "<tr><td>Aucuns mots-clés ajoutés</td></tr>";
+    echo "<tr><td colspan='3'>Aucuns mots-clés ajoutés</td></tr>";
 }
 
 // Fermeture de la connexion à la base de données
