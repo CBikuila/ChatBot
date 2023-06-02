@@ -1,5 +1,5 @@
 <?php
-require('nav.php');
+include('nav.php');
 error_reporting(E_ERROR | E_PARSE);
 ?>
 

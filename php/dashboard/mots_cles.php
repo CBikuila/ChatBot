@@ -1,5 +1,5 @@
 <?php 
-    require('nav.php');
+    include('nav.php');
 ?>
 <!-- interface ajout de mot clé et phrases associés-->
     <div class='dashboard'>  

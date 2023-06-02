@@ -1,5 +1,5 @@
 <?php
-require('nav.php');
+include('nav.php');
 error_reporting(E_ERROR | E_PARSE);
 ?>
 
@@ -165,6 +165,7 @@ error_reporting(E_ERROR | E_PARSE);
             $conn->close();
         ?>
     </table>
+
     <?php 
         require('footer.php');
     ?>

@@ -1,5 +1,5 @@
 <?php
-require('nav.php');
+include('nav.php');
 ?>
 <div class='dashboard'>
     <div class='dashboard-app'>
