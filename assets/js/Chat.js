@@ -139,7 +139,7 @@ function envoyerMessage() {
     // fin de connexion administrateur//
       // Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur
       $.ajax({
-        url: './php/messageBddChatbot.php',
+        url: '/chatbot/php/actionsChatbot/messageBddChatbot.php',
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify({ "motscles": recupererMessage }),
