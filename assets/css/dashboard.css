@@ -136,7 +136,7 @@ img.logo {
 
 .dashboard-nav {
     min-width: 238px;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     bottom: 0;

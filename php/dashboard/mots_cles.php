@@ -12,7 +12,7 @@ error_reporting(E_ERROR);
             <div class='container'>
                 <div class='card'>
                     <div class='card-header'>
-                        <h1>Les mots-clés</h1>
+                        <h1>Mots-clés</h1>
                     </div>
                         <div class='card-body'>
                             <p>Ajoute un mot-clé et sa phrase associée dans la base de données</p>
@@ -53,33 +53,35 @@ if ($question && $motscles){
 ?>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour les mots-clés -->
-<table>
-    <tr>
-        <th>Mot-clé</th>
-        <th>Question</th>
-        <th>Action</th>
-    </tr>
-<?php
-// Exécution de la requête SQL pour récupérer les mots-clés et leurs questions associées
-$sql = "SELECT motscles_id, mots_cles, question 
-        FROM motscles";
-$result = $conn->query($sql);
+<div class="container">
+    <table>
+        <tr>
+            <th>Mot-clé</th>
+            <th>Question</th>
+            <th>Action</th>
+        </tr>
+    <?php
+    // Exécution de la requête SQL pour récupérer les mots-clés et leurs questions associées
+    $sql = "SELECT motscles_id, mots_cles, question 
+            FROM motscles";
+    $result = $conn->query($sql);
 
-// Vérification des résultats de la requête
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["mots_cles"] . "</td>";
-        echo "<td>" . $row["question"] . "</td>";
-        echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
-        echo "</tr>";
+    // Vérification des résultats de la requête
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["mots_cles"] . "</td>";
+            echo "<td>" . $row["question"] . "</td>";
+            echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
+            echo "</tr>";
+        }
+
+    } else {
+        echo "<tr><td colspan='3'>Aucuns mots-clés ajoutés</td></tr>";
     }
 
-} else {
-    echo "<tr><td colspan='3'>Aucuns mots-clés ajoutés</td></tr>";
-}
-
-// Fermeture de la connexion à la base de données
-$conn->close();
-?>
-</table>
+    // Fermeture de la connexion à la base de données
+    $conn->close();
+    ?>
+    </table>
+</div>

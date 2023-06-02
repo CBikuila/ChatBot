@@ -42,7 +42,7 @@ error_reporting(E_ERROR);
                     </form>
 
                     <div class='card-header'>
-                        <h2>Catégories produit</h2>
+                        <h1>Catégories produit</h1>
                     </div>
                     <form action="produits.php" method="post">
                         <div class="mb-3">
@@ -96,53 +96,57 @@ if (!empty($categoriesProduits)) {
 ?>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour les produits et les catégories produits -->
-<table>
-    <tr>
-        <th>Marque</th>
-        <th>Modèle</th>
-        <th>Couleur</th>
-        <th>Taille</th>
-        <th>Prix</th>
-        <th>Catégorie produit</th>
-    </tr>
-<?php
-// Exécution de la requête SQL pour récupérer les produits et les catégories des produits
-$sql = "SELECT p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, s.categories_produits_nom
-        FROM produits p
-        LEFT JOIN categories_produits s ON p.produits_id = s.categories_produits_id";
-$result = $conn->query($sql);
+<div class="container">
+    <table>
+        <tr>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Couleur</th>
+            <th>Taille</th>
+            <th>Prix</th>
+            <th>Action</th>
+            <th>Catégorie produit<th>
+        </tr>
+            <?php
+            // Exécution de la requête SQL pour récupérer les produits et les catégories des produits
+            $sql = "SELECT p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, s.categories_produits_nom
+                    FROM produits p
+                    LEFT JOIN categories_produits s ON p.produits_id = s.categories_produits_id";
+            $result = $conn->query($sql);
 
-// Vérification des résultats de la requête
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["marque_sneakers"] . "</td>";
-        echo "<td>" . $row["modele_sneakers"] . "</td>";
-        echo "<td>" . $row["couleur_sneakers"] . "</td>";
-        echo "<td>" . $row["taille_sneakers"] . "</td>";
-        echo "<td>" . $row["prix_sneakers"] . "</td>";
-        echo "<td>";
-        echo "<select name='categories_produits[]'>"; // Ajout d'un attribut name pour récupérer la table SQL "categories_produits"
+            // Vérification des résultats de la requête
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["marque_sneakers"] . "</td>";
+                    echo "<td>" . $row["modele_sneakers"] . "</td>";
+                    echo "<td>" . $row["couleur_sneakers"] . "</td>";
+                    echo "<td>" . $row["taille_sneakers"] . "</td>";
+                    echo "<td>" . $row["prix_sneakers"] . "</td>";
+                    echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["produits_id"] . '">Supprimer</a></td>';
+                    echo "<td>";
+                    echo "<select name='categories_produits[]'>"; // Ajout d'un attribut name pour récupérer la table SQL "categories_produits"
 
-        // Requête SQL pour récupérer les catégories de produits
-        $categories_produits_sql = "SELECT categories_produits_nom FROM categories_produits";
-        $categories_produits_result = $conn->query($categories_produits_sql);
-        if ($categories_produits_result->num_rows > 0) {
-            while ($categorie_produit_row = $categories_produits_result->fetch_assoc()) {
-                $selected = ($row["categories_produits_nom"] == $categorie_produit_row["categories_produits_nom"]) ? "selected" : "";
-                echo "<option value='" . $categorie_produit_row["categories_produits_nom"] . "' $selected>" . $categorie_produit_row["categories_produits_nom"] . "</option>";
+                    // Requête SQL pour récupérer les catégories de produits
+                    $categories_produits_sql = "SELECT categories_produits_nom FROM categories_produits";
+                    $categories_produits_result = $conn->query($categories_produits_sql);
+                    if ($categories_produits_result->num_rows > 0) {
+                        while ($categorie_produit_row = $categories_produits_result->fetch_assoc()) {
+                            $selected = ($row["categories_produits_nom"] == $categorie_produit_row["categories_produits_nom"]) ? "selected" : "";
+                            echo "<option value='" . $categorie_produit_row["categories_produits_nom"] . "' $selected>" . $categorie_produit_row["categories_produits_nom"] . "</option>";
+                        }
+                    }
+                    echo "</select>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+
+            } else {
+                echo "<tr><td colspan='6'>Aucun produit trouvé</td></tr>";
             }
-        }
-        echo "</select>";
-        echo "</td>";
-        echo "</tr>";
-    }
 
-} else {
-    echo "<tr><td colspan='6'>Aucun produit trouvé</td></tr>";
-}
-
-// Fermeture de la connexion à la base de données
-$conn->close();
-?>
-</table>
+            // Fermeture de la connexion à la base de données
+            $conn->close();
+            ?>
+    </table>
+</div>

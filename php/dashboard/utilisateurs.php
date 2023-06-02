@@ -53,32 +53,35 @@ if ($prenomUtilisateurs && $motDePasseUtilisateurs){
 ?>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour utilisateurs (clients) -->
-<table>
-    <tr>
-        <th>Prénom</th>
-        <th>Mot de passe</th>
-    </tr>
-<?php
-// Exécution de la requête SQL
-$sql = "SELECT utilisateurs_id, prenom_utilisateur, mot_de_passe_utilisateur 
-        FROM utilisateurs_connexion";
-$result = $conn->query($sql);
+<div class="container">
+    <table>
+        <tr>
+            <th>Prénom</th>
+            <th>Mot de passe</th>
+            <th>Action</th>
+        </tr>
+            <?php
+            // Exécution de la requête SQL
+            $sql = "SELECT utilisateurs_id, prenom_utilisateur, mot_de_passe_utilisateur 
+                    FROM utilisateurs_connexion";
+            $result = $conn->query($sql);
 
-// Vérification des résultats de la requête
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["prenom_utilisateur"] . "</td>";
-        echo "<td>" . $row["mot_de_passe_utilisateur"] . "</td>";
-        echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["utilisateurs_id"] . ' ">Supprimer</a></td>';
-        echo "</tr>";
-    }
+            // Vérification des résultats de la requête
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["prenom_utilisateur"] . "</td>";
+                    echo "<td>" . $row["mot_de_passe_utilisateur"] . "</td>";
+                    echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["utilisateurs_id"] . ' ">Supprimer</a></td>';
+                    echo "</tr>";
+                }
 
-} else {
-    echo "<tr><td colspan='3'>Aucuns utilisateurs ajoutés</td></tr>";
-}
+            } else {
+                echo "<tr><td colspan='3'>Aucuns utilisateurs ajoutés</td></tr>";
+            }
 
-// Fermeture de la connexion à la base de données
-$conn->close();
-?>
-</table>
+            // Fermeture de la connexion à la base de données
+            $conn->close();
+            ?>
+    </table>
+</div>
