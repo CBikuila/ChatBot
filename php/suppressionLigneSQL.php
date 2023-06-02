@@ -4,33 +4,39 @@ require("config.php");
 // Vérifier si l'ID est passé en paramètre
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    
+
     // Supprimer la ligne de la table "motscles"
-    $requeteKeywords = "DELETE FROM `motscles` WHERE `motscles_id` = $id";
-    $resultatKeywords = $connexion->query($requeteKeywords);
-    
+    $requeteMotsCles = $conn->prepare("DELETE FROM `motscles` WHERE `motscles_id` = ?");
+    $requeteMotsCles->bind_param("i", $id);
+    $resultatMotsCles = $requeteMotsCles->execute();
+
     // Supprimer la ligne de la table "produits"
-    $requeteProduits = "DELETE FROM `produits` WHERE `produits_id` = $id";
-    $resultatProduits = $connexion->query($requeteProduits);
-    
+    $requeteProduits = $conn->prepare("DELETE FROM `produits` WHERE `produits_id` = ?");
+    $requeteProduits->bind_param("i", $id);
+    $resultatProduits = $requeteProduits->execute();
+
     // Supprimer la ligne de la table "utilisateurs"
-    $requeteUtilisateurs = "DELETE FROM `utilisateurs` WHERE `utilisateurs_id` = $id";
-    $resultatUtilisateurs = $connexion->query($requeteUtilisateurs);
-    
-    // Vérifier si au moins une ligne a été supprimée
-    if ($resultatKeywords || $resultatProduits || $resultatUtilisateurs) {
-        // Redirection vers la page appropriée
-        if ($resultatProduits) {
-            header('Location: ./dashboard/produits.php');
-        } elseif ($resultatKeywords) {
-            header('Location: ./dashboard/mots_cles.php');
-        } elseif ($resultatUtilisateurs) {
-            header('Location: ./dashboard/utilisateurs.php');
-        }
+    $requeteUtilisateurs = $conn->prepare("DELETE FROM `utilisateurs` WHERE `utilisateurs_id` = ?");
+    $requeteUtilisateurs->bind_param("i", $id);
+    $resultatUtilisateurs = $requeteUtilisateurs->execute();
+
+    // Vérifier quelle table a été affectée
+    if ($resultatMotsCles) {
+        // Redirection vers la page "motscles"
+        header("Location: mots_cles.php");
+        exit();
+    } elseif ($resultatProduits) {
+        // Redirection vers la page "produits"
+        header("Location: produits.php");
+        exit();
+    } elseif ($resultatUtilisateurs) {
+        // Redirection vers la page "utilisateurs"
+        header("Location: dashboard.php");
+        exit();
     } else {
-        echo "<p>Impossible de supprimer la ligne</p>";
+        // Redirection vers une page d'erreur
+        header("Location: erreur.php");
+        exit();
     }
-} else {
-    echo "<p>Paramètre ID manquant</p>";
 }
 ?>

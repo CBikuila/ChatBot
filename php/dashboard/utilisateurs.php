@@ -53,7 +53,7 @@ if ($prenomUtilisateurs && $motDePasseUtilisateurs){
 ?>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour utilisateurs (clients) -->
-<div class="container">
+<div">
     <table>
         <tr>
             <th>Prénom</th>

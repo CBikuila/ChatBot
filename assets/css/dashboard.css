@@ -123,7 +123,6 @@ img.logo {
     -webkit-flex-grow: 2;
     -ms-flex-positive: 2;
     flex-grow: 2;
-    margin-top: 84px;
 }
 
 .dashboard-content {
@@ -407,6 +406,7 @@ button.btn.btn-primary {
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-left: 300px;
 }
 
 table, th, td {
@@ -496,3 +496,29 @@ th, td {
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
     }
+
+.interface {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+.interface table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.interface th,
+.interface td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+    .interface {
+        overflow-x: scroll;
+    }
+}

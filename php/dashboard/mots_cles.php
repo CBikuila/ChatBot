@@ -53,7 +53,7 @@ if ($question && $motscles){
 ?>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour les mots-clés -->
-<div class="container">
+<div>
     <table>
         <tr>
             <th>Mot-clé</th>

@@ -96,7 +96,7 @@ if (!empty($categoriesProduits)) {
 ?>
 
 <!-- Interface en bas de la page affichant les données SQL saisies pour les produits et les catégories produits -->
-<div class="container">
+<div class="interface">
     <table>
         <tr>
             <th>Marque</th>
