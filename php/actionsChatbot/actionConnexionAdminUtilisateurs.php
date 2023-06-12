@@ -2,36 +2,30 @@
 include('../config.php');
 error_reporting(E_ERROR);
 
+// Nettoyage du post
+$_POST = json_decode(array_keys($_POST)[0], 1);
+
 // Récupérer le mot-clé saisi par l'utilisateur
-$utilisateurs = $_POST['utilisateurs'];
-
-
+$utilisateurs = $_POST['utilisateurs_connexion'];
 
 // Requête pour récupérer la question associée au mot-clé
-$requete = "SELECT prenom_utilisateur, mot_de_passe_utilisateur FROM utilisateurs WHERE mots_cles = \"$motCle\""; 
-$resultat = $connexion->query($requete);
-var_dump();
+$requete = "SELECT prenom_utilisateur, mot_de_passe_utilisateur FROM utilisateurs_connexion WHERE utilisateurs_connexion = \"$utilisateurs\""; 
+$resultat = $conn->query($requete);
 
+$conn->close();
 
+if ($resultat->num_rows > 0) {
+    // Récupérer la première ligne de résultat
+    $ligne = $resultat->fetch_assoc();
+    $connexionUtilisateurs = $ligne['prenom_utilisateur'] && ['mot_de_passe_utilisateur'];
 
-// Vérifier si les données sont présentes dans $_POST
-/*if ($_POST["prenom_utilisateur"]["mot_de_passe_utilisateur"]) {
-    var_dump($_POST);
-    $prenom = $_POST["prenom_utilisateur"];
-    $motDePasse = $_POST["mot_de_passe_utilisateur"];
-    $sql = "SELECT prenom_utilisateur, mot_de_passe_utilisateur
-            FROM utilisateurs 
-            WHERE prenom_utilisateur = '$prenom' 
-            AND mot_de_passe_utilisateur = '$motDePasse'";
-    $result = $connexion->query($sql);
-
-    if ($result->num_rows > 0) {
-        
-        // Les identifiants de connexion sont corrects
-        header('Location: ../php/dashboard/dashboard.php');
-        exit();
-    } else {
-        echo "Identifiants de connexion incorrects.";
-    }
+    // Renvoyer la question au format JSON
+    $reponse = array('prenom_utilisateur' => $connexionUtilisateurs);
+    echo json_encode($reponse);
+} else {
+    // Si aucun résultat n'est trouvé, renvoyer une réponse vide au format JSON
+    $reponse = array('mot_de_passe_utilisateur' => '');
+    echo json_encode($reponse);
 }
+
 ?>

@@ -9,7 +9,7 @@ $motCle = $_POST['motscles'];
 
 // Requête pour récupérer la question associée au mot-clé
 $requete = "SELECT question FROM motscles WHERE mots_cles = \"$motCle\""; 
-$resultat = $connexion->query($requete);
+$resultat = $conn->query($requete);
 
 if ($resultat->num_rows > 0) {
     // Récupérer la première ligne de résultat
@@ -25,5 +25,5 @@ if ($resultat->num_rows > 0) {
     echo json_encode($reponse);
 }
 
-$connexion->close();
+$conn->close();
 ?>
