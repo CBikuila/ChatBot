@@ -163,7 +163,7 @@ function envoyerMessage() {
           <label for="password">Confirmation du mot de passe :</label>
           <input type="password" placeholder="Mot de passe" />
           <br>
-          <button type="submit" class="bouton">S'inscrire</button>
+          <button type="submit" class="boutonInscription">S'inscrire</button>
         </form>
       `;
     } else {

@@ -124,7 +124,8 @@ body {
     margin-top: 5px;
 }
 
-.chatbot-form button.bouton {
+.chatbot-form button.boutonConnexion,
+.chatbot-form button.boutonInscription{
     background-color: #fff;
     border: none;
     color: #000;
