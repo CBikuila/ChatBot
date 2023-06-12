@@ -1,14 +1,6 @@
 <?php
-require("../config.php");
+include('../config.php');
 error_reporting(E_ERROR);
-
-// Connexion à MySQL
-$connexion = new mysqli("localhost", "root", "root", "sneakme_database");
-
-// Vérifier la connexion
-if ($connexion->connect_error) {
-    die("Connection failed: " . $connexion->connect_error);
-}
 
 // Nettoyage du post
 $_POST = json_decode(array_keys($_POST)[0], 1);

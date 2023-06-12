@@ -112,14 +112,42 @@ function envoyerMessage() {
         <form class="chatbot-form">
           <h2 class="title">Connexion</h2>
           <label for="email">E-mail :</label>
-          <input type="text" placeholder="Adresse email" />
+          <input type="text" placeholder="Adresse email" id="email" />
           <br>
           <label for="password">Mot de passe :</label>
-          <input type="password" placeholder="Mot de passe" />
+          <input type="password" placeholder="Mot de passe" id="motDePasse" />
           <br>
-          <button type="submit" class="bouton" > Se Connecter</button>
+          <button type="submit" class="boutonConnexion" > Se connecter</button>
         </form>
       `;
+       // Récupère le bouton de connexion et ajoute un gestionnaire d'événements pour le clic
+       var boutonConnexion = divReponse.querySelector('.boutonConnexion');
+       boutonConnexion.addEventListener('click', function(event) {
+         event.preventDefault(); // Empêche le comportement par défaut du formulaire
+ 
+         // Récupère les valeurs des champs de formulaire
+         var email = document.getElementById('email').value;
+         var motDePasse = document.getElementById('motDePasse').value;
+ 
+         // Envoie les données au fichier PHP via AJAX
+         $.ajax({
+           url: '/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php',
+           type: 'POST',
+           data: {
+             email: email,
+             motDePasse: motDePasse
+           },
+           success: function(response) {
+             // Code à exécuter lorsque la réponse du fichier PHP est reçue
+           }
+         });
+       });
+     }  else if (recupererMessage.toLowerCase() === 'admin') {
+       // Réponse spécifique pour le mot-clé "admin"
+       divReponse.classList.add('messages__item', 'messages__item--visitor');
+       divReponse.innerHTML = `
+         <div class="dashboard"><a href="/chatbot/php/connexion.php">Connexion au dashboard.</a></div>
+       `;
     }  else if (recupererMessage.toLowerCase() === 'inscription') {
       // Réponse spécifique pour le mot-clé "inscription"
       divReponse.classList.add('messages__item', 'messages__item--visitor');
@@ -137,12 +165,6 @@ function envoyerMessage() {
           <br>
           <button type="submit" class="bouton">S'inscrire</button>
         </form>
-      `;
-    }  else if (recupererMessage.toLowerCase() === 'admin') {
-      // Réponse spécifique pour le mot-clé "admin"
-      divReponse.classList.add('messages__item', 'messages__item--visitor');
-      divReponse.innerHTML = `
-        <div class="dashboard"><a href="/chatbot/php/connexion.php">Connexion au dashboard.</a></div>
       `;
     } else {
     // fin de connexion administrateur//
