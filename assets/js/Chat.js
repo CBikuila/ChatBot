@@ -133,6 +133,7 @@ function envoyerMessage() {
          $.ajax({
            url: '/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php',
            type: 'POST',
+           dataType: 'json',
            data: {
              email: email,
              motDePasse: motDePasse
