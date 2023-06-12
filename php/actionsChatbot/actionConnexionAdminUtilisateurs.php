@@ -4,10 +4,11 @@ error_reporting(E_ERROR);
 
 // Nettoyage du post
 $donnees = json_decode(file_get_contents('php://input'), true);
+var_dump($donnees);
 
-if(isset($donnees['utilisateurs_connexion'])) {
+if(isset($donnees['email']) && isset($donnees['motDePasse'])) {
     // Récupérer le mot-clé saisi par l'utilisateur
-    $utilisateurs = $donnees['utilisateurs_connexion'];
+    $utilisateurs = $donnees['email'] && $donnees['motDePasse'];
 
     // Requête pour récupérer la question associée au mot-clé
     $requete = "SELECT prenom_utilisateur, mot_de_passe_utilisateur FROM utilisateurs_connexion WHERE utilisateurs_connexion = '$utilisateurs'"; 
