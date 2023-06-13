@@ -13,7 +13,7 @@
         </header>
         <nav class="dashboard-nav-list">
             <a href="dashboard.php" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i>Tableau de bord Chatbot</a>
-            <a href="mots_cles.php" class="dashboard-nav-item active"><i class="fa-regular fa-file-word"></i>Mots-clés & réponses</a>
+            <a href="motsCles.php" class="dashboard-nav-item active"><i class="fa-regular fa-file-word"></i>Mots-clés & réponses</a>
             <a href="produits.php" class="dashboard-nav-item active"><i class="fa-solid fa-boxes-stacked"></i>Produits & catégories</a>
             <a href="commandes.php" class="dashboard-nav-item active"><i class="fa-solid fa-cart-shopping"></i>Commandes</a>
             <a href="utilisateurs.php" class="dashboard-nav-item active"><i class="fa-solid fa-user"></i>Clients</a>
