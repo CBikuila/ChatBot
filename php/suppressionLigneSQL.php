@@ -23,7 +23,7 @@ if (isset($_GET['id'])) {
     // Vérifier quelle table a été affectée
     if ($resultatMotsCles) {
         // Redirection vers la page "motscles"
-        header("Location: mots_cles.php");
+        header("Location: motsCles.php");
         exit();
     } elseif ($resultatProduits) {
         // Redirection vers la page "produits"

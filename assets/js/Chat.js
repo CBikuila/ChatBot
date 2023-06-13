@@ -96,8 +96,45 @@ if (recupererMessage.toLowerCase() === 'connexion') {
             divReponse.innerHTML = `
               <p>Votre adresse e-mail ou mot de passe est incorrect. Veuillez réessayer de vous connecter.</p>
             `;
-            // Gérer les clics sur les boutons
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+            //////////////////////////////////  //////////////////////////////////////////////////////////////
+            //////////////Accès aux produits après avoir cliqué sur "Commandes" dans le chatbot/////////////
+            ////////////////////////////////////////////////////////////////////////////////////////////////
             var boutonCommande = divReponse.querySelector('.boutonCommande');
+
+            boutonCommande.addEventListener('click', function() {
+              // Envoyer une requête AJAX pour récupérer la liste des produits
+              $.ajax({
+                url: '/chatbot/php/actionsChatbot/messageDatabaseProduits.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                  // Construire la liste des produits
+                  var produitsListe = '';
+                  for (var i = 0; i < response.length; i++) {
+                    var produit = response[i];
+                    produitsListe += `
+                      <div>
+                        <p>Marque: ${produits.marque_sneakers}</p>
+                        <p>Modèle: ${produits.modele_sneakers}</p>
+                        <p>Couleur: ${produits.couleur_sneakers}</p>
+                        <p>Taille: ${produits.taille_sneakers}</p>
+                        <p>Genre: ${produits.genre_sneakers}</p>
+                        <p>Prix: ${produits.prix_sneakers} €</p>
+                      </div>
+                    `;
+                  }
+                  // Afficher la liste des produits dans une bulle du chat
+                  divReponse.innerHTML = `
+                    <div class="messages__item messages__item--assistant">
+                      <p>Voici la liste des produits :</p>
+                      ${produits}
+                    </div>
+                  `;
+                }
+              });
+            });         
+
             var boutonPanier = divReponse.querySelector('.boutonPanier');
             var boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
             
@@ -121,7 +158,6 @@ if (recupererMessage.toLowerCase() === 'connexion') {
     });
   });
 
-
   ////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////Connexion Admin///////////////////////////////////////////////
@@ -134,7 +170,6 @@ if (recupererMessage.toLowerCase() === 'connexion') {
   divReponse.innerHTML = `
     <div class="dashboard"><a href="/chatbot/php/connexion.php">Connexion au dashboard.</a></div>
   `;
-
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -167,7 +202,7 @@ if (recupererMessage.toLowerCase() === 'connexion') {
   //Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur/
   ////////////////////////////////////////////////////////////////////////////////////////////////
   $.ajax({
-    url: '/chatbot/php/actionsChatbot/messageBddChatbot.php',
+    url: '/chatbot/php/actionsChatbot/messageDatabaseMotsCles.php',
     type: 'POST',
     dataType: 'json',
     data: JSON.stringify({ "motscles": recupererMessage }),
@@ -197,6 +232,8 @@ msg.appendChild(divReponse);
 champTexte.value = '';
   }
 }
+
+
 
 // Fin de discussion chatbot & utilisateur
 

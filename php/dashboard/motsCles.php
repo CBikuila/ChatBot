@@ -17,7 +17,7 @@ error_reporting(E_ERROR);
                         <div class='card-body'>
                             <p>Ajoute un mot-clé et sa phrase associée dans la base de données</p>
                         </div>
-                    <form action="mots_cles.php" method="post">
+                    <form action="motsCles.php" method="post">
                         <div class="mb-3">
                             <label for="mots_cles" class="form-label">Mot-clé :</label>
                             <input type="text" class="form-control" name="mots_cles" id="mot_cles" aria-describedby="textHelp">
