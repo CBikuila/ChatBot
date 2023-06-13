@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 01 juin 2023 à 15:08
+-- Généré le : mar. 13 juin 2023 à 08:20
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -63,7 +63,8 @@ INSERT INTO `categories_produits` (`categories_produits_id`, `categories_produit
 (5, 'Sneakers de tennis'),
 (6, 'Sneakers de randonnée'),
 (7, 'Sneakers minimalistes'),
-(8, 'Sneakers rétro');
+(8, 'Sneakers rétro'),
+(13, 'gfgfg');
 
 -- --------------------------------------------------------
 
@@ -103,8 +104,16 @@ CREATE TABLE `produits` (
   `modele_sneakers` varchar(100) DEFAULT NULL,
   `couleur_sneakers` varchar(30) DEFAULT NULL,
   `taille_sneakers` int(2) DEFAULT NULL,
-  `prix_sneakers` varchar(100) DEFAULT NULL
+  `prix_sneakers` varchar(100) DEFAULT NULL,
+  `genre_sneakers` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `produits`
+--
+
+INSERT INTO `produits` (`produits_id`, `marque_sneakers`, `modele_sneakers`, `couleur_sneakers`, `taille_sneakers`, `prix_sneakers`, `genre_sneakers`) VALUES
+(25, 'gfg', 'fgfg', 'fgfg', 30, ' &euro;', '');
 
 -- --------------------------------------------------------
 
@@ -138,6 +147,16 @@ CREATE TABLE `utilisateurs_connexion` (
   `prenom_utilisateur` text NOT NULL,
   `mot_de_passe_utilisateur` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `utilisateurs_connexion`
+--
+
+INSERT INTO `utilisateurs_connexion` (`utilisateurs_id`, `prenom_utilisateur`, `mot_de_passe_utilisateur`) VALUES
+(1, 'fdfdf', 'dfdf'),
+(2, 'fdfdf', 'dfdf'),
+(3, 'fgfg', 'fgfg'),
+(4, 'fgfg', 'fgfg');
 
 --
 -- Index pour les tables déchargées
@@ -193,31 +212,31 @@ ALTER TABLE `admin_connexion`
 -- AUTO_INCREMENT pour la table `categories_produits`
 --
 ALTER TABLE `categories_produits`
-  MODIFY `categories_produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `categories_produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT pour la table `motscles`
 --
 ALTER TABLE `motscles`
-  MODIFY `motscles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `motscles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT pour la table `statuts_commandes`
 --
 ALTER TABLE `statuts_commandes`
-  MODIFY `commandes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `commandes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs_connexion`
 --
 ALTER TABLE `utilisateurs_connexion`
-  MODIFY `utilisateurs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `utilisateurs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
