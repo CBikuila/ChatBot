@@ -90,6 +90,12 @@ if (recupererMessage.toLowerCase() === 'connexion') {
                 <button class="boutonDeconnexion">Déconnexion</button>
               </div>
             `;
+          } else {
+            // Afficher un message d'erreur si la connexion échoue
+            divReponse.classList.add('messages__item', 'messages__item--assistant');
+            divReponse.innerHTML = `
+              <p>Votre adresse e-mail ou mot de passe est incorrect. Veuillez réessayer de vous connecter.</p>
+            `;
             // Gérer les clics sur les boutons
             var boutonCommande = divReponse.querySelector('.boutonCommande');
             var boutonPanier = divReponse.querySelector('.boutonPanier');

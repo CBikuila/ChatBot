@@ -145,6 +145,32 @@ body {
     color: #fff;
 }
 
+/*Connexion Utilisateur*/
+button.boutonCommande,
+button.boutonPanier {
+    background-color: #0147C9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+ button.boutonDeconnexion {
+    background-color: #e1b81e;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
 
 /* FOOTER */
 .chatbox__footer {
