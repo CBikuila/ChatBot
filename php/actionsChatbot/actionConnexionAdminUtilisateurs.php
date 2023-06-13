@@ -7,12 +7,14 @@ $donnees = json_decode(file_get_contents('php://input'), true);
 
 if(isset($donnees['email']) && isset($donnees['motDePasse'])) {
     // Récupérer le mot-clé saisi par l'utilisateur
-    $utilisateurs = $donnees['email'] && $donnees['motDePasse'];
-
-    // Requête pour récupérer la question associée au mot-clé
-    $requete = "SELECT prenom_utilisateur, mot_de_passe_utilisateur FROM utilisateurs_connexion WHERE utilisateurs_connexion = '$utilisateurs'"; 
-    $resultat = $conn->query($requete);
-
+        // Récupérer le mot-clé saisi par l'utilisateur
+        $email = $donnees['email'];
+        $motDePasse = $donnees['motDePasse'];
+    
+        // Requête pour récupérer la question associée au mot-clé
+        $requete = "SELECT prenom_utilisateur, mot_de_passe_utilisateur FROM utilisateurs_connexion WHERE prenom_utilisateur = '$email' AND mot_de_passe_utilisateur = '$motDePasse' "; 
+        $resultat = $conn->query($requete);
+    var_dump($resultat);
     if ($resultat->num_rows > 0) {
         // Récupérer la première ligne de résultat
         $ligne = $resultat->fetch_assoc();
