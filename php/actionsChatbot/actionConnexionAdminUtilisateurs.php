@@ -13,7 +13,6 @@ if (isset($donnees['email']) && isset($donnees['motDePasse'])) {
     // Requête pour récupérer les données de la base de données
     $requete = "SELECT prenom_utilisateur, mot_de_passe_utilisateur FROM sneakme_database.utilisateurs_connexion WHERE prenom_utilisateur = '$email' AND mot_de_passe_utilisateur = '$motDePasse'";
     $resultat = $conn->query($requete);
-var_dump($resultat);
     if ($resultat->num_rows > 0) {
         // Récupérer la première ligne de résultat
         $ligne = $resultat->fetch_assoc();
@@ -23,7 +22,8 @@ var_dump($resultat);
         );
 
         // Renvoyer les données au format JSON
-        echo json_encode($connexionUtilisateurs);
+        echo 'connexion_reussie';
+        //json_encode($connexionUtilisateurs);
     } else {
         // Si aucun résultat n'est trouvé, renvoyer une réponse vide au format JSON
         $response = array('erreur' => 'Aucune correspondance trouvée dans la base de données');
@@ -36,4 +36,3 @@ var_dump($resultat);
 }
 
 $conn->close();
-?>

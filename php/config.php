@@ -11,4 +11,3 @@ $conn = new mysqli("localhost", "root", "root", "sneakme_database");
 if ($conn->connect_error) {
     die("La connexion à la base de données SQL a échouée");
 }
-?> 

@@ -64,49 +64,53 @@ if (recupererMessage.toLowerCase() === 'connexion') {
     // Récupère les valeurs des champs de formulaire
     var email = document.getElementById('email').value;
     var motDePasse = document.getElementById('motDePasse').value;
-console.log('ici');
     // Envoie les données au fichier PHP via AJAX
     $.ajax({
       url: '/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php',
       type: 'POST',
-      dataType: 'json',
+      //dataType: 'json',
       data: JSON.stringify({
         email: email,
         motDePasse: motDePasse
       }),
+      processData: false,
       success: function(response) {
+        response=response.trim();
         // Code à exécuter lorsque la réponse du fichier PHP est reçue
-        console.log("response", response);
-        if (response === 'connexion_reussie') {
-          divReponse.innerHTML = `
-            <div class="messages__item messages__item--assistant">
-              <p>Bienvenue dans votre compte !</p>
-              <button class="boutonCommande">Commande</button>
-              <button class="boutonPanier">Panier</button>
-              <button class="boutonDeconnexion">Déconnexion</button>
-            </div>
-          `;
-          // Gérer les clics sur les boutons
-          var boutonCommande = divReponse.querySelector('.boutonCommande');
-          var boutonPanier = divReponse.querySelector('.boutonPanier');
-          var boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
-
-          boutonDeconnexion.addEventListener('click', function() {
-            // Envoyer une requête AJAX pour déconnecter l'utilisateur
-            $.ajax({
-              url: '/chatbot/php/actionsChatbot/deconnexion.php',
-              type: 'POST',
-              success: function(response) {
-                // Afficher un message de déconnexion
-                divReponse.innerHTML = `
-                  <div class="messages__item messages__item--assistant">
-                    <p>Vous avez été déconnecté.</p>
-                  </div>
-                `;
-              }
+        console.log("response", '"'+response+'"');
+        console.log("response", response == 'connexion_reussie');
+        if (response == 'connexion_reussie') {
+          console.log(divReponse);
+          divReponse.classList.add('messages__item', 'messages__item--visitor');
+            divReponse.innerHTML = `
+              <div class="messages__item messages__item--assistant">
+                <p>Bienvenue dans votre compte !</p>
+                <button class="boutonCommande">Commande</button>
+                <button class="boutonPanier">Panier</button>
+                <button class="boutonDeconnexion">Déconnexion</button>
+              </div>
+            `;
+            // Gérer les clics sur les boutons
+            var boutonCommande = divReponse.querySelector('.boutonCommande');
+            var boutonPanier = divReponse.querySelector('.boutonPanier');
+            var boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
+            
+            boutonDeconnexion.addEventListener('click', function() {
+              // Envoyer une requête AJAX pour déconnecter l'utilisateur
+              $.ajax({
+                url: '/chatbot/php/actionsChatbot/deconnexion.php',
+                type: 'POST',
+                success: function(response) {
+                  // Afficher un message de déconnexion
+                  divReponse.innerHTML = `
+                    <div class="messages__item messages__item--assistant">
+                      <p>Vous avez été déconnecté.</p>
+                    </div>
+                  `;
+                }
+              });
             });
-          });
-        }
+          }
       }
     });
   });
