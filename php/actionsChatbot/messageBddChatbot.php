@@ -26,4 +26,3 @@ if ($resultat->num_rows > 0) {
 }
 
 $conn->close();
-?>
