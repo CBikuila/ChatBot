@@ -128,7 +128,7 @@ if (recupererMessage.toLowerCase() === 'connexion') {
     // Récupère les valeurs des champs de formulaire
     var email = document.getElementById('email').value;
     var motDePasse = document.getElementById('motDePasse').value;
-
+console.log('ici');
     // Envoie les données au fichier PHP via AJAX
     $.ajax({
       url: '/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php',
@@ -140,6 +140,7 @@ if (recupererMessage.toLowerCase() === 'connexion') {
       }),
       success: function(response) {
         // Code à exécuter lorsque la réponse du fichier PHP est reçue
+        console.log("response", response);
         if (response === 'connexion_reussie') {
           divReponse.innerHTML = `
             <div class="messages__item messages__item--assistant">

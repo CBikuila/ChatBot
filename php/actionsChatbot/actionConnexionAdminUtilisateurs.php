@@ -4,7 +4,6 @@ error_reporting(E_ERROR);
 
 // Nettoyage du post
 $donnees = json_decode(file_get_contents('php://input'), true);
-var_dump($donnees);
 
 if(isset($donnees['email']) && isset($donnees['motDePasse'])) {
     // Récupérer le mot-clé saisi par l'utilisateur
