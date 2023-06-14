@@ -115,12 +115,14 @@ function envoyerMessage() {
                   processData: false,
                   success: function (response) {
                     // Construire la liste des produits
+                    var produitsListe = "";
                     console.log(response);
                     for (var i = 0; i < response.length; i++) {
                       
                       var produit = response[i];
                      produitsListe += `
                         <div>
+                          <p>Image: <img src="/chatbot/assets/images/produits/${produit.photo_sneakers}"/></p>
                           <p>Marque: ${produit.marque_sneakers}</p>
                           <p>Modèle: ${produit.modele_sneakers}</p>
                           <p>Couleur: ${produit.couleur_sneakers}</p>
@@ -153,13 +155,8 @@ function envoyerMessage() {
                           <button class="boutonDeconnexion">Déconnexion</button>
                         </div>
                       `;
-
-                      boutonCommande =
-                        divReponse.querySelector(".boutonCommande");
-                      boutonPanier = divReponse.querySelector(".boutonPanier");
-
                       boutonCommande.addEventListener("click", function () {
-                        // Code pour afficher la liste des produits
+                        $(boutonCommande);
                       });
 
                       boutonPanier.addEventListener("click", function () {
