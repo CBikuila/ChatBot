@@ -112,22 +112,25 @@ function envoyerMessage() {
                   url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
                   type: "GET",
                   dataType: "json",
+                  processData: false,
                   success: function (response) {
                     // Construire la liste des produits
-                    var produitsListe = "";
+                    console.log(response);
                     for (var i = 0; i < response.length; i++) {
+                      
                       var produit = response[i];
-                      produitsListe += `
+                     produitsListe += `
                         <div>
                           <p>Marque: ${produit.marque_sneakers}</p>
                           <p>Modèle: ${produit.modele_sneakers}</p>
                           <p>Couleur: ${produit.couleur_sneakers}</p>
                           <p>Taille: ${produit.taille_sneakers}</p>
                           <p>Genre: ${produit.genre_sneakers}</p>
-                          <p>Prix: ${produit.prix_sneakers} €</p>
+                          <p>Prix: ${produit.prix_sneakers}€</p>
                         </div>
                       `;
                     }
+                    
                     // Afficher la liste des produits dans une bulle du chat
                     divReponse.innerHTML = `
                       <div class="messages__item messages__item--assistant">
