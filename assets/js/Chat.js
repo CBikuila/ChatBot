@@ -1,4 +1,4 @@
- ////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////Discution chatbot & utilisateurs//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,21 +29,21 @@ function envoyerMessage() {
     msg.appendChild(div);
 
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////Connexion Utilisateur///////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////Connexion Utilisateur///////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-// Création d'un élément HTML <div> pour afficher la réponse du chatbot
-var divReponse = document.createElement("div");
+    // Création d'un élément HTML <div> pour afficher la réponse du chatbot
+    var divReponse = document.createElement("div");
 
-// Vérification du mot-clé "admin"
-if (recupererMessage.toLowerCase() === 'connexion') {
-  // Réponse spécifique pour le mot-clé "admin"
-  divReponse.classList.add('messages__item', 'messages__item--visitor');
-  divReponse.innerHTML = `
+    // Vérification du mot-clé "admin"
+    if (recupererMessage.toLowerCase() === 'connexion') {
+      // Réponse spécifique pour le mot-clé "admin"
+      divReponse.classList.add('messages__item', 'messages__item--visitor');
+      divReponse.innerHTML = `
     <form class="chatbot-form">
       <h2 class="title">Connexion</h2>
       <label for="email">E-mail :</label>
@@ -55,34 +55,34 @@ if (recupererMessage.toLowerCase() === 'connexion') {
       <button type="submit" class="boutonConnexion">Se connecter</button>
     </form>
   `;
-  // Récupère le bouton de connexion et ajoute un gestionnaire d'événements pour le clic
-  var boutonConnexion = divReponse.querySelector('.boutonConnexion');
-  boutonConnexion.addEventListener('click', function(event) {
-    // Empêche le comportement par défaut du formulaire
-    event.preventDefault(); 
+      // Récupère le bouton de connexion et ajoute un gestionnaire d'événements pour le clic
+      var boutonConnexion = divReponse.querySelector('.boutonConnexion');
+      boutonConnexion.addEventListener('click', function (event) {
+        // Empêche le comportement par défaut du formulaire
+        event.preventDefault();
 
-    // Récupère les valeurs des champs de formulaire
-    var email = document.getElementById('email').value;
-    var motDePasse = document.getElementById('motDePasse').value;
-    // Envoie les données au fichier PHP via AJAX
-    $.ajax({
-      url: '/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php',
-      type: 'POST',
-      //dataType: 'json',
-      data: JSON.stringify({
-        email: email,
-        motDePasse: motDePasse
-      }),
-      processData: false,
-      success: function(response) {
-        response=response.trim();
-        // Code à exécuter lorsque la réponse du fichier PHP est reçue
-        console.log("response", '"'+response+'"');
-        console.log("response", response == 'connexion_reussie');
-        if (response == 'connexion_reussie') {
-          console.log(divReponse);
-          divReponse.classList.add('messages__item', 'messages__item--visitor');
-            divReponse.innerHTML = `
+        // Récupère les valeurs des champs de formulaire
+        var email = document.getElementById('email').value;
+        var motDePasse = document.getElementById('motDePasse').value;
+        // Envoie les données au fichier PHP via AJAX
+        $.ajax({
+          url: '/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php',
+          type: 'POST',
+          //dataType: 'json',
+          data: JSON.stringify({
+            email: email,
+            motDePasse: motDePasse
+          }),
+          processData: false,
+          success: function (response) {
+            response = response.trim();
+            // Code à exécuter lorsque la réponse du fichier PHP est reçue
+            console.log("response", '"' + response + '"');
+            console.log("response", response == 'connexion_reussie');
+            if (response == 'connexion_reussie') {
+              console.log(divReponse);
+              divReponse.classList.add('messages__item', 'messages__item--visitor');
+              divReponse.innerHTML = `
               <div class="messages__item messages__item--assistant">
                 <p>Bienvenue dans votre compte !</p>
                 <button class="boutonCommande">Commande</button>
@@ -90,96 +90,110 @@ if (recupererMessage.toLowerCase() === 'connexion') {
                 <button class="boutonDeconnexion">Déconnexion</button>
               </div>
             `;
-          } else {
-            // Afficher un message d'erreur si la connexion échoue
-            divReponse.classList.add('messages__item', 'messages__item--assistant');
-            divReponse.innerHTML = `
-              <p>Votre adresse e-mail ou mot de passe est incorrect. Veuillez réessayer de vous connecter.</p>
-            `;
-            ////////////////////////////////////////////////////////////////////////////////////////////////
-            //////////////////////////////////  //////////////////////////////////////////////////////////////
-            //////////////Accès aux produits après avoir cliqué sur "Commandes" dans le chatbot/////////////
-            ////////////////////////////////////////////////////////////////////////////////////////////////
-            var boutonCommande = divReponse.querySelector('.boutonCommande');
 
-            boutonCommande.addEventListener('click', function() {
-              // Envoyer une requête AJAX pour récupérer la liste des produits
-              $.ajax({
-                url: '/chatbot/php/actionsChatbot/messageDatabaseProduits.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                  // Construire la liste des produits
-                  var produitsListe = '';
-                  for (var i = 0; i < response.length; i++) {
-                    var produit = response[i];
-                    produitsListe += `
+                        ////////////////////////////////////////////////////////////////////////////////////////////////
+              //////////////////////////////////  //////////////////////////////////////////////////////////////
+              //////////////Accès aux produits après avoir cliqué sur "Commandes" dans le chatbot/////////////
+              ////////////////////////////////////////////////////////////////////////////////////////////////
+
+              // Ajoute le divReponse au DOM ici
+
+              // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
+              //msg.appendChild(divReponse);
+
+              var boutonCommande = divReponse.querySelector('.boutonCommande');
+              //divReponse = null;
+
+
+              boutonCommande.addEventListener('click', function () {
+                console.log('Clic sur le bouton "Commande"');
+                // Envoyer une requête AJAX pour récupérer la liste des produits
+                $.ajax({
+                  url: '/chatbot/php/actionsChatbot/messageDatabaseProduits.php',
+                  type: 'GET',
+                  dataType: 'json',
+                  success: function (response) {
+                    // Construire la liste des produits
+                    var produitsListe = '';
+                    for (var i = 0; i < response.length; i++) {
+                      var produit = response[i];
+                      produitsListe += `
                       <div>
-                        <p>Marque: ${produits.marque_sneakers}</p>
-                        <p>Modèle: ${produits.modele_sneakers}</p>
-                        <p>Couleur: ${produits.couleur_sneakers}</p>
-                        <p>Taille: ${produits.taille_sneakers}</p>
-                        <p>Genre: ${produits.genre_sneakers}</p>
-                        <p>Prix: ${produits.prix_sneakers} €</p>
+                        <p>Marque: ${produit.marque_sneakers}</p>
+                        <p>Modèle: ${produit.modele_sneakers}</p>
+                        <p>Couleur: ${produit.couleur_sneakers}</p>
+                        <p>Taille: ${produit.taille_sneakers}</p>
+                        <p>Genre: ${produit.genre_sneakers}</p>
+                        <p>Prix: ${produit.prix_sneakers} €</p>
                       </div>
                     `;
-                  }
-                  // Afficher la liste des produits dans une bulle du chat
-                  divReponse.innerHTML = `
+                    }
+                    // Afficher la liste des produits dans une bulle du chat
+                    divReponse.innerHTML = `
                     <div class="messages__item messages__item--assistant">
                       <p>Voici la liste des produits :</p>
-                      ${produits}
+                      ${produitsListe}
                     </div>
                   `;
-                }
+                  }
+                });
               });
-            });         
 
-            var boutonPanier = divReponse.querySelector('.boutonPanier');
-            var boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
-            
-            boutonDeconnexion.addEventListener('click', function() {
-              // Envoyer une requête AJAX pour déconnecter l'utilisateur
-              $.ajax({
-                url: '/chatbot/php/actionsChatbot/deconnexion.php',
-                type: 'POST',
-                success: function(response) {
-                  // Afficher un message de déconnexion
-                  divReponse.innerHTML = `
+              var boutonPanier = divReponse.querySelector('.boutonPanier');
+              var boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
+
+              boutonDeconnexion.addEventListener('click', function () {
+                console.log("deconnexion");
+                // Envoyer une requête AJAX pour déconnecter l'utilisateur
+                $.ajax({
+                  url: '/chatbot/php/actionsChatbot/deconnexion.php',
+                  type: 'POST',
+                  success: function (response) {
+                    // Afficher un message de déconnexion
+                    divReponse.innerHTML = `
                     <div class="messages__item messages__item--assistant">
                       <p>Vous avez été déconnecté.</p>
                     </div>
                   `;
-                }
+                  }
+                });
               });
-            });
+            
+            } else {
+              // Afficher un message d'erreur si la connexion échoue
+              divReponse.classList.add('messages__item', 'messages__item--assistant');
+              divReponse.innerHTML = `
+              <p>Votre adresse e-mail ou mot de passe est incorrect. Veuillez réessayer de vous connecter.</p>
+            `;
+
+
+            }
           }
-      }
-    });
-  });
+        });
+      });
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////Connexion Admin///////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////Connexion Admin///////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-} else if (recupererMessage.toLowerCase() === 'admin') {
-  // Réponse spécifique pour le mot-clé "admin"
-  divReponse.classList.add('messages__item', 'messages__item--visitor');
-  divReponse.innerHTML = `
+    } else if (recupererMessage.toLowerCase() === 'admin') {
+      // Réponse spécifique pour le mot-clé "admin"
+      divReponse.classList.add('messages__item', 'messages__item--visitor');
+      divReponse.innerHTML = `
     <div class="dashboard"><a href="/chatbot/php/connexion.php">Connexion au dashboard.</a></div>
   `;
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////Inscription Utilisateur///////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      /////////////////////////Inscription Utilisateur///////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////
 
-} else if (recupererMessage.toLowerCase() === 'inscription') {
-  // Réponse spécifique pour le mot-clé "inscription"
-  divReponse.classList.add('messages__item', 'messages__item--visitor');
-  divReponse.innerHTML = `
+    } else if (recupererMessage.toLowerCase() === 'inscription') {
+      // Réponse spécifique pour le mot-clé "inscription"
+      divReponse.classList.add('messages__item', 'messages__item--visitor');
+      divReponse.innerHTML = `
     <form class="chatbot-form">
       <h2 class="title">Inscription</h2>
       <label for="email">E-mail :</label>
@@ -194,42 +208,42 @@ if (recupererMessage.toLowerCase() === 'connexion') {
       <button type="submit" class="boutonInscription">S'inscrire</button>
     </form>
   `;
-} else {
+    } else {
 
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  //Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur/
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  $.ajax({
-    url: '/chatbot/php/actionsChatbot/messageDatabaseMotsCles.php',
-    type: 'POST',
-    dataType: 'json',
-    data: JSON.stringify({ "motscles": recupererMessage }),
-    processData: false,
-    success: function(response) {
-      if (response.question !== '') {
-        // Si une réponse est trouvée dans la base de données
-        var phraseAssociee = response.question;
-        divReponse.classList.add('messages__item', 'messages__item--visitor');
-        console.log(response.question);
-        divReponse.textContent = phraseAssociee;
-      } else {
-        // Si aucun résultat n'est trouvé dans la base de données, afficher une réponse aléatoire
-        var reponsesAleatoires = ["Désolé, je ne comprends pas.", "Je ne peux pas répondre à cette question.", "Pouvez-vous reformuler votre question ?"];
-        var reponseAleatoire = reponsesAleatoires[Math.floor(Math.random() * reponsesAleatoires.length)];
-        divReponse.classList.add('messages__item', 'messages__item--visitor');
-        divReponse.textContent = reponseAleatoire;
-      }
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      //Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur/
+      ////////////////////////////////////////////////////////////////////////////////////////////////
+      $.ajax({
+        url: '/chatbot/php/actionsChatbot/messageDatabaseMotsCles.php',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify({ "motscles": recupererMessage }),
+        processData: false,
+        success: function (response) {
+          if (response.question !== '') {
+            // Si une réponse est trouvée dans la base de données
+            var phraseAssociee = response.question;
+            divReponse.classList.add('messages__item', 'messages__item--visitor');
+            console.log(response.question);
+            divReponse.textContent = phraseAssociee;
+          } else {
+            // Si aucun résultat n'est trouvé dans la base de données, afficher une réponse aléatoire
+            var reponsesAleatoires = ["Désolé, je ne comprends pas.", "Je ne peux pas répondre à cette question.", "Pouvez-vous reformuler votre question ?"];
+            var reponseAleatoire = reponsesAleatoires[Math.floor(Math.random() * reponsesAleatoires.length)];
+            divReponse.classList.add('messages__item', 'messages__item--visitor');
+            divReponse.textContent = reponseAleatoire;
+          }
+        }
+      });
     }
-  });
-}
 
-// Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
-msg.appendChild(divReponse);
+    // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
+    msg.appendChild(divReponse);
 
-// Effacement du champ de texte
-champTexte.value = '';
+    // Effacement du champ de texte
+    champTexte.value = '';
   }
 }
 
