@@ -248,12 +248,16 @@ function envoyerMessage() {
 
         // Vérifie si les mots de passe correspondent
         if (motDePasse === motDePasseConfirmation) {
-          // Les mots de passe correspondent, vous pouvez continuer avec le reste de votre code d'inscription
+          // Si les mots de passe correspondent, l'utilisateur peut continuer sont inscription
           console.log("ok les mots de passe sont identique.");
         } else {
-          // Les mots de passe ne correspondent pas, affichez un message d'erreur ou effectuez une action appropriée
+          // Les mots de passe ne correspondent pas, j'affiche un message d'erreur
           console.log("Les mots de passe ne correspondent pas.");
-          // ...
+          // Afficher un message d'erreur si la connexion échoue
+          divReponse.classList.add('messages__item', 'messages__item--assistant');
+          divReponse.innerHTML = `
+          <p>Votre mot de passe ne correspondent pas. Veuillez réessayer de vous inscrire.</p>
+        `;
         }
       });
 
