@@ -122,6 +122,7 @@ function envoyerMessage() {
                       var produit = response[i];
                      produitsListe += `
                         <div>
+                          <p>Image: <img src="/chatbot/assets/images/produits/${produit.photo_sneakers}"/></p>
                           <p>Marque: ${produit.marque_sneakers}</p>
                           <p>Modèle: ${produit.modele_sneakers}</p>
                           <p>Couleur: ${produit.couleur_sneakers}</p>
