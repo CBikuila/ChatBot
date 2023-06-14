@@ -115,6 +115,7 @@ function envoyerMessage() {
                   processData: false,
                   success: function (response) {
                     // Construire la liste des produits
+                    var produitsListe = "";
                     console.log(response);
                     for (var i = 0; i < response.length; i++) {
                       
@@ -154,14 +155,8 @@ function envoyerMessage() {
                         </div>
                       `;
 
-                      boutonCommande =
-                        divReponse.querySelector(".boutonCommande");
-                      boutonPanier = divReponse.querySelector(".boutonPanier");
-                      boutonDeconnexion =
-                        divReponse.querySelector(".boutonDeconnexion");
-
                       boutonCommande.addEventListener("click", function () {
-                        // Code pour afficher la liste des produits
+                        $(boutonCommande);
                       });
 
                       boutonPanier.addEventListener("click", function () {
