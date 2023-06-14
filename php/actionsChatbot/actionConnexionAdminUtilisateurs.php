@@ -24,10 +24,18 @@ if (isset($donnees['email']) && isset($donnees['motDePasse'])) {
         // Renvoyer les données au format JSON
         echo 'connexion_reussie';
         //json_encode($connexionUtilisateurs);
+
     } else {
-        // Si aucun résultat n'est trouvé, renvoyer une réponse vide au format JSON
-        $response = array('erreur' => 'Aucune correspondance trouvée dans la base de données');
-        echo json_encode($response);
+        // Insérer les données de l'utilisateur dans la base de données
+        $requeteInscription = "INSERT INTO utilisateurs_connexion (prenom_utilisateur, mot_de_passe_utilisateur) VALUES ('$email', '$motDePasse')";
+        if ($conn->query($requeteInscription) === TRUE) {
+            // Renvoyer la réponse "inscription_reussie" si l'inscription est réussie
+            echo 'inscription_reussie';
+        } else{
+            // Si une erreur se produit lors de l'insertion dans la base de données
+            $response = array('erreur' => 'Erreur lors de l\'inscription. Veuillez réessayer.');
+            echo json_encode($response);
+        }
     }
 } else {
     // Si les clés 'email' et 'motDePasse' ne sont pas présentes dans les données reçues
@@ -36,3 +44,4 @@ if (isset($donnees['email']) && isset($donnees['motDePasse'])) {
 }
 
 $conn->close();
+

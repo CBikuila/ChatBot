@@ -236,103 +236,95 @@ function envoyerMessage() {
   `;
       var boutonInscription = divReponse.querySelector(".boutonInscription");
       boutonInscription.addEventListener("click", function (event) {
-        // Empêche le comportement par défaut du formulaire
         event.preventDefault();
 
-        // Récupère les valeurs des champs de formulaire
         var email = document.getElementById("emailInscription").value;
         var motDePasse = document.getElementById("motDePasseInscription").value;
         var motDePasseConfirmation = document.getElementById(
           "motDePasseConfirmation"
         ).value;
 
-        // Vérifie si les mots de passe correspondent
         if (motDePasse === motDePasseConfirmation) {
-          // Si les mots de passe correspondent, l'utilisateur peut continuer sont inscription
-          console.log("ok les mots de passe sont identique.");
-        } else {
-          // Les mots de passe ne correspondent pas, j'affiche un message d'erreur
-          console.log("Les mots de passe ne correspondent pas.");
-          // Afficher un message d'erreur si la connexion échoue
-          var nouvelleBulle = document.createElement("div");
-          nouvelleBulle.classList.add("messages__item", "messages__item--bot");
-          nouvelleBulle.innerHTML = `
-            <form class="chatbot-form">
-              <h2 class="title">Inscription</h2>
-              <label for="email">E-mail :</label>
-              <input type="text" placeholder="Adresse email" id="emailInscription" value="${email}" />
-              <br>
-              <label for="password">Mot de passe :</label>
-              <input type="password" placeholder="Mot de passe" id="motDePasseInscription" />
-              <br>
-              <label for="passwordConfirmation">Confirmation du mot de passe :</label>
-              <input type="password" placeholder="Mot de passe" id="motDePasseConfirmation" />
-              <br>
-              <button type="submit" class="boutonInscription">S'inscrire</button>
-            </form>
-            <br>
-            <p class="message-erreur">Les mots de passe ne correspondent pas. Veuillez réessayer l'inscription</p>
-          `;
+          console.log("Les mots de passe sont identiques.");
 
-          // Remplace la bulle de réponse précédente par la nouvelle bulle
+          // Envoie les données au fichier PHP via AJAX
+          $.ajax({
+            url: "/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php",
+            type: "POST",
+            data: JSON.stringify({
+              email: email,
+              motDePasse: motDePasse,
+            }),
+            processData: false,
+            success: function (responseInscription) {
+              responseInscription = responseInscription.trim();
+              console.log("response", '"' + responseInscription + '"');
+              console.log(
+                "response",
+                responseInscription == "inscription_reussie"
+              );
+              if (responseInscription == "inscription_reussie") {
+                divReponse.classList.add(
+                  "messages__item",
+                  "messages__item--visitor"
+                );
+                divReponse.innerHTML = `
+              <div class="messages__item messages__item--assistant">
+                <p>Bienvenue dans votre compte !</p>
+                <button class="boutonCommande">Commande</button>
+                <button class="boutonPanier">Panier</button>
+                <button class="boutonDeconnexion">Déconnexion</button>
+              </div>
+            `;
+              }
+            },
+          });
+        } else {
+          console.log("Les mots de passe ne correspondent pas.");
+
+          var nouvelleBulle = document.createElement("div");
+          nouvelleBulle.classList.add(
+            "messages__item",
+            "messages__item--visitor"
+          );
+          nouvelleBulle.innerHTML = `
+        <form class="chatbot-form">
+          <h2 class="title">Inscription</h2>
+          <label for="email">E-mail :</label>
+          <input type="text" placeholder="Adresse email" id="emailInscription" value="${email}" />
+          <br>
+          <label for="password">Mot de passe :</label>
+          <input type="password" placeholder="Mot de passe" id="motDePasseInscription" />
+          <br>
+          <label for="passwordConfirmation">Confirmation du mot de passe :</label>
+          <input type="password" placeholder="Mot de passe" id="motDePasseConfirmation" />
+          <br>
+          <button type="submit" class="boutonInscription">S'inscrire</button>
+        </form>
+        <br>
+        <p class="message-erreur">Les mots de passe ne correspondent pas. Veuillez réessayer l'inscription</p>
+      `;
+
           divReponse.parentNode.replaceChild(nouvelleBulle, divReponse);
 
-          // Récupère le nouveau bouton d'inscription
           boutonInscription = nouvelleBulle.querySelector(".boutonInscription");
 
-          // Ajoute à nouveau l'événement de clic au nouveau bouton d'inscription
           boutonInscription.addEventListener("click", function (event) {
             event.preventDefault();
 
-            // Récupère les nouvelles valeurs des champs de formulaire
             email = document.getElementById("emailInscription").value;
             motDePasse = document.getElementById("motDePasseInscription").value;
             motDePasseConfirmation = document.getElementById(
               "motDePasseConfirmation"
             ).value;
 
-            // Vérifie à nouveau si les mots de passe correspondent
             if (motDePasse === motDePasseConfirmation) {
               console.log("Les mots de passe sont identiques.");
             } else {
               console.log("Les mots de passe ne correspondent pas.");
-              // Vous pouvez continuer à afficher une nouvelle bulle d'erreur ou effectuer une autre action appropriée
             }
           });
         }
-      });
-
-      // Envoie les données au fichier PHP via AJAX
-      $.ajax({
-        url: "/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php",
-        type: "POST",
-        //dataType: 'json',
-        data: JSON.stringify({
-          email: emailInscription,
-          motDePasse: motDePasse,
-        }),
-        processData: false,
-        success: function (response) {
-          response = response.trim();
-          // Code à exécuter lorsque la réponse du fichier PHP est reçue
-          console.log("response", '"' + response + '"');
-          console.log("response", response == "inscription_reussie");
-          if (response == "inscription_reussie") {
-            console.log(divReponse);
-            divReponse.classList.add(
-              "messages__item",
-              "messages__item--visitor"
-            );
-            divReponse.innerHTML = `
-            <div class="messages__item messages__item--assistant">
-              <p>Bienvenue dans votre compte !</p>
-              <button class="boutonCommande">Commande</button>
-              <button class="boutonPanier">Panier</button>
-              <button class="boutonDeconnexion">Déconnexion</button>
-            </div>
-          `;
-          }
-        },
       });
     } else {
       ////////////////////////////////////////////////////////////////////////////////////////////////
