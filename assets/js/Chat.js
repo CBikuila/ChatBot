@@ -3,7 +3,6 @@
 /////////////////////////Discution chatbot & utilisateurs//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 // Fonction pour envoyer le message + disscussion entre le chatbot et l'utilisateur 
 
 function envoyerMessage() {
@@ -91,7 +90,7 @@ function envoyerMessage() {
               </div>
             `;
 
-                        ////////////////////////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////////////////////////
               //////////////////////////////////  //////////////////////////////////////////////////////////////
               //////////////Accès aux produits après avoir cliqué sur "Commandes" dans le chatbot/////////////
               ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,9 +101,9 @@ function envoyerMessage() {
               //msg.appendChild(divReponse);
 
               var boutonCommande = divReponse.querySelector('.boutonCommande');
-              //divReponse = null;
-
-
+              var boutonPanier = divReponse.querySelector('.boutonPanier');
+              var boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
+              
               boutonCommande.addEventListener('click', function () {
                 console.log('Clic sur le bouton "Commande"');
                 // Envoyer une requête AJAX pour récupérer la liste des produits
@@ -118,30 +117,58 @@ function envoyerMessage() {
                     for (var i = 0; i < response.length; i++) {
                       var produit = response[i];
                       produitsListe += `
-                      <div>
-                        <p>Marque: ${produit.marque_sneakers}</p>
-                        <p>Modèle: ${produit.modele_sneakers}</p>
-                        <p>Couleur: ${produit.couleur_sneakers}</p>
-                        <p>Taille: ${produit.taille_sneakers}</p>
-                        <p>Genre: ${produit.genre_sneakers}</p>
-                        <p>Prix: ${produit.prix_sneakers} €</p>
-                      </div>
-                    `;
+                        <div>
+                          <p>Marque: ${produit.marque_sneakers}</p>
+                          <p>Modèle: ${produit.modele_sneakers}</p>
+                          <p>Couleur: ${produit.couleur_sneakers}</p>
+                          <p>Taille: ${produit.taille_sneakers}</p>
+                          <p>Genre: ${produit.genre_sneakers}</p>
+                          <p>Prix: ${produit.prix_sneakers} €</p>
+                        </div>
+                      `;
                     }
                     // Afficher la liste des produits dans une bulle du chat
                     divReponse.innerHTML = `
-                    <div class="messages__item messages__item--assistant">
-                      <p>Voici la liste des produits :</p>
-                      ${produitsListe}
-                    </div>
-                  `;
+                      <div class="messages__item messages__item--assistant">
+                        <p>Voici la liste des produits :</p>
+                        ${produitsListe}
+                        <button class="boutonRetour">Retour</button>
+                      </div>
+                    `;
+              
+                    var boutonRetour = divReponse.querySelector('.boutonRetour');
+              
+                    boutonRetour.addEventListener('click', function () {
+                      // Code pour revenir à l'interface avec les boutons "Commandes", "Panier" et "Déconnexion"
+                      divReponse.innerHTML = `
+                        <div class="messages__item messages__item--assistant">
+                          <p>Bienvenue dans votre compte !</p>
+                          <button class="boutonCommande">Commande</button>
+                          <button class="boutonPanier">Panier</button>
+                          <button class="boutonDeconnexion">Déconnexion</button>
+                        </div>
+                      `;
+              
+                      boutonCommande = divReponse.querySelector('.boutonCommande');
+                      boutonPanier = divReponse.querySelector('.boutonPanier');
+                      boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
+              
+                      boutonCommande.addEventListener('click', function () {
+                        // Code pour afficher la liste des produits
+                      });
+              
+                      boutonPanier.addEventListener('click', function () {
+                        // Code pour afficher le panier
+                      });
+              
+                      boutonDeconnexion.addEventListener('click', function () {
+                        // Code pour effectuer la déconnexion
+                      });
+                    });
                   }
                 });
               });
-
-              var boutonPanier = divReponse.querySelector('.boutonPanier');
-              var boutonDeconnexion = divReponse.querySelector('.boutonDeconnexion');
-
+              
               boutonDeconnexion.addEventListener('click', function () {
                 console.log("deconnexion");
                 // Envoyer une requête AJAX pour déconnecter l'utilisateur
@@ -151,13 +178,14 @@ function envoyerMessage() {
                   success: function (response) {
                     // Afficher un message de déconnexion
                     divReponse.innerHTML = `
-                    <div class="messages__item messages__item--assistant">
-                      <p>Vous avez été déconnecté.</p>
-                    </div>
-                  `;
+                      <div class="messages__item messages__item--assistant">
+                        <p>Vous avez été déconnecté.</p>
+                      </div>
+                    `;
                   }
                 });
               });
+              
             
             } else {
               // Afficher un message d'erreur si la connexion échoue
@@ -183,33 +211,53 @@ function envoyerMessage() {
       divReponse.classList.add('messages__item', 'messages__item--visitor');
       divReponse.innerHTML = `
     <div class="dashboard"><a href="/chatbot/php/connexion.php">Connexion au dashboard.</a></div>
-  `;
+    `;
 
       ////////////////////////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////
       /////////////////////////Inscription Utilisateur///////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    } else if (recupererMessage.toLowerCase() === 'inscription') {
+    } else if (recupererMessage.toLowerCase() === "inscription") {
       // Réponse spécifique pour le mot-clé "inscription"
-      divReponse.classList.add('messages__item', 'messages__item--visitor');
+      divReponse.classList.add("messages__item", "messages__item--visitor");
       divReponse.innerHTML = `
     <form class="chatbot-form">
       <h2 class="title">Inscription</h2>
       <label for="email">E-mail :</label>
-      <input type="text" placeholder="Adresse email" />
+      <input type="text" placeholder="Adresse email" id="emailInscription" />
       <br>
       <label for="password">Mot de passe :</label>
-      <input type="password" placeholder="Mot de passe" />
+      <input type="password" placeholder="Mot de passe" id="motDePasseInscription" />
       <br>
-      <label for="password">Confirmation du mot de passe :</label>
-      <input type="password" placeholder="Mot de passe" />
+      <label for="passwordConfirmation">Confirmation du mot de passe :</label>
+      <input type="password" placeholder="Mot de passe" id="motDePasseConfirmation" />
       <br>
       <button type="submit" class="boutonInscription">S'inscrire</button>
     </form>
   `;
-    } else {
+      var boutonInscription = divReponse.querySelector(".boutonInscription");
+      boutonInscription.addEventListener("click", function (event) {
+        // Empêche le comportement par défaut du formulaire
+        event.preventDefault();
 
+        // Récupère les valeurs des champs de formulaire
+        var email = document.getElementById("emailInscription").value;
+        var motDePasse = document.getElementById("motDePasseInscription").value;
+        var motDePasseConfirmation = document.getElementById("motDePasseConfirmation").value;
+
+        // Vérifie si les mots de passe correspondent
+        if (motDePasse === motDePasseConfirmation) {
+          // Les mots de passe correspondent, vous pouvez continuer avec le reste de votre code d'inscription
+          console.log("ok les mots de passe sont identique.");
+        } else {
+          // Les mots de passe ne correspondent pas, affichez un message d'erreur ou effectuez une action appropriée
+          console.log("Les mots de passe ne correspondent pas.");
+          // ...
+        }
+      });
+
+    } else {
 
       ////////////////////////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////
