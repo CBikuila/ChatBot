@@ -366,7 +366,7 @@ function envoyerMessage() {
             ];
             var reponseAleatoire =
               reponsesAleatoires[
-                Math.floor(Math.random() * reponsesAleatoires.length)
+              Math.floor(Math.random() * reponsesAleatoires.length)
               ];
             divReponse.classList.add(
               "messages__item",
