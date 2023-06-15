@@ -159,7 +159,8 @@ body {
 /*Connexion Utilisateur & Inscription utilisateur*/
 button.boutonCommande,
 button.boutonPanier,
-button.boutonRetour {
+button.boutonRetour,
+button.boutonCategorie{
     background-color: #0147C9;
     color: #fff;
     border: none;
