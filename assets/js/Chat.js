@@ -399,7 +399,7 @@ function envoyerMessage() {
 ///////////////////////////////Accès panier via chat////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-    } else if (recupererMessage.toLowerCase() === "panier") {
+    } else if (recupererMessage.toLowerCase() === "consulter panier") {
 
               // Création de l'élément div
               var divReponse = document.createElement("div");
@@ -407,9 +407,11 @@ function envoyerMessage() {
               divReponse.innerHTML = `
                 <p>Contenu du panier :</p>
                 <ul>
-                  <li id="produit1">Produit 1</li>
-                  <li id="produit2">Produit 2</li>
-                  <li id="produit3">Produit 3</li>
+                  <li id="produit1">Converse Chuck Taylor</li>
+                  <li id="produit2">Adidas Web Boost</li>
+                  <li id="produit3">New Balance GR997</li>
+                  <li id="produit4">Nike Airforce One</li>
+                  <li id="produit5">Nike Airmax</li>
                 </ul>
                 <button class="boutonRetour">Retour</button>
               `;
