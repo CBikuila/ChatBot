@@ -68,9 +68,7 @@ function envoyerMessage() {
           success: function (response) {
             response = response.trim();
             // Code à exécuter lorsque la réponse du fichier PHP est reçue
-            console.log("response", response == "connexion_reussie");
             if (response == "connexion_reussie") {
-              console.log(divReponse);
               divReponse.classList.add(
                 "messages__item",
                 "messages__item--visitor"
@@ -86,7 +84,6 @@ function envoyerMessage() {
               // Ajouter l'événement de déconnexion au bouton de déconnexion
               var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
               boutonDeconnexion.addEventListener("click", function () {
-                console.log('ici');
                 // Envoyer une requête AJAX pour déconnecter l'utilisateur
                 $.ajax({
                   url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
@@ -96,7 +93,6 @@ function envoyerMessage() {
                   }),
                   processData: false,
                   success: function (responseDeconnexion) {
-                    console.log(responseDeconnexion);
                     if (responseDeconnexion.status == "success") {
                       // Afficher un message d'erreur si la connexion échoue
                       divReponse.classList.add(
@@ -140,22 +136,22 @@ function envoyerMessage() {
                       produitsListe += "<p>" + response[i].prix_sneakers + "</p>";
                       produitsListe += "<p>" + response[i].genre_sneakers + "</p>";
                     }
-              
+
                     // Créer un élément div pour contenir la liste des produits
                     var listeProduits = document.createElement("div");
                     listeProduits.id = "listeProduits";
                     listeProduits.classList.add("messages__item", "messages__item--assistant");
-              
+
                     // Ajouter la liste des produits à la div
                     listeProduits.innerHTML = `
                       <p>Voici la liste des produits :</p>
                       ${produitsListe}
                       <button class="boutonRetour">Retour</button>
                     `;
-              
+
                     // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
                     msg.appendChild(listeProduits);
-              
+
                     // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
                     var boutonRetour = listeProduits.querySelector(".boutonRetour");
                     boutonRetour.addEventListener("click", function () {
@@ -164,7 +160,7 @@ function envoyerMessage() {
                   }
                 });
               });
-              
+
               var boutonPanier = divReponse.querySelector(".boutonPanier");
               boutonPanier.addEventListener("click", function () {
                 // Envoyer une requête AJAX pour récupérer la liste des produits
@@ -175,32 +171,32 @@ function envoyerMessage() {
                   processData: false,
                   success: function (response) {
                     // Construire la liste des produits
-                    var produitsListe = "";
+                    var produitsPanier = "";
                     for (var i = 0; i < response.length; i++) {
-                      produitsListe += "<p>" + response[i].photo_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].marque_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].modele_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].couleur_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].taille_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].prix_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].genre_sneakers + "</p>";
+                      produitsPanier += "<p>" + response[i].photo_sneakers + "</p>";
+                      produitsPanier += "<p>" + response[i].marque_sneakers + "</p>";
+                      produitsPanier += "<p>" + response[i].modele_sneakers + "</p>";
+                      produitsPanier += "<p>" + response[i].couleur_sneakers + "</p>";
+                      produitsPanier += "<p>" + response[i].taille_sneakers + "</p>";
+                      produitsPanier += "<p>" + response[i].prix_sneakers + "</p>";
+                      produitsPanier += "<p>" + response[i].genre_sneakers + "</p>";
                     }
-              
+
                     // Créer un élément div pour contenir la liste des produits
                     var listePanier = document.createElement("div");
                     listePanier.id = "listePanier";
                     listePanier.classList.add("messages__item", "messages__item--assistant");
-              
+
                     // Ajouter la liste des produits à la div
                     listePanier.innerHTML = `
                       <p>Voici la liste du panier :</p>
-                      ${produitsListe}
+                      ${produitsPanier}
                       <button class="boutonRetour">Retour</button>
                     `;
-              
+
                     // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
                     msg.appendChild(listePanier);
-              
+
                     // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
                     var boutonRetour = listePanier.querySelector(".boutonRetour");
                     boutonRetour.addEventListener("click", function () {
@@ -209,8 +205,8 @@ function envoyerMessage() {
                   }
                 });
               });
-              
-              
+
+
             } else {
 
               // Afficher un message d'erreur si la connexion échoue
@@ -270,7 +266,6 @@ function envoyerMessage() {
         ).value;
 
         if (motDePasse === motDePasseConfirmation) {
-          console.log("Les mots de passe sont identiques.");
 
           // Envoie les données au fichier PHP via AJAX
           $.ajax({
@@ -283,9 +278,6 @@ function envoyerMessage() {
             processData: false,
             success: function (responseInscription) {
               responseInscription = responseInscription.trim();
-              console.log("response", '"' + responseInscription + '"');
-              console.log(
-                "response",
                 responseInscription == "inscription_reussie"
               );
               if (responseInscription == "inscription_reussie") {
@@ -314,7 +306,6 @@ function envoyerMessage() {
                     }),
                     processData: false,
                     success: function (responseDeconnexion) {
-                      console.log(responseDeconnexion);
                       if (responseDeconnexion.status == "success") {
                         divReponse.innerHTML = `
                         <div class="messages__item messages__item--assistant">
@@ -366,9 +357,7 @@ function envoyerMessage() {
             ).value;
 
             if (motDePasse === motDePasseConfirmation) {
-              console.log("Les mots de passe sont identiques.");
             } else {
-              console.log("Les mots de passe ne correspondent pas.");
             }
           });
         }
@@ -392,7 +381,6 @@ function envoyerMessage() {
               "messages__item",
               "messages__item--visitor"
             );
-            console.log(response.question);
             divReponse.textContent = phraseAssociee;
           } else {
             // Si aucun résultat n'est trouvé dans la base de données, afficher une réponse aléatoire
