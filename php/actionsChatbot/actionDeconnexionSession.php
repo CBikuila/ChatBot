@@ -2,7 +2,6 @@
 // Déconnexion de l'utilisateur
 
 // Code de déconnexion ici
-session_start();
 session_destroy();
 // Renvoyer la réponse deconnexion réussie
 //echo 'response_deconnexion';
