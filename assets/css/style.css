@@ -151,9 +151,15 @@ body {
     margin-bottom: 5px;
 }
 
+/*Connexion admin*/
+
 .dashboard a {
     text-decoration: none;
     color: #fff;
+}
+
+.dashboard a:hover {
+    color: #000;
 }
 
 /*Connexion Utilisateur & Inscription utilisateur*/
@@ -169,7 +175,8 @@ button.boutonCategorie{
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 10px;
+    white-space: nowrap;
 }
 
  button.boutonDeconnexion {
@@ -181,7 +188,7 @@ button.boutonCategorie{
     cursor: pointer;
     display: flex;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 
