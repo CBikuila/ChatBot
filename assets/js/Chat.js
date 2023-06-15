@@ -78,7 +78,8 @@ function envoyerMessage() {
               divReponse.innerHTML = `
               <div class="messages__item messages__item--assistant">
                 <p>Vous êtes connecté !</p>
-                <button class="boutonCommande">Commande</button>
+                <button class="boutonCommande">Commandes</button>
+                <button class="boutonCategorie">Catégories produit</button>
                 <button class="boutonPanier">Panier</button>
                 <button class="boutonDeconnexion">Déconnexion</button>
               </div>
@@ -161,9 +162,55 @@ function envoyerMessage() {
                     boutonRetour.addEventListener("click", function () {
                       listeProduits.remove();
                     });
+
+                    
                   }
                 });
               });
+
+              var boutonCategories = divReponse.querySelector(".boutonCategorie");
+              boutonCategories.addEventListener("click", function () {
+                // Envoyer une requête AJAX pour récupérer la liste des produits
+                $.ajax({
+                  url: "/chatbot/php/actionsChatbot/actionConsultationCategorieProduit.php",
+                  type: "GET",
+                  dataType: "json",
+                  processData: false,
+                  success: function (response) {
+                    // Construire la liste des produits
+                    var categoriesListe = "";
+                    for (var i = 0; i < response.length; i++) {
+                      categoriesListe += "<p>" + response[i].categories_produits_id + "</p>";
+                      categoriesListe += "<p>" + response[i].categories_produits_nom + "</p>";
+                    }
+
+                    // Créer un élément div pour contenir la liste des produits
+                    var listeCategories = document.createElement("div");
+                    listeCategories.id = "listeProduits";
+                    listeCategories.classList.add("messages__item", "messages__item--assistant");
+
+                    // Ajouter la liste des produits à la div
+                    listeCategories.innerHTML = `
+                      <p>Voici la liste des produits :</p>
+                      ${categoriesListe}
+                      <button class="boutonRetour">Retour</button>
+                    `;
+
+                    // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
+                    msg.appendChild(listeProduits);
+
+                    // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
+                    var boutonRetour = listeProduits.querySelector(".boutonRetour");
+                    boutonRetour.addEventListener("click", function () {
+                      listeProduits.remove();
+                    });
+
+                    
+                  }
+                });
+              });  
+
+
 
               var boutonPanier = divReponse.querySelector(".boutonPanier");
               boutonPanier.addEventListener("click", function () {
