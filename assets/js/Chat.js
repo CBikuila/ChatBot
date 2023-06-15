@@ -263,6 +263,7 @@ function envoyerMessage() {
                       msg.appendChild(listePanier);
 
                       // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
+                      
                       var boutonRetour = listePanier.querySelector(".boutonRetour");
                       boutonRetour.addEventListener("click", function () {
                         listePanier.remove();
@@ -394,26 +395,31 @@ function envoyerMessage() {
       });
     
     } else if (recupererMessage.toLowerCase() === "panier") {
-      divReponse.classList.add("messages__item", "messages__item--visitor");
-      divReponse.innerHTML = `
-        <p>Contenu du panier :</p>
-        <ul>
-          <li id="produit1"></li>
-          <li id="produit2"></li>
-          <li id="produit3"></li>
-        </ul>
-        <button class="boutonRetour">Retour</button>
-      `;
-    
-      // Variables pour stocker les produits
-      var produit = document.getElementById("produitsPanier");
-    
-      var boutonRetour = divReponse.querySelector(".boutonRetour");
-      boutonRetour.addEventListener("click", function () {
-        // Logique pour revenir en arrière
-      });
-    }
-    
+ // Création de l'élément div
+var divReponse = document.createElement("div");
+divReponse.classList.add("messages__item", "messages__item--visitor");
+divReponse.innerHTML = `
+  <p>Contenu du panier :</p>
+  <ul>
+    <li id="produit1"></li>
+    <li id="produit2"></li>
+    <li id="produit3"></li>
+  </ul>
+  <button class="boutonRetour">Retour</button>
+`;
+
+// Ajout de divReponse au document
+document.body.appendChild(divReponse);
+
+// Variables pour stocker les produits
+var produits = document.getElementById("produitsPanier");
+
+// Attacher l'événement "click" au bouton "Retour"
+var boutonRetour = divReponse.querySelector(".boutonRetour");
+boutonRetour.addEventListener("click", function () {
+  // Logique pour revenir en arrière
+});
+
     } else {
       ////////////////////////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -454,6 +460,7 @@ function envoyerMessage() {
         },
       });
     }
+  }
 
     // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
     msg.appendChild(divReponse);
