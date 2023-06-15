@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : mar. 13 juin 2023 à 08:20
+-- Généré le : jeu. 15 juin 2023 à 19:59
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -95,11 +95,23 @@ INSERT INTO `motscles` (`motscles_id`, `mots_cles`, `question`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `panier`
+--
+
+CREATE TABLE `panier` (
+  `panier_id` int(11) NOT NULL,
+  `produit_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `produits`
 --
 
 CREATE TABLE `produits` (
   `produits_id` int(11) NOT NULL,
+  `photo_sneakers` varchar(100) NOT NULL,
   `marque_sneakers` varchar(50) DEFAULT NULL,
   `modele_sneakers` varchar(100) DEFAULT NULL,
   `couleur_sneakers` varchar(30) DEFAULT NULL,
@@ -112,8 +124,12 @@ CREATE TABLE `produits` (
 -- Déchargement des données de la table `produits`
 --
 
-INSERT INTO `produits` (`produits_id`, `marque_sneakers`, `modele_sneakers`, `couleur_sneakers`, `taille_sneakers`, `prix_sneakers`, `genre_sneakers`) VALUES
-(25, 'gfg', 'fgfg', 'fgfg', 30, ' &euro;', '');
+INSERT INTO `produits` (`produits_id`, `photo_sneakers`, `marque_sneakers`, `modele_sneakers`, `couleur_sneakers`, `taille_sneakers`, `prix_sneakers`, `genre_sneakers`) VALUES
+(31, 'conversechucktaylor.webp', 'Converse', 'Chuck Taylor', 'Noirs', 40, '100 &euro;', 'Mixte'),
+(34, 'adidaswebboost.webp', 'Adidas', 'Web Boost', 'Noirs', 42, '240 &euro;', 'Masculin'),
+(35, 'newbalancegr997.webp', 'New Balance', 'GR997', 'Grises', 37, '140', 'Mixtes'),
+(36, 'nikeairforceone.webp', 'Nike', 'Air Force', 'Blanches', 34, '140', 'Mixtes'),
+(37, 'nikeairmax.webp', 'Nike', 'Air Max', 'Blanches', 34, '200', 'Femmes');
 
 -- --------------------------------------------------------
 
@@ -153,10 +169,7 @@ CREATE TABLE `utilisateurs_connexion` (
 --
 
 INSERT INTO `utilisateurs_connexion` (`utilisateurs_id`, `prenom_utilisateur`, `mot_de_passe_utilisateur`) VALUES
-(1, 'fdfdf', 'dfdf'),
-(2, 'fdfdf', 'dfdf'),
-(3, 'fgfg', 'fgfg'),
-(4, 'fgfg', 'fgfg');
+(2, 'client', 'client'),
 
 --
 -- Index pour les tables déchargées
@@ -179,6 +192,12 @@ ALTER TABLE `categories_produits`
 --
 ALTER TABLE `motscles`
   ADD PRIMARY KEY (`motscles_id`);
+
+--
+-- Index pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD PRIMARY KEY (`panier_id`);
 
 --
 -- Index pour la table `produits`
@@ -218,13 +237,19 @@ ALTER TABLE `categories_produits`
 -- AUTO_INCREMENT pour la table `motscles`
 --
 ALTER TABLE `motscles`
-  MODIFY `motscles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `motscles_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+
+--
+-- AUTO_INCREMENT pour la table `panier`
+--
+ALTER TABLE `panier`
+  MODIFY `panier_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT pour la table `statuts_commandes`
@@ -236,7 +261,7 @@ ALTER TABLE `statuts_commandes`
 -- AUTO_INCREMENT pour la table `utilisateurs_connexion`
 --
 ALTER TABLE `utilisateurs_connexion`
-  MODIFY `utilisateurs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `utilisateurs_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
