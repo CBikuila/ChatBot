@@ -83,37 +83,37 @@ function envoyerMessage() {
                 <button class="boutonDeconnexion">Déconnexion</button>
               </div>
             `;
-            // Ajouter l'événement de déconnexion au bouton de déconnexion
-            var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
-            boutonDeconnexion.addEventListener("click", function () {
-              console.log('ici');
-              // Envoyer une requête AJAX pour déconnecter l'utilisateur
-              $.ajax({
-                url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
-                type: "POST",
-                data: JSON.stringify({
-                  deconnexion: boutonDeconnexion
-                }),
-                processData: false,
-                success: function (responseDeconnexion) {
-                  console.log(responseDeconnexion);
-                  if (responseDeconnexion.status == "success") {
-                    // Afficher un message d'erreur si la connexion échoue
-                    divReponse.classList.add(
-                      "messages__item",
-                      "messages__item--assistant"
-                    );
-                    divReponse.innerHTML = `
+              // Ajouter l'événement de déconnexion au bouton de déconnexion
+              var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
+              boutonDeconnexion.addEventListener("click", function () {
+                console.log('ici');
+                // Envoyer une requête AJAX pour déconnecter l'utilisateur
+                $.ajax({
+                  url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
+                  type: "POST",
+                  data: JSON.stringify({
+                    deconnexion: boutonDeconnexion
+                  }),
+                  processData: false,
+                  success: function (responseDeconnexion) {
+                    console.log(responseDeconnexion);
+                    if (responseDeconnexion.status == "success") {
+                      // Afficher un message d'erreur si la connexion échoue
+                      divReponse.classList.add(
+                        "messages__item",
+                        "messages__item--assistant"
+                      );
+                      divReponse.innerHTML = `
                     <p>Vous avez été déconnecté.</p>
                   `;
-                  }
-                },
+                    }
+                  },
+                });
               });
-            });
-              ////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////  //////////////////////////////////////////////////////////////
-              //////////////Accès aux produits après avoir cliqué sur "Commandes" dans le chatbot/////////////
-              ////////////////////////////////////////////////////////////////////////////////////////////////
+              ///////////////////////////////////////////////////////////////////////////////////////////////////
+              //////////////////////////////////  ///////////////////////////////////////////////////////////////
+              // Accès aux produits ou au panier après avoir cliqué sur "Commandes" ou "Panier" dans le chatbot//
+              ///////////////////////////////////////////////////////////////////////////////////////////////////
 
               // Ajoute le divReponse au DOM ici
 
@@ -121,15 +121,7 @@ function envoyerMessage() {
               //msg.appendChild(divReponse);
 
               var boutonCommande = divReponse.querySelector(".boutonCommande");
-                  boutonCommande.addEventListener("click", function () {
-                  creerNouvelleBulle();
-                  });
-
-              var boutonPanier = divReponse.querySelector(".boutonPanier");
-              var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
-
               boutonCommande.addEventListener("click", function () {
-
                 // Envoyer une requête AJAX pour récupérer la liste des produits
                 $.ajax({
                   url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
@@ -140,34 +132,72 @@ function envoyerMessage() {
                     // Construire la liste des produits
                     var produitsListe = "";
                     for (var i = 0; i < response.length; i++) {
-                    // Créez un élément div pour contenir la liste des produits
+                      produitsListe += "<p>" + response[i] + "</p>";
+                    }
+              
+                    // Créer un élément div pour contenir la liste des produits
                     var listeProduits = document.createElement("div");
                     listeProduits.id = "listeProduits";
                     listeProduits.classList.add("messages__item", "messages__item--assistant");
-
-                    // Ajoutez la liste des produits à la div
+              
+                    // Ajouter la liste des produits à la div
                     listeProduits.innerHTML = `
-                        <p>Voici la liste des produits :</p>
-                        ${produitsListe}
-                        <button class="boutonRetour">Retour</button>
+                      <p>Voici la liste des produits :</p>
+                      ${produitsListe}
+                      <button class="boutonRetour">Retour</button>
                     `;
-
-                    // Ajoutez la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
+              
+                    // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
                     msg.appendChild(listeProduits);
-
-                    
-                    // Clic sur bouton "Retour" pour supprimer la bulle chatbot
-
-                      var divReponse2 = document.getElementById("listeProduits");
-                      var boutonRetour = divReponse2[0].querySelector(".boutonRetour");
-                      boutonRetour.addEventListener("click", function() {
-                          divReponse2[0].remove();
-                      });                             
-                    }
-                  }},           
-                );
+              
+                    // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
+                    var boutonRetour = listeProduits.querySelector(".boutonRetour");
+                    boutonRetour.addEventListener("click", function () {
+                      listeProduits.remove();
+                    });
+                  }
+                });
               });
-  
+              
+              var boutonPanier = divReponse.querySelector(".boutonPanier");
+              boutonPanier.addEventListener("click", function () {
+                // Envoyer une requête AJAX pour récupérer la liste des produits
+                $.ajax({
+                  url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
+                  type: "GET",
+                  dataType: "json",
+                  processData: false,
+                  success: function (response) {
+                    // Construire la liste des produits
+                    var produitsListe = "";
+                    for (var i = 0; i < response.length; i++) {
+                      produitsListe += "<p>" + response[i] + "</p>";
+                    }
+              
+                    // Créer un élément div pour contenir la liste des produits
+                    var listePanier = document.createElement("div");
+                    listePanier.id = "listePanier";
+                    listePanier.classList.add("messages__item", "messages__item--assistant");
+              
+                    // Ajouter la liste des produits à la div
+                    listePanier.innerHTML = `
+                      <p>Voici la liste du panier :</p>
+                      ${produitsListe}
+                      <button class="boutonRetour">Retour</button>
+                    `;
+              
+                    // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
+                    msg.appendChild(listePanier);
+              
+                    // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
+                    var boutonRetour = listePanier.querySelector(".boutonRetour");
+                    boutonRetour.addEventListener("click", function () {
+                      listePanier.remove();
+                    });
+                  }
+                });
+              });
+              
             } else {
 
               // Afficher un message d'erreur si la connexion échoue
@@ -219,16 +249,16 @@ function envoyerMessage() {
       var boutonInscription = divReponse.querySelector(".boutonInscription");
       boutonInscription.addEventListener("click", function (event) {
         event.preventDefault();
-    
+
         var email = document.getElementById("emailInscription").value;
         var motDePasse = document.getElementById("motDePasseInscription").value;
         var motDePasseConfirmation = document.getElementById(
           "motDePasseConfirmation"
         ).value;
-    
+
         if (motDePasse === motDePasseConfirmation) {
           console.log("Les mots de passe sont identiques.");
-    
+
           // Envoie les données au fichier PHP via AJAX
           $.ajax({
             url: "/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php",
@@ -258,7 +288,7 @@ function envoyerMessage() {
                     <button class="boutonDeconnexion">Déconnexion</button>
                   </div>
                 `;
-    
+
                 // Ajouter l'événement de déconnexion au bouton de déconnexion
                 var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
                 boutonDeconnexion.addEventListener("click", function () {
@@ -273,7 +303,7 @@ function envoyerMessage() {
                     success: function (responseDeconnexion) {
                       console.log(responseDeconnexion);
                       if (responseDeconnexion.status == "success") {
-                      divReponse.innerHTML = `
+                        divReponse.innerHTML = `
                         <div class="messages__item messages__item--assistant">
                           <p>Vous avez été déconnecté.</p>
                         </div>
@@ -374,7 +404,7 @@ function envoyerMessage() {
 
     // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
     msg.appendChild(divReponse);
-    
+
 
     // Effacement du champ de texte
     champTexte.value = "";

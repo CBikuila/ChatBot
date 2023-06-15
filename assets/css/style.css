@@ -98,6 +98,17 @@ body {
     color: white;
 }
 
+#listeProduits {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #6F97DD;
+    max-width: 80%;
+    color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 .chatbox__footer .chatbox__send--footer {
     background: transparent;
     border-bottom-color: transparent;
