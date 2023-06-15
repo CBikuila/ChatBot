@@ -145,9 +145,10 @@ body {
     color: #fff;
 }
 
-/*Connexion Utilisateur*/
+/*Connexion Utilisateur & Inscription utilisateur*/
 button.boutonCommande,
-button.boutonPanier {
+button.boutonPanier,
+button.boutonRetour {
     background-color: #0147C9;
     color: #fff;
     border: none;

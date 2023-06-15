@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////Discution chatbot & utilisateurs//////////////////////////////////////
+/////////////////////////Disscution chatbot & utilisateurs//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Fonction pour envoyer le message + disscussion entre le chatbot et l'utilisateur
@@ -8,14 +8,9 @@
 function envoyerMessage() {
   // Récupération du texte dans le champ de texte.
   var recupererMessage = document.getElementById("envoyer").value;
-  console.log(recupererMessage);
 
   // Vérification que le champ de texte n'est pas vide.
   if (recupererMessage.trim() !== "") {
-    // Envoi du message
-    // Code pour envoyer le message...
-    console.log("Le message " + recupererMessage + " a été envoyé !");
-
     // Création d'un élément HTML <div> pour afficher le message de l'utilisateur
     var div = document.createElement("div");
     div.textContent = document.getElementById("envoyer").value;
@@ -73,7 +68,6 @@ function envoyerMessage() {
           success: function (response) {
             response = response.trim();
             // Code à exécuter lorsque la réponse du fichier PHP est reçue
-            console.log("response", '"' + response + '"');
             console.log("response", response == "connexion_reussie");
             if (response == "connexion_reussie") {
               console.log(divReponse);
@@ -89,7 +83,33 @@ function envoyerMessage() {
                 <button class="boutonDeconnexion">Déconnexion</button>
               </div>
             `;
-
+            // Ajouter l'événement de déconnexion au bouton de déconnexion
+            var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
+            boutonDeconnexion.addEventListener("click", function () {
+              console.log('ici');
+              // Envoyer une requête AJAX pour déconnecter l'utilisateur
+              $.ajax({
+                url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
+                type: "POST",
+                data: JSON.stringify({
+                  deconnexion: boutonDeconnexion
+                }),
+                processData: false,
+                success: function (responseDeconnexion) {
+                  console.log(responseDeconnexion);
+                  if (responseDeconnexion.status == "success") {
+                    // Afficher un message d'erreur si la connexion échoue
+                    divReponse.classList.add(
+                      "messages__item",
+                      "messages__item--assistant"
+                    );
+                    divReponse.innerHTML = `
+                    <p>Vous avez été déconnecté.</p>
+                  `;
+                  }
+                },
+              });
+            });
               ////////////////////////////////////////////////////////////////////////////////////////////////
               //////////////////////////////////  //////////////////////////////////////////////////////////////
               //////////////Accès aux produits après avoir cliqué sur "Commandes" dans le chatbot/////////////
@@ -102,8 +122,7 @@ function envoyerMessage() {
 
               var boutonCommande = divReponse.querySelector(".boutonCommande");
               var boutonPanier = divReponse.querySelector(".boutonPanier");
-              var boutonDeconnexion =
-                divReponse.querySelector(".boutonDeconnexion");
+              var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
 
               boutonCommande.addEventListener("click", function () {
                 console.log('Clic sur le bouton "Commande"');
@@ -141,10 +160,7 @@ function envoyerMessage() {
                         <button class="boutonRetour">Retour</button>
                       </div>
                     `;
-
-                    var boutonRetour =
-                      divReponse.querySelector(".boutonRetour");
-
+                    var boutonRetour = divReponse.querySelector(".boutonRetour");
                     boutonRetour.addEventListener("click", function () {
                       // Code pour revenir à l'interface avec les boutons "Commandes", "Panier" et "Déconnexion"
                       divReponse.innerHTML = `
@@ -163,32 +179,7 @@ function envoyerMessage() {
                         // Code pour afficher le panier
                       });
 
-                      // Ajouter l'événement de déconnexion au bouton de déconnexion
-                      var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
-                      boutonDeconnexion.addEventListener("click", function () {
-                        // Envoyer une requête AJAX pour déconnecter l'utilisateur
-                        $.ajax({
-                          url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
-                          type: "POST",
-                          data: JSON.stringify({
-                            deconnexion: boutonDeconnexion
-                          }),
-                          processData: false,
-                          success: function (responseDeconnexion) {
-                            console.log(responseDeconnexion);
-                            if (responseDeconnexion.status == "success") {
-                              // Afficher un message d'erreur si la connexion échoue
-                              divReponse.classList.add(
-                                "messages__item",
-                                "messages__item--assistant"
-                              );
-                              divReponse.innerHTML = `
-                              <p>Vous avez été déconnecté.</p>
-                            `;
-                            }
-                          },
-                        });
-                      });
+
                     });
                   },
                 });
