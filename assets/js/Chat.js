@@ -25,10 +25,10 @@ function envoyerMessage() {
     // Création d'un élément HTML <div> pour afficher la réponse du chatbot
     var divReponse = document.createElement("div");
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////Connexion Utilisateur via chat/////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////Connexion Utilisateur via chat/////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
     if (recupererMessage.toLowerCase() === "connexion") {
       // Réponse spécifique pour le mot-clé "admin"
       divReponse.classList.add("messages__item", "messages__item--visitor");
@@ -301,10 +301,10 @@ function envoyerMessage() {
     <div class="dashboard"><a href="/chatbot/php/connexion.php">Connexion au dashboard.</a></div>
     `;
 
-      ////////////////////////////////////////////////////////////////////////////////////////////////
-      ////////////////////////////////////////////////////////////////////////////////////////////////
-      /////////////////////////Inscription Utilisateur///////////////////////////////////////////////
-      ////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////Inscription Utilisateur via chat/////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
     } else if (recupererMessage.toLowerCase() === "inscription") {
       // Réponse spécifique pour le mot-clé "inscription"
       divReponse.classList.add("messages__item", "messages__item--visitor");
@@ -394,53 +394,64 @@ function envoyerMessage() {
         }
       });
     
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Accès panier via chat////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+
     } else if (recupererMessage.toLowerCase() === "panier") {
- // Création de l'élément div
-var divReponse = document.createElement("div");
-divReponse.classList.add("messages__item", "messages__item--visitor");
-divReponse.innerHTML = `
-  <p>Contenu du panier :</p>
-  <ul>
-    <li id="produit1"></li>
-    <li id="produit2"></li>
-    <li id="produit3"></li>
-  </ul>
-  <button class="boutonRetour">Retour</button>
-`;
 
-// Ajout de divReponse au document
-document.body.appendChild(divReponse);
+              // Création de l'élément div
+              var divReponse = document.createElement("div");
+              divReponse.classList.add("messages__item", "messages__item--visitor");
+              divReponse.innerHTML = `
+                <p>Contenu du panier :</p>
+                <ul>
+                  <li id="produit1">Produit 1</li>
+                  <li id="produit2">Produit 2</li>
+                  <li id="produit3">Produit 3</li>
+                </ul>
+                <button class="boutonRetour">Retour</button>
+              `;
 
-// Variables pour stocker les produits
-var produits = document.getElementById("produitsPanier");
+              // Ajout de divReponse au document
+              document.body.appendChild(divReponse);
 
-// Attacher l'événement "click" au bouton "Retour"
-var boutonRetour = divReponse.querySelector(".boutonRetour");
-boutonRetour.addEventListener("click", function () {
-  // Logique pour revenir en arrière
-});
+              // Variables pour stocker les produits
+              var produits = document.getElementById("produitsPanier");
 
-    } else {
-      ////////////////////////////////////////////////////////////////////////////////////////////////
-      ////////////////////////////////////////////////////////////////////////////////////////////////
-      //Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur/
-      ////////////////////////////////////////////////////////////////////////////////////////////////
-      $.ajax({
-        url: "/chatbot/php/actionsChatbot/messageDatabaseMotsCles.php",
-        type: "POST",
-        dataType: "json",
-        data: JSON.stringify({ motscles: recupererMessage }),
-        processData: false,
-        success: function (response) {
-          if (response.question !== "") {
-            // Si une réponse est trouvée dans la base de données
-            var phraseAssociee = response.question;
-            divReponse.classList.add(
-              "messages__item",
-              "messages__item--visitor"
-            );
-            divReponse.textContent = phraseAssociee;
+              // Attacher l'événement "click" au bouton "Retour"
+              var boutonRetour = divReponse.querySelector(".boutonRetour");
+              boutonRetour.addEventListener("click", function () {
+                // Logique pour revenir en arrière
+              });
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////
+//Connexion à la base de données pour récupérer la réponse associée au message de l'utilisateur/
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+   } else { 
+    
+              $.ajax({
+                url: "/chatbot/php/actionsChatbot/messageDatabaseMotsCles.php",
+                type: "POST",
+                dataType: "json",
+                data: JSON.stringify({ motscles: recupererMessage }),
+                processData: false,
+                success: function (response) {
+                  if (response.question !== "") {
+                    // Si une réponse est trouvée dans la base de données
+                    var phraseAssociee = response.question;
+                    divReponse.classList.add(
+                      "messages__item",
+                      "messages__item--visitor"
+                    );
+                    divReponse.textContent = phraseAssociee;
+
           } else {
+
             // Si aucun résultat n'est trouvé dans la base de données, afficher une réponse aléatoire
             var reponsesAleatoires = [
               "Désolé, je ne comprends pas.",
@@ -457,17 +468,14 @@ boutonRetour.addEventListener("click", function () {
             );
             divReponse.textContent = reponseAleatoire;
           }
+
         },
-      });
+      })
     }
   }
-
     // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
     msg.appendChild(divReponse);
 
-
     // Effacement du champ de texte
     champTexte.value = "";
-  }
-
-// Fin de discussion chatbot & utilisateur
+}

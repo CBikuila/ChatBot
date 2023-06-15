@@ -16,14 +16,14 @@ if (isset($_GET['id'])) {
     $resultatProduits = $requeteProduits->execute();
 
     // Supprimer la ligne de la table "utilisateurs"
-    $requeteUtilisateurs = $conn->prepare("DELETE FROM `utilisateurs` WHERE `utilisateurs_id` = ?");
+    $requeteUtilisateurs = $conn->prepare("DELETE FROM `utilisateurs_connexion` WHERE `utilisateurs_id` = ?");
     $requeteUtilisateurs->bind_param("i", $id);
     $resultatUtilisateurs = $requeteUtilisateurs->execute();
 
     // Vérifier quelle table a été affectée
     if ($resultatMotsCles) {
         // Redirection vers la page "motscles"
-        header("Location: motsCles.php");
+        header("Location: ./dashboard/motsCles.php");
         exit();
     } elseif ($resultatProduits) {
         // Redirection vers la page "produits"
@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
         exit();
     } elseif ($resultatUtilisateurs) {
         // Redirection vers la page "utilisateurs"
-        header("Location: dashboard.php");
+        header("Location: ./dashboard/dashboard.php");
         exit();
     } else {
         // Redirection vers une page d'erreur
