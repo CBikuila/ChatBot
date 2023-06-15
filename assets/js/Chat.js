@@ -68,9 +68,7 @@ function envoyerMessage() {
           success: function (response) {
             response = response.trim();
             // Code à exécuter lorsque la réponse du fichier PHP est reçue
-            console.log("response", response == "connexion_reussie");
             if (response == "connexion_reussie") {
-              console.log(divReponse);
               divReponse.classList.add(
                 "messages__item",
                 "messages__item--visitor"
@@ -125,7 +123,7 @@ function envoyerMessage() {
               var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
 
               boutonCommande.addEventListener("click", function () {
-
+                console.log('Clic sur le bouton "Commande"');
                 // Envoyer une requête AJAX pour récupérer la liste des produits
                 $.ajax({
                   url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
@@ -135,17 +133,19 @@ function envoyerMessage() {
                   success: function (response) {
                     // Construire la liste des produits
                     var produitsListe = "";
+                    console.log(response);
                     for (var i = 0; i < response.length; i++) {
                       
                       var produit = response[i];
                      produitsListe += `
                         <div>
-                          <p><img src="/chatbot/assets/images/produits/${produit.photo_sneakers}"/></p>
-                          <p>${produit.marque_sneakers} ${produit.modele_sneakers}</p>
-                          <p>${produit.couleur_sneakers}</p>
-                          <p>${produit.taille_sneakers}</p>
-                          <p>${produit.genre_sneakers}</p>
-                          <p>${produit.prix_sneakers}€</p>
+                          <p>Image: <img src="/chatbot/assets/images/produits/${produit.photo_sneakers}"/></p>
+                          <p>Marque: ${produit.marque_sneakers}</p>
+                          <p>Modèle: ${produit.modele_sneakers}</p>
+                          <p>Couleur: ${produit.couleur_sneakers}</p>
+                          <p>Taille: ${produit.taille_sneakers}</p>
+                          <p>Genre: ${produit.genre_sneakers}</p>
+                          <p>Prix: ${produit.prix_sneakers}€</p>
                         </div>
                       `;
                     }
@@ -255,11 +255,6 @@ function envoyerMessage() {
             processData: false,
             success: function (responseInscription) {
               responseInscription = responseInscription.trim();
-              console.log("response", '"' + responseInscription + '"');
-              console.log(
-                "response",
-                responseInscription == "inscription_reussie"
-              );
               if (responseInscription == "inscription_reussie") {
                 divReponse.classList.add(
                   "messages__item",
@@ -286,13 +281,10 @@ function envoyerMessage() {
                     }),
                     processData: false,
                     success: function (responseDeconnexion) {
-                      console.log(responseDeconnexion);
                       if (responseDeconnexion.status == "success") {
                       divReponse.innerHTML = `
-                        <div class="messages__item messages__item--assistant">
-                          <p>Vous avez été déconnecté.</p>
-                        </div>
-                      `;
+                      <p>Vous avez été déconnecté.</p>
+                    `;
                       }
                     },
                   });
