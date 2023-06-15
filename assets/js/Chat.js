@@ -132,7 +132,13 @@ function envoyerMessage() {
                     // Construire la liste des produits
                     var produitsListe = "";
                     for (var i = 0; i < response.length; i++) {
-                      produitsListe += "<p>" + response[i] + "</p>";
+                      produitsListe += "<p>" + response[i].photo_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].marque_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].modele_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].couleur_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].taille_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].prix_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].genre_sneakers + "</p>";
                     }
               
                     // Créer un élément div pour contenir la liste des produits
@@ -171,7 +177,13 @@ function envoyerMessage() {
                     // Construire la liste des produits
                     var produitsListe = "";
                     for (var i = 0; i < response.length; i++) {
-                      produitsListe += "<p>" + response[i] + "</p>";
+                      produitsListe += "<p>" + response[i].photo_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].marque_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].modele_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].couleur_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].taille_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].prix_sneakers + "</p>";
+                      produitsListe += "<p>" + response[i].genre_sneakers + "</p>";
                     }
               
                     // Créer un élément div pour contenir la liste des produits
@@ -197,6 +209,7 @@ function envoyerMessage() {
                   }
                 });
               });
+              
               
             } else {
 
