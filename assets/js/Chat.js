@@ -68,7 +68,9 @@ function envoyerMessage() {
           success: function (response) {
             response = response.trim();
             // Code à exécuter lorsque la réponse du fichier PHP est reçue
+            console.log("response", response == "connexion_reussie");
             if (response == "connexion_reussie") {
+              console.log(divReponse);
               divReponse.classList.add(
                 "messages__item",
                 "messages__item--visitor"
@@ -84,6 +86,7 @@ function envoyerMessage() {
               // Ajouter l'événement de déconnexion au bouton de déconnexion
               var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
               boutonDeconnexion.addEventListener("click", function () {
+                console.log('ici');
                 // Envoyer une requête AJAX pour déconnecter l'utilisateur
                 $.ajax({
                   url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
@@ -93,6 +96,7 @@ function envoyerMessage() {
                   }),
                   processData: false,
                   success: function (responseDeconnexion) {
+                    console.log(responseDeconnexion);
                     if (responseDeconnexion.status == "success") {
                       // Afficher un message d'erreur si la connexion échoue
                       divReponse.classList.add(
@@ -278,7 +282,8 @@ function envoyerMessage() {
             processData: false,
             success: function (responseInscription) {
               responseInscription = responseInscription.trim();
-                responseInscription == "inscription_reussie"
+              console.log("response", '"' + responseInscription + '"');
+              console.log("response", responseInscription == "inscription_reussie"
               );
               if (responseInscription == "inscription_reussie") {
                 divReponse.classList.add(
@@ -306,6 +311,7 @@ function envoyerMessage() {
                     }),
                     processData: false,
                     success: function (responseDeconnexion) {
+                      console.log(responseDeconnexion);
                       if (responseDeconnexion.status == "success") {
                         divReponse.innerHTML = `
                         <div class="messages__item messages__item--assistant">
