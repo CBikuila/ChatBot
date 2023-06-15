@@ -22,15 +22,13 @@ function envoyerMessage() {
     // Ajout de la div comme enfant de l'élément HTML avec l'identifiant "msg"
     msg.appendChild(div);
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////Connexion Utilisateur///////////////////////////////////////////////
-    ////////////////////////////////////////////////////////////////////////////////////////////////
-
     // Création d'un élément HTML <div> pour afficher la réponse du chatbot
     var divReponse = document.createElement("div");
 
-    // Vérification du mot-clé "admin"
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////Connexion Utilisateur via chat/////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////
     if (recupererMessage.toLowerCase() === "connexion") {
       // Réponse spécifique pour le mot-clé "admin"
       divReponse.classList.add("messages__item", "messages__item--visitor");
@@ -109,85 +107,91 @@ function envoyerMessage() {
                   },
                 });
               });
-              ///////////////////////////////////////////////////////////////////////////////////////////////////
-              //////////////////////////////////  ///////////////////////////////////////////////////////////////
-              // Accès aux produits ou au panier après avoir cliqué sur "Commandes" ou "Panier" dans le chatbot//
-              ///////////////////////////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////////////////////////
+              ////////////////////////////////Accès panier via chat/////////////////////////////////////////
+              ////////////////////////////////////////////////////////////////////////////////////////////////
 
-              // Ajoute le divReponse au DOM ici
 
-              // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
-              //msg.appendChild(divReponse);
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                //////////////////////////////////  ///////////////////////////////////////////////////////////////
+                // Accès aux produits ou au panier après avoir cliqué sur "Commandes" ou "Panier" dans le chatbot//
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-              var boutonCommande = divReponse.querySelector(".boutonCommande");
-              boutonCommande.addEventListener("click", function () {
-                // Envoyer une requête AJAX pour récupérer la liste des produits
-                $.ajax({
-                  url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
-                  type: "GET",
-                  dataType: "json",
-                  processData: false,
-                  success: function (response) {
-                    // Construire la liste des produits
-                    var produitsListe = "";
-                    for (var i = 0; i < response.length; i++) {
-                      produitsListe += "<p>" + response[i].photo_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].marque_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].modele_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].couleur_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].taille_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].prix_sneakers + "</p>";
-                      produitsListe += "<p>" + response[i].genre_sneakers + "</p>";
-                    }
+                // Ajoute le divReponse au DOM ici
 
-                    // Créer un élément div pour contenir la liste des produits
-                    var listeProduits = document.createElement("div");
-                    listeProduits.id = "listeProduits";
-                    listeProduits.classList.add("messages__item", "messages__item--assistant");
+                // Ajout de la div de réponse comme enfant de l'élément HTML avec l'identifiant "msg"
+                //msg.appendChild(divReponse);
 
-                    // Ajouter la liste des produits à la div
-                    listeProduits.innerHTML = `
+                var boutonCommande = divReponse.querySelector(".boutonCommande");
+                boutonCommande.addEventListener("click", function () {
+                  // Envoyer une requête AJAX pour récupérer la liste des produits
+                  $.ajax({
+                    url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
+                    type: "GET",
+                    dataType: "json",
+                    processData: false,
+                    success: function (response) {
+                      // Construire la liste des produits
+                      var produitsListe = "";
+                      for (var i = 0; i < response.length; i++) {
+                        produitsListe += "<p>" + response[i].photo_sneakers + "</p>";
+                        produitsListe += "<p>" + response[i].marque_sneakers + "</p>";
+                        produitsListe += "<p>" + response[i].modele_sneakers + "</p>";
+                        produitsListe += "<p>" + response[i].couleur_sneakers + "</p>";
+                        produitsListe += "<p>" + response[i].taille_sneakers + "</p>";
+                        produitsListe += "<p>" + response[i].prix_sneakers + "</p>";
+                        produitsListe += "<p>" + response[i].genre_sneakers + "</p>";
+                      }
+
+                      // Créer un élément div pour contenir la liste des produits
+                      var listeProduits = document.createElement("div");
+                      listeProduits.id = "listeProduits";
+                      listeProduits.classList.add("messages__item", "messages__item--assistant");
+
+                      // Ajouter la liste des produits à la div
+                      listeProduits.innerHTML = `
                       <p>Voici la liste des produits :</p>
                       ${produitsListe}
                       <button class="boutonRetour">Retour</button>
                     `;
 
-                    // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
-                    msg.appendChild(listeProduits);
+                      // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
+                      msg.appendChild(listeProduits);
 
-                    // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
-                    var boutonRetour = listeProduits.querySelector(".boutonRetour");
-                    boutonRetour.addEventListener("click", function () {
-                      listeProduits.remove();
-                    });
+                      // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
+                      var boutonRetour = listeProduits.querySelector(".boutonRetour");
+                      boutonRetour.addEventListener("click", function () {
+                        listeProduits.remove();
+                      });
 
 
-                  }
-                });
-              });
-
-              var boutonCategorie = divReponse.querySelector(".boutonCategorie");
-              boutonCategorie.addEventListener("click", function () {
-                // Envoyer une requête AJAX pour récupérer la liste des produits
-                $.ajax({
-                  url: "/chatbot/php/actionsChatbot/actionConsultationCategorieProduit.php",
-                  type: "GET",
-                  dataType: "json",
-                  processData: false,
-                  success: function (response) {
-                    // Construire la liste des catégories
-                    var categoriesListe = "";
-                    for (var i = 0; i < response.length; i++) {
-                      categoriesListe += "<option value='" + response[i].categories_produits_id + "'>" + response[i].categories_produits_nom + "</option>";
                     }
+                  });
+                });
 
-                    // Créer un élément div pour contenir la liste déroulante des catégories
-                    var listeCategories = document.createElement("div");
-                    listeCategories.id = "listeCategories";
-                    listeCategories.classList.add("messages__item", "messages__item--assistant");
+                var boutonCategorie = divReponse.querySelector(".boutonCategorie");
+                boutonCategorie.addEventListener("click", function () {
+                  // Envoyer une requête AJAX pour récupérer la liste des produits
+                  $.ajax({
+                    url: "/chatbot/php/actionsChatbot/actionConsultationCategorieProduit.php",
+                    type: "GET",
+                    dataType: "json",
+                    processData: false,
+                    success: function (response) {
+                      // Construire la liste des catégories
+                      var categoriesListe = "";
+                      for (var i = 0; i < response.length; i++) {
+                        categoriesListe += "<option value='" + response[i].categories_produits_id + "'>" + response[i].categories_produits_nom + "</option>";
+                      }
 
-                    // Ajouter la liste déroulante des catégories à la div
-                    listeCategories.innerHTML = `
+                      // Créer un élément div pour contenir la liste déroulante des catégories
+                      var listeCategories = document.createElement("div");
+                      listeCategories.id = "listeCategories";
+                      listeCategories.classList.add("messages__item", "messages__item--assistant");
+
+                      // Ajouter la liste déroulante des catégories à la div
+                      listeCategories.innerHTML = `
                               <p>Voici la liste des catégories de produits :</p>
                               <select id="categorieSelect">
                                   ${categoriesListe}
@@ -196,92 +200,94 @@ function envoyerMessage() {
                               <button class="boutonValider">Valider</button>
                           `;
 
-                    // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
-                    msg.appendChild(listeCategories);
+                      // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
+                      msg.appendChild(listeCategories);
 
-                    // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
-                    var boutonRetour = listeCategories.querySelector(".boutonRetour");
-                    boutonRetour.addEventListener("click", function () {
-                      listeCategories.remove();
-                    });
+                      // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
+                      var boutonRetour = listeCategories.querySelector(".boutonRetour");
+                      boutonRetour.addEventListener("click", function () {
+                        listeCategories.remove();
+                      });
 
-                    // Obtenir la valeur de la catégorie sélectionnée lorsque l'utilisateur clique sur "Valider"
-                    var boutonValider = listeCategories.querySelector(".boutonValider");
-                    boutonValider.addEventListener("click", function () {
-                      var categorieSelect = listeCategories.querySelector("#categorieSelect");
-                      var categorieId = categorieSelect.value;
-                      var categorieNom = categorieSelect.options[categorieSelect.selectedIndex].text;
+                      // Obtenir la valeur de la catégorie sélectionnée lorsque l'utilisateur clique sur "Valider"
+                      var boutonValider = listeCategories.querySelector(".boutonValider");
+                      boutonValider.addEventListener("click", function () {
+                        var categorieSelect = listeCategories.querySelector("#categorieSelect");
+                        var categorieId = categorieSelect.value;
+                        var categorieNom = categorieSelect.options[categorieSelect.selectedIndex].text;
 
-                      // Faire quelque chose avec la catégorie sélectionnée (par exemple, l'envoyer au serveur)
+                        // Faire quelque chose avec la catégorie sélectionnée (par exemple, l'envoyer au serveur)
 
-                      // Supprimer la bulle chatbot
-                      listeCategories.remove();
-                    });
-                  }
-                });
-              });
-
-
-              var boutonPanier = divReponse.querySelector(".boutonPanier");
-              boutonPanier.addEventListener("click", function () {
-                // Envoyer une requête AJAX pour récupérer la liste des produits
-                $.ajax({
-                  url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
-                  type: "GET",
-                  dataType: "json",
-                  processData: false,
-                  success: function (response) {
-                    // Construire la liste des produits
-                    var produitsPanier = "";
-                    for (var i = 0; i < response.length; i++) {
-                      produitsPanier += "<p>" + response[i].photo_sneakers + "</p>";
-                      produitsPanier += "<p>" + response[i].marque_sneakers + "</p>";
-                      produitsPanier += "<p>" + response[i].modele_sneakers + "</p>";
-                      produitsPanier += "<p>" + response[i].couleur_sneakers + "</p>";
-                      produitsPanier += "<p>" + response[i].taille_sneakers + "</p>";
-                      produitsPanier += "<p>" + response[i].prix_sneakers + "</p>";
-                      produitsPanier += "<p>" + response[i].genre_sneakers + "</p>";
+                        // Supprimer la bulle chatbot
+                        listeCategories.remove();
+                      });
                     }
+                  });
+                });
 
-                    // Créer un élément div pour contenir la liste des produits
-                    var listePanier = document.createElement("div");
-                    listePanier.id = "listePanier";
-                    listePanier.classList.add("messages__item", "messages__item--assistant");
 
-                    // Ajouter la liste des produits à la div
-                    listePanier.innerHTML = `
+                var boutonPanier = divReponse.querySelector(".boutonPanier");
+                boutonPanier.addEventListener("click", function () {
+                  // Envoyer une requête AJAX pour récupérer la liste des produits
+                  $.ajax({
+                    url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
+                    type: "GET",
+                    dataType: "json",
+                    processData: false,
+                    success: function (response) {
+                      // Construire la liste des produits
+                      var produitsPanier = "";
+                      for (var i = 0; i < response.length; i++) {
+                        produitsPanier += "<p>" + response[i].photo_sneakers + "</p>";
+                        produitsPanier += "<p>" + response[i].marque_sneakers + "</p>";
+                        produitsPanier += "<p>" + response[i].modele_sneakers + "</p>";
+                        produitsPanier += "<p>" + response[i].couleur_sneakers + "</p>";
+                        produitsPanier += "<p>" + response[i].taille_sneakers + "</p>";
+                        produitsPanier += "<p>" + response[i].prix_sneakers + "</p>";
+                        produitsPanier += "<p>" + response[i].genre_sneakers + "</p>";
+                      }
+
+                      // Créer un élément div pour contenir la liste des produits
+                      var listePanier = document.createElement("div");
+                      listePanier.id = "listePanier";
+                      listePanier.classList.add("messages__item", "messages__item--assistant");
+
+                      // Ajouter la liste des produits à la div
+                      listePanier.innerHTML = `
                       <p>Voici la liste du panier :</p>
                       ${produitsPanier}
                       <button class="boutonRetour">Retour</button>
                     `;
 
-                    // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
-                    msg.appendChild(listePanier);
+                      // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
+                      msg.appendChild(listePanier);
 
-                    // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
-                    var boutonRetour = listePanier.querySelector(".boutonRetour");
-                    boutonRetour.addEventListener("click", function () {
-                      listePanier.remove();
-                    });
-                  }
+                      // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
+                      var boutonRetour = listePanier.querySelector(".boutonRetour");
+                      boutonRetour.addEventListener("click", function () {
+                        listePanier.remove();
+                      });
+                    }
+                  });
                 });
-              });
 
 
-            } else {
+              } else {
 
-              // Afficher un message d'erreur si la connexion échoue
-              divReponse.classList.add(
-                "messages__item",
-                "messages__item--assistant"
-              );
-              divReponse.innerHTML = `
+                // Afficher un message d'erreur si la connexion échoue
+                divReponse.classList.add(
+                  "messages__item",
+                  "messages__item--assistant"
+                );
+                divReponse.innerHTML = `
               <p>Votre adresse e-mail ou mot de passe est incorrect. Veuillez réessayer de vous connecter.</p>
               `;
+              }
             }
-          },
-        });
+          }
+        )
       });
+
 
       ////////////////////////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -383,6 +389,37 @@ function envoyerMessage() {
               }
             },
           });
+
+        } else if (recupererMessage.toLowerCase() === "panier") {
+            console.log("je suis passé");
+            divReponse.classList.add("messages__item", "messages__item--visitor");
+            divReponse.innerHTML = `
+              <p>Contenu du panier :</p>
+              <ul>
+                <li id="produit1"></li>
+                <li id="produit2"></li>
+                <li id="produit3"></li>
+              </ul>
+              <button class="boutonCommande">Passer commande</button>
+              <button class="boutonRetour">Retour</button>
+            `;
+
+            // Variables pour stocker les produits
+            var produit1 = document.getElementById("produit1");
+            var produit2 = document.getElementById("produit2");
+            var produit3 = document.getElementById("produit3");
+
+            var boutonCommande = divReponse.querySelector(".boutonCommande");
+            boutonCommande.addEventListener("click", function () {
+              // Logique pour passer commande
+            });
+
+            var boutonRetour = divReponse.querySelector(".boutonRetour");
+            boutonRetour.addEventListener("click", function () {
+              // Logique pour revenir en arrière
+            });
+
+
         } else {
           var nouvelleBulle = document.createElement("div");
           nouvelleBulle.classList.add(
