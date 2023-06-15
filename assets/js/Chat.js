@@ -325,15 +325,15 @@ function envoyerMessage() {
       var boutonInscription = divReponse.querySelector(".boutonInscription");
       boutonInscription.addEventListener("click", function (event) {
         event.preventDefault();
-
+    
         var email = document.getElementById("emailInscription").value;
         var motDePasse = document.getElementById("motDePasseInscription").value;
         var motDePasseConfirmation = document.getElementById(
           "motDePasseConfirmation"
         ).value;
-
+    
         if (motDePasse === motDePasseConfirmation) {
-
+    
           // Envoie les données au fichier PHP via AJAX
           $.ajax({
             url: "/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php",
@@ -362,7 +362,7 @@ function envoyerMessage() {
                     <button class="boutonDeconnexion">Déconnexion</button>
                   </div>
                 `;
-
+    
                 // Ajouter l'événement de déconnexion au bouton de déconnexion
                 var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
                 boutonDeconnexion.addEventListener("click", function () {
@@ -389,80 +389,31 @@ function envoyerMessage() {
               }
             },
           });
-
-        } else if (recupererMessage.toLowerCase() === "panier") {
-            console.log("je suis passé");
-            divReponse.classList.add("messages__item", "messages__item--visitor");
-            divReponse.innerHTML = `
-              <p>Contenu du panier :</p>
-              <ul>
-                <li id="produit1"></li>
-                <li id="produit2"></li>
-                <li id="produit3"></li>
-              </ul>
-              <button class="boutonCommande">Passer commande</button>
-              <button class="boutonRetour">Retour</button>
-            `;
-
-            // Variables pour stocker les produits
-            var produit1 = document.getElementById("produit1");
-            var produit2 = document.getElementById("produit2");
-            var produit3 = document.getElementById("produit3");
-
-            var boutonCommande = divReponse.querySelector(".boutonCommande");
-            boutonCommande.addEventListener("click", function () {
-              // Logique pour passer commande
-            });
-
-            var boutonRetour = divReponse.querySelector(".boutonRetour");
-            boutonRetour.addEventListener("click", function () {
-              // Logique pour revenir en arrière
-            });
-
-
-        } else {
-          var nouvelleBulle = document.createElement("div");
-          nouvelleBulle.classList.add(
-            "messages__item",
-            "messages__item--visitor"
-          );
-          nouvelleBulle.innerHTML = `
-        <form class="chatbot-form">
-          <h2 class="title">Inscription</h2>
-          <label for="email">E-mail :</label>
-          <input type="text" placeholder="Adresse email" id="emailInscription" value="${email}" />
-          <br>
-          <label for="password">Mot de passe :</label>
-          <input type="password" placeholder="Mot de passe" id="motDePasseInscription" />
-          <br>
-          <label for="passwordConfirmation">Confirmation du mot de passe :</label>
-          <input type="password" placeholder="Mot de passe" id="motDePasseConfirmation" />
-          <br>
-          <button type="submit" class="boutonInscription">S'inscrire</button>
-        </form>
-        <br>
-        <p class="message-erreur">Les mots de passe ne correspondent pas. Veuillez réessayer l'inscription</p>
-      `;
-
-          divReponse.parentNode.replaceChild(nouvelleBulle, divReponse);
-
-          boutonInscription = nouvelleBulle.querySelector(".boutonInscription");
-
-          boutonInscription.addEventListener("click", function (event) {
-            event.preventDefault();
-
-            email = document.getElementById("emailInscription").value;
-            motDePasse = document.getElementById("motDePasseInscription").value;
-            motDePasseConfirmation = document.getElementById(
-              "motDePasseConfirmation"
-            ).value;
-
-            if (motDePasse === motDePasseConfirmation) {
-            } else {
-            }
-          });
+    
         }
       });
+    
+    } else if (recupererMessage.toLowerCase() === "panier") {
+      divReponse.classList.add("messages__item", "messages__item--visitor");
+      divReponse.innerHTML = `
+        <p>Contenu du panier :</p>
+        <ul>
+          <li id="produit1"></li>
+          <li id="produit2"></li>
+          <li id="produit3"></li>
+        </ul>
+        <button class="boutonRetour">Retour</button>
+      `;
+    
+      // Variables pour stocker les produits
+      var produit = document.getElementById("produitsPanier");
+    
+      var boutonRetour = divReponse.querySelector(".boutonRetour");
+      boutonRetour.addEventListener("click", function () {
+        // Logique pour revenir en arrière
+      });
+    }
+    
     } else {
       ////////////////////////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -511,6 +462,5 @@ function envoyerMessage() {
     // Effacement du champ de texte
     champTexte.value = "";
   }
-}
 
 // Fin de discussion chatbot & utilisateur
