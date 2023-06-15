@@ -76,14 +76,12 @@ function envoyerMessage() {
                 "messages__item--visitor"
               );
               divReponse.innerHTML = `
-              <div class="messages__item messages__item--assistant">
-              <p>Vous êtes connecté !</p>
-              <button class="boutonCommande">Commandes</button>
-              <button class="boutonCategorie">Catégories produit</button>   
-              <button class="boutonPanier">Panier</button>
-              <button class="boutonDeconnexion">Déconnexion</button>
-              </div>
-              `;
+                <p>Vous êtes connecté !</p>
+                <button class="boutonCommande">Commandes</button>
+                <button class="boutonCategorie">Catégories produit</button>
+                <button class="boutonPanier">Panier</button>
+                <button class="boutonDeconnexion">Déconnexion</button>
+            `;
               // Ajouter l'événement de déconnexion au bouton de déconnexion
               var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
               boutonDeconnexion.addEventListener("click", function () {
