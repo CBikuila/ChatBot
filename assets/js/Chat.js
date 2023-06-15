@@ -77,13 +77,13 @@ function envoyerMessage() {
               );
               divReponse.innerHTML = `
               <div class="messages__item messages__item--assistant">
-                <p>Vous êtes connecté !</p>
-                <button class="boutonCommande">Commandes</button>
-                <button class="boutonCategorie">Catégories produit</button>
-                <button class="boutonPanier">Panier</button>
-                <button class="boutonDeconnexion">Déconnexion</button>
+              <p>Vous êtes connecté !</p>
+              <button class="boutonCommande">Commandes</button>
+              <button class="boutonCategorie">Catégories produit</button>   
+              <button class="boutonPanier">Panier</button>
+              <button class="boutonDeconnexion">Déconnexion</button>
               </div>
-            `;
+              `;
               // Ajouter l'événement de déconnexion au bouton de déconnexion
               var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
               boutonDeconnexion.addEventListener("click", function () {
@@ -163,13 +163,13 @@ function envoyerMessage() {
                       listeProduits.remove();
                     });
 
-                    
+
                   }
                 });
               });
 
-              var boutonCategories = divReponse.querySelector(".boutonCategorie");
-              boutonCategories.addEventListener("click", function () {
+              var boutonCategorie = divReponse.querySelector(".boutonCategorie");
+              boutonCategorie.addEventListener("click", function () {
                 // Envoyer une requête AJAX pour récupérer la liste des produits
                 $.ajax({
                   url: "/chatbot/php/actionsChatbot/actionConsultationCategorieProduit.php",
@@ -177,39 +177,51 @@ function envoyerMessage() {
                   dataType: "json",
                   processData: false,
                   success: function (response) {
-                    // Construire la liste des produits
+                    // Construire la liste des catégories
                     var categoriesListe = "";
                     for (var i = 0; i < response.length; i++) {
-                      categoriesListe += "<p>" + response[i].categories_produits_id + "</p>";
-                      categoriesListe += "<p>" + response[i].categories_produits_nom + "</p>";
+                      categoriesListe += "<option value='" + response[i].categories_produits_id + "'>" + response[i].categories_produits_nom + "</option>";
                     }
 
-                    // Créer un élément div pour contenir la liste des produits
+                    // Créer un élément div pour contenir la liste déroulante des catégories
                     var listeCategories = document.createElement("div");
-                    listeCategories.id = "listeProduits";
+                    listeCategories.id = "listeCategories";
                     listeCategories.classList.add("messages__item", "messages__item--assistant");
 
-                    // Ajouter la liste des produits à la div
+                    // Ajouter la liste déroulante des catégories à la div
                     listeCategories.innerHTML = `
-                      <p>Voici la liste des produits :</p>
-                      ${categoriesListe}
-                      <button class="boutonRetour">Retour</button>
-                    `;
+                              <p>Voici la liste des catégories de produits :</p>
+                              <select id="categorieSelect">
+                                  ${categoriesListe}
+                              </select>
+                              <button class="boutonRetour">Retour</button>
+                              <button class="boutonValider">Valider</button>
+                          `;
 
                     // Ajouter la div au DOM, en tant qu'enfant de l'élément HTML avec l'identifiant "msg"
-                    msg.appendChild(listeProduits);
+                    msg.appendChild(listeCategories);
 
                     // Clic sur le bouton "Retour" pour supprimer la bulle chatbot
-                    var boutonRetour = listeProduits.querySelector(".boutonRetour");
+                    var boutonRetour = listeCategories.querySelector(".boutonRetour");
                     boutonRetour.addEventListener("click", function () {
-                      listeProduits.remove();
+                      listeCategories.remove();
                     });
 
-                    
+                    // Obtenir la valeur de la catégorie sélectionnée lorsque l'utilisateur clique sur "Valider"
+                    var boutonValider = listeCategories.querySelector(".boutonValider");
+                    boutonValider.addEventListener("click", function () {
+                      var categorieSelect = listeCategories.querySelector("#categorieSelect");
+                      var categorieId = categorieSelect.value;
+                      var categorieNom = categorieSelect.options[categorieSelect.selectedIndex].text;
+
+                      // Faire quelque chose avec la catégorie sélectionnée (par exemple, l'envoyer au serveur)
+
+                      // Supprimer la bulle chatbot
+                      listeCategories.remove();
+                    });
                   }
                 });
-              });  
-
+              });
 
 
               var boutonPanier = divReponse.querySelector(".boutonPanier");
@@ -341,6 +353,7 @@ function envoyerMessage() {
                   <div class="messages__item messages__item--assistant">
                     <p>Bienvenue dans votre compte !</p>
                     <button class="boutonCommande">Commande</button>
+                    <button class="boutonCategorie">Commande</button>
                     <button class="boutonPanier">Panier</button>
                     <button class="boutonDeconnexion">Déconnexion</button>
                   </div>

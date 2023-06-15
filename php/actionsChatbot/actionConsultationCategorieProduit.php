@@ -2,27 +2,21 @@
 include('../config.php');
 error_reporting(E_ERROR);
 
-$categorieId = 1; // Remplacez 1 par l'ID de la catégorie souhaitée
-
-// Requête SQL pour récupérer les produits de la catégorie spécifiée
-
-$sql = "SELECT p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, s.categories_produits_nom
-FROM produits p
-LEFT JOIN categories_produits s ON p.produits_id = s.categories_produits_id
-WHERE categories_produits_id = $categorieId" ;
-
+// Requête SQL pour récupérer toutes les catégories de produits
+$sql = "SELECT categories_produits_id, categories_produits_nom FROM categories_produits";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Affichage des produits
+    echo '<select name="categorie" id="categorie">';
     while ($row = $result->fetch_assoc()) {
-        echo "Categorie produit : " . $row["categories_produits_id"] . "<br>";
-        echo "Marque : " . $row["marque_sneakers"] . "<br>";
-        echo "Modele : " . $row["modele_sneakers"] . "<br>";
-        echo "<br>";
+        $categorieId = $row["<select name='categories_produits"]>
+        $categorieId = $row["categories_produits_id"];
+        $categorieNom = $row["categories_produits_nom"];
+        echo '<option value="' . $categorieId . '">' . $categorieNom . '</option>';
     }
+    echo '</select>';
 } else {
-    echo "Aucun produit trouvé dans cette catégorie.";
+    echo "Aucune catégorie de produits trouvée.";
 }
 
 $conn->close();
