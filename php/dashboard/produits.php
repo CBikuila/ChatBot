@@ -19,10 +19,6 @@ error_reporting(E_ERROR);
                     </div>
                     <form action="produits.php" method="post">
                         <div class="mb-3">
-                        <img src="/chatbot/produits/<?php echo $photo_sneakers; ?>" alt="photo_sneakers"/>
-                            <input type="file" class="form-control" name="photo_sneakers" id="photo_sneakers" aria-describedby="textHelp">
-                        </div>
-                        <div class="mb-3">
                             <label for="mots_cles" class="form-label">Marque :</label>
                             <input type="text" class="form-control" name="marque_sneakers" id="marque_sneakers" aria-describedby="textHelp">
                         </div>
@@ -37,10 +33,6 @@ error_reporting(E_ERROR);
                         <div class="mb-3">
                             <label for="reponse" class="form-label">Taille :</label>
                             <input type="text" class="form-control" name="taille_sneakers" id="taille_sneakers">
-                        </div>
-                        <div class="mb-3">
-                            <label for="reponse" class="form-label">Genre :</label>
-                            <input type="text" class="form-control" name="genre_sneakers" id="genre_sneakers">
                         </div>
                         <div class="mb-3">
                             <label for="reponse" class="form-label">Prix :</label>
@@ -67,19 +59,16 @@ error_reporting(E_ERROR);
 
 <?php
 // Ajout des produits à la base de données SQL "sneakme_database"
-$imagesSneakers = $_POST["photo_sneakers"];
 $marquesSneakers = $_POST["marque_sneakers"];
 $modelesSneakers = $_POST["modele_sneakers"];
 $couleursSneakers = $_POST["couleur_sneakers"];
 $taillesSneakers = $_POST["taille_sneakers"];
-$genresSneakers = $_POST["genre_sneakers"];
 $prixSneakers = $_POST["prix_sneakers"] . " &euro;";
 $categorieProduit = $_POST["categories_produits_nom"];
 
-if ($imagesSneakers && $marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $genresSneakers && $prixSneakers) {
-
-    $insertion = "INSERT INTO produits (photo_sneakers, marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, genre_sneakers, prix_sneakers) 
-                  VALUES ('$imagesSneakers', '$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$genresSneakers', '$prixSneakers')";
+if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers) {
+    $insertion = "INSERT INTO produits (marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, genre_sneakers, prix_sneakers) 
+                  VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$prixSneakers')";
 
     $result = $conn->query($insertion);
     if ($result == true) {
@@ -110,19 +99,17 @@ if (!empty($categoriesProduits)) {
 <div class="interface">
     <table>
         <tr>
-            <th>Image</th>
             <th>Marque</th>
             <th>Modèle</th>
             <th>Couleur</th>
             <th>Taille</th>
             <th>Prix</th>
-            <th>Genre</th>
             <th>Action</th>
             <th>Catégorie produit<th>
         </tr>
             <?php
             // Exécution de la requête SQL pour récupérer les produits et les catégories des produits
-            $sql = "SELECT p.produits_id, p.photo_sneakers, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, p.genre_sneakers, s.categories_produits_nom
+            $sql = "SELECT p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, s.categories_produits_nom
                     FROM produits p
                     LEFT JOIN categories_produits s ON p.produits_id = s.categories_produits_id";
             $result = $conn->query($sql);
@@ -131,12 +118,10 @@ if (!empty($categoriesProduits)) {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<td>" . $row["photo_sneakers"] . "</td>";
                     echo "<td>" . $row["marque_sneakers"] . "</td>";
                     echo "<td>" . $row["modele_sneakers"] . "</td>";
                     echo "<td>" . $row["couleur_sneakers"] . "</td>";
                     echo "<td>" . $row["taille_sneakers"] . "</td>";
-                    echo "<td>" . $row["genre_sneakers"] . "</td>";
                     echo "<td>" . $row["prix_sneakers"] . "</td>";
                     echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["produits_id"] . '">Supprimer</a></td>';
                     echo "<td>";

@@ -7,19 +7,24 @@ error_reporting(E_ERROR);
 
 <table>
     <tr>
-        <th>Image</th>
         <th>Marque</th>
         <th>Modèle</th>
         <th>Couleur</th>
         <th>Taille</th>
-        <th>Genre</th>
         <th>Prix</th>
         <th>Statut de commande</th>
-    </tr>  
-
+    </tr>    
 <?php
+// Connexion à la base de données
+$conn = new mysqli("localhost", "root", "root", "sneakme_database");
+
+// Vérification de la connexion
+if ($conn->connect_error) {
+    die("Erreur de connexion à la base de données : " . $conn->connect_error);
+}
+
 // Exécution de la requête SQL pour récupérer les produits et leur statut de commande
-$sql = "SELECT p.produits_id, p.photo_sneakers, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.genre_sneakers, p.prix_sneakers, s.statuts_commandes_etapes
+$sql = "SELECT p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, s.statuts_commandes_etapes
         FROM produits p
         LEFT JOIN statuts_commandes s ON p.produits_id = s.commandes_id";
 
@@ -35,12 +40,10 @@ if ($result->num_rows > 0) {
     // Affichage des lignes
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
-        echo "<td>" . $row["photo_sneakers"] . "</td>";
         echo "<td>" . $row["marque_sneakers"] . "</td>";
         echo "<td>" . $row["modele_sneakers"] . "</td>";
         echo "<td>" . $row["couleur_sneakers"] . "</td>";
         echo "<td>" . $row["taille_sneakers"] . "</td>";
-        echo "<td>" . $row["genre_sneakers"] . "</td>";
         echo "<td>" . $row["prix_sneakers"] . "</td>";
         echo "<td>";
         echo "<select>";

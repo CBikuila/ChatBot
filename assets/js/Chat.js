@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////Discution chatbot & utilisateurs//////////////////////////////////////
+/////////////////////////Disscution chatbot & utilisateurs//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Fonction pour envoyer le message + disscussion entre le chatbot et l'utilisateur
@@ -8,14 +8,9 @@
 function envoyerMessage() {
   // Récupération du texte dans le champ de texte.
   var recupererMessage = document.getElementById("envoyer").value;
-  console.log(recupererMessage);
 
   // Vérification que le champ de texte n'est pas vide.
   if (recupererMessage.trim() !== "") {
-    // Envoi du message
-    // Code pour envoyer le message...
-    console.log("Le message " + recupererMessage + " a été envoyé !");
-
     // Création d'un élément HTML <div> pour afficher le message de l'utilisateur
     var div = document.createElement("div");
     div.textContent = document.getElementById("envoyer").value;
@@ -73,7 +68,6 @@ function envoyerMessage() {
           success: function (response) {
             response = response.trim();
             // Code à exécuter lorsque la réponse du fichier PHP est reçue
-            console.log("response", '"' + response + '"');
             console.log("response", response == "connexion_reussie");
             if (response == "connexion_reussie") {
               console.log(divReponse);
@@ -83,13 +77,39 @@ function envoyerMessage() {
               );
               divReponse.innerHTML = `
               <div class="messages__item messages__item--assistant">
-                <p>Bienvenue dans votre compte !</p>
+                <p>Vous êtes connecter !</p>
                 <button class="boutonCommande">Commande</button>
                 <button class="boutonPanier">Panier</button>
                 <button class="boutonDeconnexion">Déconnexion</button>
               </div>
             `;
-
+            // Ajouter l'événement de déconnexion au bouton de déconnexion
+            var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
+            boutonDeconnexion.addEventListener("click", function () {
+              console.log('ici');
+              // Envoyer une requête AJAX pour déconnecter l'utilisateur
+              $.ajax({
+                url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
+                type: "POST",
+                data: JSON.stringify({
+                  deconnexion: boutonDeconnexion
+                }),
+                processData: false,
+                success: function (responseDeconnexion) {
+                  console.log(responseDeconnexion);
+                  if (responseDeconnexion.status == "success") {
+                    // Afficher un message d'erreur si la connexion échoue
+                    divReponse.classList.add(
+                      "messages__item",
+                      "messages__item--assistant"
+                    );
+                    divReponse.innerHTML = `
+                    <p>Vous avez été déconnecté.</p>
+                  `;
+                  }
+                },
+              });
+            });
               ////////////////////////////////////////////////////////////////////////////////////////////////
               //////////////////////////////////  //////////////////////////////////////////////////////////////
               //////////////Accès aux produits après avoir cliqué sur "Commandes" dans le chatbot/////////////
@@ -102,8 +122,7 @@ function envoyerMessage() {
 
               var boutonCommande = divReponse.querySelector(".boutonCommande");
               var boutonPanier = divReponse.querySelector(".boutonPanier");
-              var boutonDeconnexion =
-                divReponse.querySelector(".boutonDeconnexion");
+              var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
 
               boutonCommande.addEventListener("click", function () {
 
@@ -139,10 +158,7 @@ function envoyerMessage() {
                         <button class="boutonRetour">Retour</button>
                       </div>
                     `;
-
-                    var boutonRetour =
-                      divReponse.querySelector(".boutonRetour");
-
+                    var boutonRetour = divReponse.querySelector(".boutonRetour");
                     boutonRetour.addEventListener("click", function () {
                       // Code pour revenir à l'interface avec les boutons "Commandes", "Panier" et "Déconnexion"
                       divReponse.innerHTML = `
@@ -153,7 +169,6 @@ function envoyerMessage() {
                           <button class="boutonDeconnexion">Déconnexion</button>
                         </div>
                       `;
-
                       boutonCommande.addEventListener("click", function () {
                         $(boutonCommande);
                       });
@@ -162,30 +177,13 @@ function envoyerMessage() {
                         // Code pour afficher le panier
                       });
 
-                      boutonDeconnexion.addEventListener("click", function () {
-                        // Code pour effectuer la déconnexion
-                      });
+
                     });
                   },
                 });
               });
 
-              boutonDeconnexion.addEventListener("click", function () {
-                console.log("deconnexion");
-                // Envoyer une requête AJAX pour déconnecter l'utilisateur
-                $.ajax({
-                  url: "/chatbot/php/actionsChatbot/deconnexion.php",
-                  type: "POST",
-                  success: function (response) {
-                    // Afficher un message de déconnexion
-                    divReponse.innerHTML = `
-                      <div class="messages__item messages__item--assistant">
-                        <p>Vous avez été déconnecté.</p>
-                      </div>
-                    `;
-                  },
-                });
-              });
+             
             } else {
               // Afficher un message d'erreur si la connexion échoue
               divReponse.classList.add(
@@ -219,33 +217,33 @@ function envoyerMessage() {
       // Réponse spécifique pour le mot-clé "inscription"
       divReponse.classList.add("messages__item", "messages__item--visitor");
       divReponse.innerHTML = `
-    <form class="chatbot-form">
-      <h2 class="title">Inscription</h2>
-      <label for="email">E-mail :</label>
-      <input type="text" placeholder="Adresse email" id="emailInscription" />
-      <br>
-      <label for="password">Mot de passe :</label>
-      <input type="password" placeholder="Mot de passe" id="motDePasseInscription" />
-      <br>
-      <label for="passwordConfirmation">Confirmation du mot de passe :</label>
-      <input type="password" placeholder="Mot de passe" id="motDePasseConfirmation" />
-      <br>
-      <button type="submit" class="boutonInscription">S'inscrire</button>
-    </form>
-  `;
+        <form class="chatbot-form">
+          <h2 class="title">Inscription</h2>
+          <label for="email">E-mail :</label>
+          <input type="text" placeholder="Adresse email" id="emailInscription" />
+          <br>
+          <label for="password">Mot de passe :</label>
+          <input type="password" placeholder="Mot de passe" id="motDePasseInscription" />
+          <br>
+          <label for="passwordConfirmation">Confirmation du mot de passe :</label>
+          <input type="password" placeholder="Mot de passe" id="motDePasseConfirmation" />
+          <br>
+          <button type="submit" class="boutonInscription">S'inscrire</button>
+        </form>
+      `;
       var boutonInscription = divReponse.querySelector(".boutonInscription");
       boutonInscription.addEventListener("click", function (event) {
         event.preventDefault();
-
+    
         var email = document.getElementById("emailInscription").value;
         var motDePasse = document.getElementById("motDePasseInscription").value;
         var motDePasseConfirmation = document.getElementById(
           "motDePasseConfirmation"
         ).value;
-
+    
         if (motDePasse === motDePasseConfirmation) {
           console.log("Les mots de passe sont identiques.");
-
+    
           // Envoie les données au fichier PHP via AJAX
           $.ajax({
             url: "/chatbot/php/actionsChatbot/actionConnexionAdminUtilisateurs.php",
@@ -268,19 +266,41 @@ function envoyerMessage() {
                   "messages__item--visitor"
                 );
                 divReponse.innerHTML = `
-              <div class="messages__item messages__item--assistant">
-                <p>Bienvenue dans votre compte !</p>
-                <button class="boutonCommande">Commande</button>
-                <button class="boutonPanier">Panier</button>
-                <button class="boutonDeconnexion">Déconnexion</button>
-              </div>
-            `;
+                  <div class="messages__item messages__item--assistant">
+                    <p>Bienvenue dans votre compte !</p>
+                    <button class="boutonCommande">Commande</button>
+                    <button class="boutonPanier">Panier</button>
+                    <button class="boutonDeconnexion">Déconnexion</button>
+                  </div>
+                `;
+    
+                // Ajouter l'événement de déconnexion au bouton de déconnexion
+                var boutonDeconnexion = divReponse.querySelector(".boutonDeconnexion");
+                boutonDeconnexion.addEventListener("click", function () {
+                  // Envoyer une requête AJAX pour déconnecter l'utilisateur
+                  $.ajax({
+                    url: "/chatbot/php/actionsChatbot/actionDeconnexionSession.php",
+                    type: "POST",
+                    data: JSON.stringify({
+                      deconnexion: boutonDeconnexion
+                    }),
+                    processData: false,
+                    success: function (responseDeconnexion) {
+                      console.log(responseDeconnexion);
+                      if (responseDeconnexion.status == "success") {
+                      divReponse.innerHTML = `
+                        <div class="messages__item messages__item--assistant">
+                          <p>Vous avez été déconnecté.</p>
+                        </div>
+                      `;
+                      }
+                    },
+                  });
+                });
               }
             },
           });
         } else {
-          console.log("Les mots de passe ne correspondent pas.");
-
           var nouvelleBulle = document.createElement("div");
           nouvelleBulle.classList.add(
             "messages__item",
