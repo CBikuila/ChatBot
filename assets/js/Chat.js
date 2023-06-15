@@ -106,7 +106,7 @@ function envoyerMessage() {
                 divReponse.querySelector(".boutonDeconnexion");
 
               boutonCommande.addEventListener("click", function () {
-                console.log('Clic sur le bouton "Commande"');
+
                 // Envoyer une requête AJAX pour récupérer la liste des produits
                 $.ajax({
                   url: "/chatbot/php/actionsChatbot/messageDatabaseProduits.php",
@@ -116,19 +116,17 @@ function envoyerMessage() {
                   success: function (response) {
                     // Construire la liste des produits
                     var produitsListe = "";
-                    console.log(response);
                     for (var i = 0; i < response.length; i++) {
                       
                       var produit = response[i];
                      produitsListe += `
                         <div>
-                          <p>Image: <img src="/chatbot/assets/images/produits/${produit.photo_sneakers}"/></p>
-                          <p>Marque: ${produit.marque_sneakers}</p>
-                          <p>Modèle: ${produit.modele_sneakers}</p>
-                          <p>Couleur: ${produit.couleur_sneakers}</p>
-                          <p>Taille: ${produit.taille_sneakers}</p>
-                          <p>Genre: ${produit.genre_sneakers}</p>
-                          <p>Prix: ${produit.prix_sneakers}€</p>
+                          <p><img src="/chatbot/assets/images/produits/${produit.photo_sneakers}"/></p>
+                          <p>${produit.marque_sneakers} ${produit.modele_sneakers}</p>
+                          <p>${produit.couleur_sneakers}</p>
+                          <p>${produit.taille_sneakers}</p>
+                          <p>${produit.genre_sneakers}</p>
+                          <p>${produit.prix_sneakers}€</p>
                         </div>
                       `;
                     }
