@@ -3,7 +3,9 @@ body {
     background-color: #ffffff;
 }
 
-
+.interface-connexion {
+    margin-top: 200px;
+}
 
 .titre-icone,h1 {
     text-align: center;
@@ -36,7 +38,7 @@ input[type="password"] {
     margin-bottom: 10px;
 }
 
-input[type="submit"] { /*La classe du bouton déconnexion dans le fichier php du même nom*/
+input[type="submit"] { 
     background-color: #0147C9;
     color: #fff;
     border: none;
@@ -50,6 +52,6 @@ input[type="submit"] { /*La classe du bouton déconnexion dans le fichier php du
 input[type="submit"]:hover {
     background-color: #444;
 }
- 
+
     
     

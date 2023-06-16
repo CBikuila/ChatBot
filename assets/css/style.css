@@ -77,9 +77,10 @@ body {
 
 .messages__item {
     margin-top: 10px;
-    background: #E0E0E0; 
+    background: #6F97DD; 
     padding: 8px 12px;
     max-width: 70%;
+    color: #fff;
 }
 
 .messages__item--visitor,
@@ -97,6 +98,17 @@ body {
     color: white;
 }
 
+#listeProduits {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #6F97DD;
+    max-width: 80%;
+    color: #fff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
 .chatbox__footer .chatbox__send--footer {
     background: transparent;
     border-bottom-color: transparent;
@@ -105,6 +117,80 @@ body {
     border-top-color: transparent;
 
 }
+
+/*Chatbot form */
+.chatbot-form input[type="text"] {
+    display: block;
+    width: 90%;
+    padding: 7px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.chatbot-form input[type="password"] {
+    display: block;
+    width: 90%;
+    padding: 7px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.chatbot-form button.boutonConnexion,
+.chatbot-form button.boutonInscription{
+    background-color: #fff;
+    border: none;
+    color: #000;
+    padding: 9px 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.chatbot-form h2.title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+/*Connexion admin*/
+
+.dashboard a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.dashboard a:hover {
+    color: #000;
+}
+
+/*Connexion Utilisateur & Inscription utilisateur*/
+button.boutonCommande,
+button.boutonPanier,
+button.boutonRetour,
+button.boutonCategorie{
+    background-color: #0147C9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    white-space: nowrap;
+}
+
+ button.boutonDeconnexion {
+    background-color: #e1b81e;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
 
 /* FOOTER */
 .chatbox__footer {
