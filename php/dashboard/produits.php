@@ -38,6 +38,10 @@ error_reporting(E_ERROR);
                             <label for="reponse" class="form-label">Prix :</label>
                             <input type="text" class="form-control" name="prix_sneakers" id="prix_sneakers">
                         </div>
+                        <div class="mb-3">
+                            <label for="reponse" class="form-label">Genre :</label>
+                            <input type="text" class="form-control" name="genre_sneakers" id="genre_sneakers">
+                        </div>
                         <button type="submit" class="btn btn-primary" name="ajouter_produit">Ajouter</button>
                     </form>
 
@@ -64,11 +68,12 @@ $modelesSneakers = $_POST["modele_sneakers"];
 $couleursSneakers = $_POST["couleur_sneakers"];
 $taillesSneakers = $_POST["taille_sneakers"];
 $prixSneakers = $_POST["prix_sneakers"] . " &euro;";
+$genreSneakers = $_POST["genre_sneakers"];
 $categorieProduit = $_POST["categories_produits_nom"];
 
 if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers) {
     $insertion = "INSERT INTO produits (marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, genre_sneakers, prix_sneakers) 
-                  VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$prixSneakers')";
+                  VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$prixSneakers', '$genreSneakers')";
 
     $result = $conn->query($insertion);
     if ($result == true) {
@@ -99,17 +104,19 @@ if (!empty($categoriesProduits)) {
 <div class="interface">
     <table>
         <tr>
+            <th>Photo</th>
             <th>Marque</th>
             <th>Modèle</th>
             <th>Couleur</th>
             <th>Taille</th>
             <th>Prix</th>
+            <th>Genre</th>
             <th>Action</th>
             <th>Catégorie produit<th>
         </tr>
             <?php
             // Exécution de la requête SQL pour récupérer les produits et les catégories des produits
-            $sql = "SELECT p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, s.categories_produits_nom
+            $sql = "SELECT p.photo_sneakers, p.produits_id, p.marque_sneakers, p.modele_sneakers, p.couleur_sneakers, p.taille_sneakers, p.prix_sneakers, p.genre_sneakers, s.categories_produits_nom
                     FROM produits p
                     LEFT JOIN categories_produits s ON p.produits_id = s.categories_produits_id";
             $result = $conn->query($sql);
@@ -118,11 +125,13 @@ if (!empty($categoriesProduits)) {
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
+                    echo "<td>" . $row["photo_sneakers"] . "</td>";
                     echo "<td>" . $row["marque_sneakers"] . "</td>";
                     echo "<td>" . $row["modele_sneakers"] . "</td>";
                     echo "<td>" . $row["couleur_sneakers"] . "</td>";
                     echo "<td>" . $row["taille_sneakers"] . "</td>";
-                    echo "<td>" . $row["prix_sneakers"] . "</td>";
+                    echo "<td>" . $row["prix_sneakers"] . " €</td>";
+                    echo "<td>" . $row["genre_sneakers"] . "</td>";
                     echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["produits_id"] . '">Supprimer</a></td>';
                     echo "<td>";
                     echo "<select name='categories_produits[]'>"; // Ajout d'un attribut name pour récupérer la table SQL "categories_produits"
