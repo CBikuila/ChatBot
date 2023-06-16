@@ -19,6 +19,10 @@ error_reporting(E_ERROR);
                     </div>
                     <form action="produits.php" method="post">
                         <div class="mb-3">
+                            <label for="mots_cles" class="form-label">Photo :</label>
+                            <input type="text" class="form-control" name="marque_sneakers" id="marque_sneakers" aria-describedby="textHelp">
+                        </div>
+                        <div class="mb-3">
                             <label for="mots_cles" class="form-label">Marque :</label>
                             <input type="text" class="form-control" name="marque_sneakers" id="marque_sneakers" aria-describedby="textHelp">
                         </div>
