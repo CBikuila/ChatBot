@@ -20,7 +20,7 @@ error_reporting(E_ERROR);
                     <form action="produits.php" method="post">
                         <div class="mb-3">
                             <label for="mots_cles" class="form-label">Photo :</label>
-                            <input type="text" class="form-control" name="marque_sneakers" id="marque_sneakers" aria-describedby="textHelp">
+                            <input type="text" class="form-control" name="photo_sneakers" id="photo_sneakers" aria-describedby="textHelp">
                         </div>
                         <div class="mb-3">
                             <label for="mots_cles" class="form-label">Marque :</label>
@@ -67,17 +67,18 @@ error_reporting(E_ERROR);
 
 <?php
 // Ajout des produits à la base de données SQL "sneakme_database"
+$photoSneakers = $_POST["photo_sneakers"];
 $marquesSneakers = $_POST["marque_sneakers"];
 $modelesSneakers = $_POST["modele_sneakers"];
 $couleursSneakers = $_POST["couleur_sneakers"];
 $taillesSneakers = $_POST["taille_sneakers"];
-$prixSneakers = $_POST["prix_sneakers"] . " &euro;";
+$prixSneakers = $_POST["prix_sneakers"];
 $genreSneakers = $_POST["genre_sneakers"];
 $categorieProduit = $_POST["categories_produits_nom"];
 
-if ($marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers) {
-    $insertion = "INSERT INTO produits (marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, genre_sneakers, prix_sneakers) 
-                  VALUES ('$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$prixSneakers', '$genreSneakers')";
+if ($photoSneakers && $marquesSneakers && $modelesSneakers && $couleursSneakers && $taillesSneakers && $prixSneakers && $genreSneakers) {
+    $insertion = "INSERT INTO produits (photo_sneakers, marque_sneakers, modele_sneakers, couleur_sneakers, taille_sneakers, prix_sneakers, genre_sneakers) 
+                  VALUES ('$photoSneakers','$marquesSneakers', '$modelesSneakers', '$couleursSneakers', '$taillesSneakers', '$prixSneakers', '$genreSneakers')";
 
     $result = $conn->query($insertion);
     if ($result == true) {

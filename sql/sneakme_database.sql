@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 15 juin 2023 à 19:59
+-- Généré le : ven. 16 juin 2023 à 12:06
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -124,8 +124,8 @@ CREATE TABLE `produits` (
 --
 
 INSERT INTO `produits` (`produits_id`, `photo_sneakers`, `marque_sneakers`, `modele_sneakers`, `couleur_sneakers`, `taille_sneakers`, `prix_sneakers`, `genre_sneakers`) VALUES
-(31, 'conversechucktaylor.webp', 'Converse', 'Chuck Taylor', 'Noirs', 40, '100 &euro;', 'Mixte'),
-(34, 'adidaswebboost.webp', 'Adidas', 'Web Boost', 'Noirs', 42, '240 &euro;', 'Masculin'),
+(31, 'conversechucktaylor.webp', 'Converse', 'Chuck Taylor', 'Noirs', 40, '100', 'Mixte'),
+(34, 'adidaswebboost.webp', 'Adidas', 'Web Boost', 'Noirs', 42, '240', 'Masculin'),
 (35, 'newbalancegr997.webp', 'New Balance', 'GR997', 'Grises', 37, '140', 'Mixtes'),
 (36, 'nikeairforceone.webp', 'Nike', 'Air Force', 'Blanches', 34, '140', 'Mixtes'),
 (37, 'nikeairmax.webp', 'Nike', 'Air Max', 'Blanches', 34, '200', 'Femmes');
@@ -168,7 +168,7 @@ CREATE TABLE `utilisateurs_connexion` (
 --
 
 INSERT INTO `utilisateurs_connexion` (`utilisateurs_id`, `prenom_utilisateur`, `mot_de_passe_utilisateur`) VALUES
-(2, 'client', 'client'),
+(4, 'fgfg', 'fgfg');
 
 --
 -- Index pour les tables déchargées
@@ -230,7 +230,7 @@ ALTER TABLE `admin_connexion`
 -- AUTO_INCREMENT pour la table `categories_produits`
 --
 ALTER TABLE `categories_produits`
-  MODIFY `categories_produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `categories_produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `motscles`
@@ -248,7 +248,7 @@ ALTER TABLE `panier`
 -- AUTO_INCREMENT pour la table `produits`
 --
 ALTER TABLE `produits`
-  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `produits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT pour la table `statuts_commandes`
