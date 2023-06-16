@@ -524,8 +524,8 @@ th, td {
 }
 
 /* Mot clés*/
-table {
-    margin-left: 40px;
+table.table.table-hover.table-striped {
+    margin-left: 35px;
 }
 
 th, td {
