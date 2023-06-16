@@ -63,8 +63,7 @@ INSERT INTO `categories_produits` (`categories_produits_id`, `categories_produit
 (5, 'Sneakers de tennis'),
 (6, 'Sneakers de randonnée'),
 (7, 'Sneakers minimalistes'),
-(8, 'Sneakers rétro'),
-(13, 'gfgfg');
+(8, 'Sneakers rétro');
 
 -- --------------------------------------------------------
 
