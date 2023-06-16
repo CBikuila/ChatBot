@@ -29,59 +29,64 @@ error_reporting(E_ERROR);
                         <button type="submit" class="btn btn-primary">Ajouter</button>
                     </form>
                 </div>
+                <?php
+                    //Ajout des mots-clés à la base de données SQL "sneakme_database"
+                    $question  = $_POST["question"];
+                    $motscles  = $_POST["mots_cles"];
+
+                    if ($question && $motscles){
+                        $insertion = "INSERT INTO motscles (question, mots_cles) 
+                                    VALUES ('$question', '$motscles')";
+
+                        $result = $conn->query($insertion);
+                        if ($result == true) {
+                            echo "<p>Le mot-clé et la question associée ont bien été ajouté</p>";
+                        } else {
+                            echo "<p>Erreur lors de l'insertion du mot-clé et de la question associée</p>";
+                        }
+                    }
+                ?>
             </div>
         </div>
+
+        <!-- Interface en bas de la page affichant les données SQL saisies pour les mots-clés -->
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-striped">
+                    <tr>
+                    <th class="colonne">Mot-clé</th>
+                    <th class="colonne">Question</th>
+                    <th class="colonne">Action</th>
+                    </tr>
+                    <?php
+                        // Exécution de la requête SQL pour récupérer les mots-clés et leurs questions associées
+                        $sql = "SELECT motscles_id, mots_cles, question 
+                                FROM motscles";
+                        $result = $conn->query($sql);
+
+                        // Vérification des résultats de la requête
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["mots_cles"] . "</td>";
+                                echo "<td>" . $row["question"] . "</td>";
+                                echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
+                                echo "</tr>";
+                            }
+
+                        } else {
+                            echo "<tr><td colspan='3'>Aucuns mots-clés ajoutés</td></tr>";
+                        }
+
+                        // Fermeture de la connexion à la base de données
+                        $conn->close();
+                    ?>       
+                <table>
+            </div>
+        </div>  
     </div>
 </div>
 
-<?php
-//Ajout des mots-clés à la base de données SQL "sneakme_database"
-$question  = $_POST["question"];
-$motscles  = $_POST["mots_cles"];
 
-if ($question && $motscles){
-    $insertion = "INSERT INTO motscles (question, mots_cles) 
-                  VALUES ('$question', '$motscles')";
 
-    $result = $conn->query($insertion);
-    if ($result == true) {
-        echo "<p>Le mot-clé et la question associée ont bien été ajouté</p>";
-    } else {
-        echo "<p>Erreur lors de l'insertion du mot-clé et de la question associée</p>";
-    }
-}
-?>
 
-<!-- Interface en bas de la page affichant les données SQL saisies pour les mots-clés -->
-<div>
-    <table>
-        <tr>
-            <th>Mot-clé</th>
-            <th>Question</th>
-            <th>Action</th>
-        </tr>
-    <?php
-    // Exécution de la requête SQL pour récupérer les mots-clés et leurs questions associées
-    $sql = "SELECT motscles_id, mots_cles, question 
-            FROM motscles";
-    $result = $conn->query($sql);
-
-    // Vérification des résultats de la requête
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["mots_cles"] . "</td>";
-            echo "<td>" . $row["question"] . "</td>";
-            echo '<td><a class="btn btn-danger btn-xs" href="../suppressionLigneSQL.php?id=' . $row["motscles_id"] . '">Supprimer</a></td>';
-            echo "</tr>";
-        }
-
-    } else {
-        echo "<tr><td colspan='3'>Aucuns mots-clés ajoutés</td></tr>";
-    }
-
-    // Fermeture de la connexion à la base de données
-    $conn->close();
-    ?>
-    </table>
-</div>

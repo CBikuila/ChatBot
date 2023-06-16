@@ -522,3 +522,12 @@ th, td {
         overflow-x: scroll;
     }
 }
+
+/* Mot clés*/
+table {
+    margin-left: 40px;
+}
+
+th, td {
+    width: 20%;
+}
