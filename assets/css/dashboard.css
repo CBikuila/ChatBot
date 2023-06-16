@@ -528,6 +528,6 @@ table.table.table-hover.table-striped {
     margin-left: 35px;
 }
 
-th, td {
+th.colonne{
     width: 5%;
 }
